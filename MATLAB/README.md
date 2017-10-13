@@ -1,0 +1,1 @@
+# Model symulacyjny obiektu i regulatora
