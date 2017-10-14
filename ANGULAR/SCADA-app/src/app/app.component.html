@@ -1,0 +1,57 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="width: 100%">
+  <nav class="navbar navbar-toggleable-md navbar-inverse bg-primary">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="#"> <h1> {{title}} </h1></a>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto" (click)="changeCSS($event)" id="menuList">
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/statistics"><i class="fa fa-line-chart" aria-hidden="true"></i> Statystyki </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink='/plant'><i class="fa fa-industry" aria-hidden="true"></i> Obiekt </a>   
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink='/controler'><i class="fa fa-cogs" aria-hidden="true"></i> Regulator </a>   
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink='/logs'><i class="fa fa-list" aria-hidden="true"></i> Logi </a>   
+        </li>
+      </ul>
+    </div>
+  </nav> 
+</div>
+<!-- <div class="rootPanel">
+<div class="mainPanel">
+      <router-outlet></router-outlet> 
+</div>
+</div> -->
+
+<div class="rootPanel">  
+  <div class="dataPanel">
+    <h2>
+      Dane
+    </h2>
+    <div class="mainPanel">
+      <router-outlet></router-outlet> 
+    </div>
+  </div>
+
+  <div class="messagePanel">
+      <h2>
+          Wiadomości
+      </h2>
+      <nav class="bg-faded sidebar" style="background-color: #fafafa;">
+        <ul class="nav nav-pills flex-column">
+          <li class="nav-item active">
+            <!-- <a routerLink="/request/select/allUsers" class="nav-link"><i class="fa fa-list" aria-hidden="true"></i> Show all </a> -->
+            <div>proba</div>
+          </li>
+          
+        </ul>
+      </nav>
+  </div>
+</div>

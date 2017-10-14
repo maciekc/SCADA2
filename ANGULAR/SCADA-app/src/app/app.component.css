@@ -1,0 +1,57 @@
+a > h1 {
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 200%;
+}
+
+.rootPanel {
+    width: calc(100% - 10px);
+    height: 100%;
+    background-color: #F0F0F0;
+    margin: 5px;
+}
+.navPanel {
+    width: 50px;
+    height: 100%;
+    float: left;
+    background-color: #222222;
+}
+.mainPanel {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    float: left;
+    padding: 10px;
+}
+
+.dataPanel {
+    width: 80%;
+    height: 100%;
+    float: left;
+    padding: 5px; 
+    background-color: #fafafa;
+    margin-right: 5px;
+    border: 1px solid #cacaca;
+    border-radius: 2px;
+    
+}
+
+.messagePanel {
+    width: calc(20% - 5px);
+    height: 100%;
+    float: left;
+    padding: 5px; 
+    background-color: #fafafa;
+    border: 1px solid #cacaca;
+    border-radius: 2px;
+}
+.navIcon {
+    /* align-self: auto; */
+    margin: 10px 5px 10px 5px;
+    padding: 2px;
+}
+
+li > a {
+    font-size: 150%;
+    font-family: Arial, Helvetica, sans-serif;
+}
