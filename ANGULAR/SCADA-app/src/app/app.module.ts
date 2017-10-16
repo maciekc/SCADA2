@@ -9,7 +9,8 @@ import { AppComponent } from './app.component';
 import { LogsComponent } from './components/logs/logs.component'
 import { PlantComponent } from './components/plant/plant.component'
 import { ControlerComponent } from './components/controler/controler.component'
-import { StatisticsComponent } from './components/statistics/statistics.component'
+import { StatisticsComponent } from './components/statistics/statistics.component';
+import { MessagesComponent } from './components/messages/messages.component'
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { StatisticsComponent } from './components/statistics/statistics.componen
     LogsComponent,
     PlantComponent,
     ControlerComponent,
-    StatisticsComponent
+    StatisticsComponent,
+    MessagesComponent
   ],
   imports: [BrowserModule,
     FormsModule,

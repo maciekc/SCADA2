@@ -6,9 +6,13 @@ a > h1 {
 
 .rootPanel {
     width: calc(100% - 10px);
-    height: 100%;
+    height: calc(100% - 86px);
     background-color: #F0F0F0;
     margin: 5px;
+    left: 0;
+    top: 76;
+    overflow: auto;
+    position: fixed;
 }
 .navPanel {
     width: 50px;
@@ -28,7 +32,6 @@ a > h1 {
     width: 80%;
     height: 100%;
     float: left;
-    padding: 5px; 
     background-color: #fafafa;
     margin-right: 5px;
     border: 1px solid #cacaca;
@@ -40,7 +43,7 @@ a > h1 {
     width: calc(20% - 5px);
     height: 100%;
     float: left;
-    padding: 5px; 
+    padding: 10px; 
     background-color: #fafafa;
     border: 1px solid #cacaca;
     border-radius: 2px;
