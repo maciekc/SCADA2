@@ -52,5 +52,4 @@ export class PlantComponent implements OnInit {
     }
     Plotly.newPlot(figure2, data, layout);
   }
-
 }

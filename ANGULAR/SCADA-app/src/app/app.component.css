@@ -4,6 +4,13 @@ a > h1 {
     font-size: 200%;
 }
 
+.navPanel {
+    width: 50px;
+    height: 100%;
+    float: left;
+    background-color: #222222;
+}
+
 .rootPanel {
     width: calc(100% - 10px);
     height: calc(100% - 86px);
@@ -11,36 +18,32 @@ a > h1 {
     margin: 5px;
     left: 0;
     top: 76;
-    overflow: auto;
+    /* overflow: auto; */
     position: fixed;
 }
-.navPanel {
-    width: 50px;
-    height: 100%;
-    float: left;
-    background-color: #222222;
-}
+
 .mainPanel {
     width: 100%;
     height: 100%;
     text-align: center;
     float: left;
-    padding: 10px;
+    /* padding: 10px; */
 }
 
 .dataPanel {
-    width: 80%;
+    width: calc(100% - 10px - 270px);
     height: 100%;
     float: left;
     background-color: #fafafa;
     margin-right: 5px;
-    border: 1px solid #cacaca;
-    border-radius: 2px;
+    margin-left: 5px;
+    /* border: 1px solid #cacaca;
+    border-radius: 2px; */
     
 }
 
 .messagePanel {
-    width: calc(20% - 5px);
+    width: 270px;
     height: 100%;
     float: left;
     padding: 10px; 

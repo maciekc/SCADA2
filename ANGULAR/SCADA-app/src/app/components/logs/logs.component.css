@@ -1,0 +1,58 @@
+.reportPanel {
+    border: 1px solid #cacaca;
+    border-radius: 2px;
+    width: 100%; 
+    height: 100%;
+    padding: 10px;
+}
+.table {
+    color: #555555;
+    width: 100%;
+    height: 100%;
+}
+.headerRow {
+    text-align: center;
+    font-weight: bold;
+    font-size: 120%;
+    width: 100%;
+    height: 35px;
+    margin-top: 5px;
+    /* border: 1px solid #cacaca; */
+}
+.reportRow {
+    text-align: left;
+    font-size: 100%;
+    width: 100%;
+    height: 35px;
+}
+
+.cell {
+    height: 100%;
+    border: 1px solid #cacaca;
+    float: left;
+}
+.LPCell {
+    width: 5%;
+    text-align: center;
+}
+.dateCell {
+    width: 10%;
+    text-align: center;
+}
+.valueCell {
+    width: 10%;
+    text-align: center;
+}
+.variableCell {
+    width: 10%;
+    text-align: center;
+}
+.typeCell {
+    width: 10%;
+    text-align: center;
+}
+.commentCell {
+    font-style: italic;
+    width: 15%;
+    text-align: center;
+}

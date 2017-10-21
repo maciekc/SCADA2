@@ -3,12 +3,8 @@
       Wiadomości
   </h2>
 </div>
-<nav class="bg-faded sidebar" style="background-color: #fafafa;">
-  <ul class="nav nav-pills flex-column">
-    <!-- <li class="nav-item active">
-      <!-- <a routerLink="/request/select/allUsers" class="nav-link"><i class="fa fa-list" aria-hidden="true"></i> Show all </a> -->
-      <!-- <div>proba</div>
-    </li> --> 
-    
-  </ul>
-</nav>
+<div class="allMassagePanel">
+  <app-warning-messages [message] = "message"></app-warning-messages>
+  <app-error-messages [message] = "message1"></app-error-messages>
+  <app-info-messages [message] = "message"></app-info-messages>
+</div>

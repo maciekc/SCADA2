@@ -1,0 +1,23 @@
+<div class = "errorDialog">
+  <div class = "inner">
+    <div style = "text-align: center;font-size: 110%;height: 60%;"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>    </div>
+    <div style = "font-size:75%;height: 40%;">
+      <div class="reasonDiv">
+          {{message.getReason()}}
+      </div>
+    </div>
+  </div>
+  <div class="inner info">
+    <div style ="font-size:110%;font-weight: bold;height: 50%;">
+      {{message.getDate()}}
+    </div>      
+    <div style="height: 50%;">
+      <div style = "float: left;margin-right: 5px;">
+        typ:
+      </div>
+      <div style ="font-size:120%; float: left;font-weight: bold;">
+          {{message.getType()}}
+      </div>
+    </div>
+  </div>
+</div>

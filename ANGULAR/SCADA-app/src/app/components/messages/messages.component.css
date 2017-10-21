@@ -1,0 +1,70 @@
+.allMassagePanel {
+    background-color: #fafafa;
+    padding: 0px
+}
+.errorDialog {
+    width: 250px;
+    height: 60px;
+    /* background-color: #FF9A9A;
+    border: 2px solid #E12C2C;
+    color:  #fafafa; */
+    background-color: #f2dede;
+    color: #a94442;
+    border: 1px solid #ecb9b9;
+    border-radius: 5px;
+    font-size: 120%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+.warningDialog {
+    width: 250px;
+    height: 60px;
+    /* background-color: #FFCB85;
+    border: 2px solid #FF9404;
+    color:  #fafafa; */
+    background-color: #fcf8e3;
+    color: #8a6d3b;
+    border: 1px solid #eed04a;
+    border-radius: 5px;
+    font-size: 120%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+  
+.infoDialog {
+    width: 250px;
+    height: 60px;
+    /* background-color: #91C5F0;
+    border: 1px solid #1091FD; */
+    /* color:  #fafafa; */
+    background-color: #d9edf7;
+    color: #31708f;
+    border: 1px solid #bcdff1;
+    border-radius: 5px;
+    font-size: 120%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.inner {
+    float: left;
+    padding: 0px 5px 5px 5px;
+    height: 100%;
+    width: 36%;
+    
+/* margin: 2px; */
+}
+.info {
+    font-size: 70%;
+    width: 64%;
+    padding: 5px;
+/* margin-top: 5px;
+margin-bottom: 5px; */
+}
+
+.reasonDiv {
+    font-size:110%; 
+    text-align: center;
+    font-weight: bold;
+    height: 100%;
+}

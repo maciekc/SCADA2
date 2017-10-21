@@ -52,6 +52,12 @@ export class StatisticsComponent implements OnInit {
       yaxis : {title : 'Napięcie [V]'}
     }
     Plotly.newPlot(figure2, data, layout);
+
+    let figure3 = document.getElementById('plantPlot');
+    Plotly.newPlot(figure3, data, layout);
+    
+    let figure4 = document.getElementById('controlerPlot');
+    Plotly.newPlot(figure4, data, layout);
   }
 
 }

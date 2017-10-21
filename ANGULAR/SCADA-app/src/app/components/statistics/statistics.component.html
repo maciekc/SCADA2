@@ -1,23 +1,65 @@
-<div>
-  <div class="titleHeader">
-    <h2>Statystyki systemu</h2>
-  </div>
-
-  <div class="plotBox">
-    <div class="plotHeader">
-      Wyjście systemu
+<div style="height: 100%;width: 100%;border: 1px solid #cacaca;border-radius: 2px;">
+  <div class="plotPanel">
+    <div class="titleHeader">
+      <h2>Statystyki systemu</h2>
     </div>
-    <div class="plotArea" id="outputPlot">
-
-    </div>
-  </div>
-
-  <div class="plotBox">
+    <div class="plotBox">
       <div class="plotHeader">
-        Sterowanie
+        <div style="width: 40%;height: 100%;float: left;"></div>
+        <div style="float:left;height: 100%; width: 20%;">Wyjście systemu</div>
+        <div style="width: 40%;height: 100%;float: left;"></div>
       </div>
-      <div class="plotArea" id="controlPlot">
-        
-      </div>
+      <div class="plotArea" id="outputPlot"></div>
     </div>
+
+    <div class="plotBox">
+      <div class="plotHeader">
+        <div style="width: 30%;height: 100%;float: left;"></div>
+        <div style="float:left;height: 100%; width: 30%;">Sterowanie</div>
+        <div style="width: 30%;height: 100%;float: left;"></div>
+      </div>
+      <div class="plotArea" id="controlPlot"></div>
+    </div>
+  </div>
+
+  <div class="plotPanel">
+    <div class="plotBox" style="height: 100%;">
+      <div class="plotHeader">
+        <div style="width: 20%;height: 100%;float: left;"></div>
+        <div style="float:left;height: 100%; width: 30%;">Zmienna systemu</div>
+        <div class="btn-group" style="float: left; color: #555555;height: 100%; width: 30%;">
+            <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              x1
+            </button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="#">x2</a>
+              <a class="dropdown-item" href="#">dasd</a>
+              <a class="dropdown-item" href="#">fafs</a>
+            </div>
+        </div>
+        <div style="width: 20%;height: 100%;float: left;"></div>
+      </div>
+      <div class="plotArea" id="plantPlot"></div>
+    </div>
+
+    <div class="plotBox">
+      <div class="plotHeader">
+        <div style="width: 20%;height: 100%;float: left;"></div>
+        <div style="float:left;height: 100%; width: 30%;">Parametry regulatora</div>
+        <div class="btn-group" style="float: left; color: #555555;height: 100%; width: 30%;">
+            <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              sterowanie
+            </button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="#">sterowanie</a>
+              <a class="dropdown-item" href="#">wsk.jakości 1</a>
+              <a class="dropdown-item" href="#">wsk.jakości 2</a>
+              <a class="dropdown-item" href="#">energia</a>
+            </div>
+        </div>
+        <div style="width: 20%;height: 100%;float: left;"></div>
+      </div>
+      <div class="plotArea" id="controlerPlot"></div>
+    </div>
+  </div>
 </div>
