@@ -25,11 +25,10 @@ DROP TABLE IF EXISTS `work`;
 CREATE TABLE `work` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `state_space_id` int(11) NOT NULL,
-  `controler_state_id` int(11) NOT NULL,
+  `date` datetime NOT NULL,
+  `value` double NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_state_space_idx` (`state_space_id`),
-  KEY `fk_controler_state_work_idx` (`controler_state_id`),
-  CONSTRAINT `fk_controler_state_work` FOREIGN KEY (`controler_state_id`) REFERENCES `controler_state` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_state_space_work` FOREIGN KEY (`state_space_id`) REFERENCES `state_space` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -52,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-10-14 14:11:28
+-- Dump completed on 2017-10-27 19:37:38

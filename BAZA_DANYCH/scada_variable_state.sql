@@ -16,33 +16,27 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `history`
+-- Table structure for table `variable_state`
 --
 
-DROP TABLE IF EXISTS `history`;
+DROP TABLE IF EXISTS `variable_state`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `history` (
+CREATE TABLE `variable_state` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `variable_state_id` int(11) NOT NULL,
-  `state_space_id` int(11) NOT NULL,
-  `value` double NOT NULL,
-  `date` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_system_state_idx` (`variable_state_id`),
-  KEY `fk_state_space_hist_idx` (`state_space_id`),
-  CONSTRAINT `fk_state_space_hist` FOREIGN KEY (`state_space_id`) REFERENCES `state_space` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_variable_state` FOREIGN KEY (`variable_state_id`) REFERENCES `variable_state` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `name` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `history`
+-- Dumping data for table `variable_state`
 --
 
-LOCK TABLES `history` WRITE;
-/*!40000 ALTER TABLE `history` DISABLE KEYS */;
-/*!40000 ALTER TABLE `history` ENABLE KEYS */;
+LOCK TABLES `variable_state` WRITE;
+/*!40000 ALTER TABLE `variable_state` DISABLE KEYS */;
+INSERT INTO `variable_state` VALUES (1,'ANDON'),(2,'WORK'),(3,'POWER_OFF'),(4,'BREAK'),(5,'CHANGE_PARAMETER_VALUE');
+/*!40000 ALTER TABLE `variable_state` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

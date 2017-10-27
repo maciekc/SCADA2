@@ -26,7 +26,7 @@ CREATE TABLE `state_space` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -35,7 +35,7 @@ CREATE TABLE `state_space` (
 
 LOCK TABLES `state_space` WRITE;
 /*!40000 ALTER TABLE `state_space` DISABLE KEYS */;
-INSERT INTO `state_space` VALUES (1,'control_signal'),(2,'output');
+INSERT INTO `state_space` VALUES (1,'concentration'),(2,'level_1'),(3,'level_2'),(4,'level_3'),(5,'valve_1'),(6,'valve_2'),(7,'valve_3'),(8,'valve_4'),(9,'reference_value');
 /*!40000 ALTER TABLE `state_space` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -48,4 +48,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-10-14 14:11:27
+-- Dump completed on 2017-10-27 19:37:39

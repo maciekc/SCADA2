@@ -24,16 +24,13 @@ DROP TABLE IF EXISTS `andon`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `andon` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) DEFAULT NULL,
-  `descrption` varchar(300) DEFAULT NULL,
   `limit_id` int(11) NOT NULL,
   `state_space_id` int(11) NOT NULL,
-  `controler_state_id` int(11) NOT NULL,
+  `value` double NOT NULL,
+  `date` datetime NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_state_space_idx` (`state_space_id`),
   KEY `fk_limit_idx` (`limit_id`),
-  KEY `fk_controler_state_idx` (`controler_state_id`),
-  CONSTRAINT `fk_controler_state` FOREIGN KEY (`controler_state_id`) REFERENCES `controler_state` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  KEY `fk_state_space_idx` (`state_space_id`),
   CONSTRAINT `fk_limit` FOREIGN KEY (`limit_id`) REFERENCES `limits` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_state_space` FOREIGN KEY (`state_space_id`) REFERENCES `state_space` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -57,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-10-14 14:11:28
+-- Dump completed on 2017-10-27 19:37:39

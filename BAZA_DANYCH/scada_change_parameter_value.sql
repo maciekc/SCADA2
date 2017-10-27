@@ -16,27 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `system_state`
+-- Table structure for table `change_parameter_value`
 --
 
-DROP TABLE IF EXISTS `system_state`;
+DROP TABLE IF EXISTS `change_parameter_value`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `system_state` (
+CREATE TABLE `change_parameter_value` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+  `state_space_id` int(11) NOT NULL,
+  `date` datetime NOT NULL,
+  `value` double NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_state_space_chp_idx` (`state_space_id`),
+  CONSTRAINT `fk_state_space_chp` FOREIGN KEY (`state_space_id`) REFERENCES `variable_state` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `system_state`
+-- Dumping data for table `change_parameter_value`
 --
 
-LOCK TABLES `system_state` WRITE;
-/*!40000 ALTER TABLE `system_state` DISABLE KEYS */;
-INSERT INTO `system_state` VALUES (1,'ANDON'),(2,'WORK'),(3,'POWER_OFF'),(4,'BREAK');
-/*!40000 ALTER TABLE `system_state` ENABLE KEYS */;
+LOCK TABLES `change_parameter_value` WRITE;
+/*!40000 ALTER TABLE `change_parameter_value` DISABLE KEYS */;
+/*!40000 ALTER TABLE `change_parameter_value` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -48,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-10-14 14:11:28
+-- Dump completed on 2017-10-27 19:37:38

@@ -1,0 +1,18 @@
+<component name="libraryTable">
+  <library name="JeasyOPC">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/user_libs/JeasyOPC" />
+      <root url="file://$PROJECT_DIR$/user_libs/JeasyOPC/lib" />
+    </CLASSES>
+    <JAVADOC />
+    <NATIVE>
+      <root url="file://$PROJECT_DIR$/user_libs/JeasyOPC/lib" />
+    </NATIVE>
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/user_libs/JeasyOPC" />
+    </SOURCES>
+    <jarDirectory url="file://$PROJECT_DIR$/user_libs/JeasyOPC" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/user_libs/JeasyOPC/lib" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/user_libs/JeasyOPC" recursive="false" type="SOURCES" />
+  </library>
+</component>
