@@ -26,6 +26,7 @@ CREATE TABLE `history` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `variable_state_id` int(11) NOT NULL,
   `state_space_id` int(11) NOT NULL,
+  `event_id` int(11) NOT NULL,
   `value` double NOT NULL,
   `date` datetime NOT NULL,
   PRIMARY KEY (`id`),
@@ -33,7 +34,7 @@ CREATE TABLE `history` (
   KEY `fk_state_space_hist_idx` (`state_space_id`),
   CONSTRAINT `fk_state_space_hist` FOREIGN KEY (`state_space_id`) REFERENCES `state_space` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_variable_state` FOREIGN KEY (`variable_state_id`) REFERENCES `variable_state` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,6 +43,7 @@ CREATE TABLE `history` (
 
 LOCK TABLES `history` WRITE;
 /*!40000 ALTER TABLE `history` DISABLE KEYS */;
+INSERT INTO `history` VALUES (1,2,2,1,1.55,'2017-10-27 21:20:00'),(2,2,2,2,2,'2017-10-20 15:00:00'),(3,1,2,1,25,'2017-10-28 13:00:00'),(4,1,2,7,25,'2017-10-28 13:00:00'),(5,1,2,8,25,'2017-10-28 13:00:00'),(6,1,4,9,120,'2017-10-28 13:43:00'),(7,1,4,10,120,'2017-10-28 13:43:00'),(8,1,4,11,120,'2017-10-28 13:43:00'),(9,1,4,12,120,'2017-10-28 13:43:00'),(10,2,4,2,57,'2017-10-28 15:43:00'),(11,5,1,2,25,'2017-10-28 16:43:00'),(12,5,1,3,25,'2017-10-28 16:43:00'),(13,5,1,4,25,'2017-10-28 16:43:00'),(14,5,1,5,25,'2017-10-28 16:43:00'),(15,5,1,6,25,'2017-10-28 16:43:00'),(16,5,1,7,25,'2017-10-28 16:43:00');
 /*!40000 ALTER TABLE `history` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-10-27 19:37:39
+-- Dump completed on 2017-10-28 20:39:16

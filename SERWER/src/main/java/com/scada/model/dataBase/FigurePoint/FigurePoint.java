@@ -1,3 +1,5 @@
+package com.scada.model.dataBase.FigurePoint;
+
 import java.io.Serializable;
 
 public class FigurePoint implements Serializable {

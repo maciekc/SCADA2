@@ -24,13 +24,13 @@ DROP TABLE IF EXISTS `change_parameter_value`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `change_parameter_value` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `state_space_id` int(11) NOT NULL,
+  `parameter_id` int(11) NOT NULL,
   `date` datetime NOT NULL,
   `value` double NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_state_space_chp_idx` (`state_space_id`),
-  CONSTRAINT `fk_state_space_chp` FOREIGN KEY (`state_space_id`) REFERENCES `variable_state` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  KEY `fk_parameter_idx` (`parameter_id`),
+  CONSTRAINT `fk_parameter` FOREIGN KEY (`parameter_id`) REFERENCES `system_parameters` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,6 +39,7 @@ CREATE TABLE `change_parameter_value` (
 
 LOCK TABLES `change_parameter_value` WRITE;
 /*!40000 ALTER TABLE `change_parameter_value` DISABLE KEYS */;
+INSERT INTO `change_parameter_value` VALUES (1,1,'2017-10-28 16:27:00',12),(2,1,'2017-10-28 16:43:00',25),(3,1,'2017-10-28 16:43:00',25),(4,1,'2017-10-28 16:43:00',25),(5,1,'2017-10-28 16:43:00',25),(6,1,'2017-10-28 16:43:00',25),(7,1,'2017-10-28 16:43:00',25);
 /*!40000 ALTER TABLE `change_parameter_value` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-10-27 19:37:38
+-- Dump completed on 2017-10-28 20:39:15
