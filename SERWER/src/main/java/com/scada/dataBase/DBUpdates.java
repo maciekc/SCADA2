@@ -4,6 +4,8 @@ import com.scada.model.dataBase.Andon.Andon;
 import com.scada.model.dataBase.Andon.AndonBinder;
 import com.scada.model.dataBase.ChangeParameterValue.ChangeParameterValue;
 import com.scada.model.dataBase.ChangeParameterValue.ChangeParameterValueBinder;
+import com.scada.model.dataBase.Controller.Controller;
+import com.scada.model.dataBase.Controller.ControllerBinder;
 import com.scada.model.dataBase.Limit.Limit;
 import com.scada.model.dataBase.Limit.LimitBinder;
 import com.scada.model.dataBase.Work.Work;
@@ -84,6 +86,45 @@ public interface DBUpdates {
                     ":date);";
     @SqlUpdate(insertWorkToHistorySQL)
     int insertWorkToHistory(@WorkBinder Work work, @Bind("var_state") String var_state);
+
+
+
+    //------------------------------------------------------------------
+    //                        INSERT CONTROLLER
+    //------------------------------------------------------------------
+
+    String insertControllerSQL =
+            "INSERT INTO scada.controller\n" +
+                    "(\n" +
+                    "state_space_id,\n" +
+                    "variable_state_id,\n" +
+                    "value,\n" +
+                    "date)\n" +
+                    "VALUES\n" +
+                    "((SELECT id FROM state_space WHERE tag LIKE :stateSpaceTag), " +
+                    "(SELECT id FROM scada.variable_state WHERE tag LIKE :variableStateTag), " +
+                    ":value, " +
+                    ":date);";
+
+    @SqlUpdate(insertControllerSQL)
+    int insertController(@ControllerBinder Controller controller);
+
+
+    String insertControllerToHistorySQL =
+            "INSERT INTO scada.history \n" +
+                    "(variable_state_id,\n" +
+                    "state_space_id,\n" +
+                    "event_id,\n" +
+                    "value,\n" +
+                    "date)\n" +
+                    "VALUES\n" +
+                    "((SELECT id FROM scada.variable_state WHERE tag LIKE :variableStateTag), " +
+                    "(SELECT id FROM scada.state_space WHERE tag LIKE :stateSpaceTag), " +
+                    "(SELECT max(id) FROM scada.controller), " +
+                    ":value, " +
+                    ":date);";
+    @SqlUpdate(insertControllerToHistorySQL)
+    int insertControllerToHistory(@ControllerBinder Controller controller);
 
     //------------------------------------------------------------------
     //                 INSERT CHANGE_PARAMETER_VALUE DATA

@@ -1,19 +1,19 @@
-package com.scada.model.dataBase.Andon;
+package com.scada.model.dataBase.Controller;
 
 import java.io.Serializable;
 
-public class Andon implements Serializable{
+public class Controller implements Serializable {
 
     private Integer id;
     private String stateSpaceTag;
-    private String limitTag;
+    private String variableStateTag;
     private Double value;
     private String date;
 
-    public Andon(Integer id, String stateSpaceTag, String limit, Double value, String date) {
+    public Controller(Integer id, String stateSpaceTag, String variableStateTag, Double value, String date) {
         this.id = id;
         this.stateSpaceTag = stateSpaceTag;
-        this.limitTag = limit;
+        this.variableStateTag = variableStateTag;
         this.value = value;
         this.date = date;
     }
@@ -34,12 +34,12 @@ public class Andon implements Serializable{
         this.stateSpaceTag = stateSpaceTag;
     }
 
-    public String getLimitTag() {
-        return limitTag;
+    public String getVariableStateTag() {
+        return variableStateTag;
     }
 
-    public void setLimitTag(String limit) {
-        this.limitTag = limit;
+    public void setVariableStateTag(String variableStateTag) {
+        this.variableStateTag = variableStateTag;
     }
 
     public Double getValue() {

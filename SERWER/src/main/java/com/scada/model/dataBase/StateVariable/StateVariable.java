@@ -1,16 +1,25 @@
-package com.scada.model.dataBase.StateSpace;
+package com.scada.model.dataBase.StateVariable;
 
 import java.io.Serializable;
 
-public class StateSpace implements Serializable{
+public class StateVariable implements Serializable{
+    private String tag;
     private  String name;
     private  Integer id;
 
-    public StateSpace(Integer id, String name) {
+    public StateVariable(Integer id, String tag, String name) {
+        this.tag = tag;
         this.name = name;
         this.id = id;
     }
 
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
     public String getName() {
         return name;
     }

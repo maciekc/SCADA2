@@ -2,6 +2,7 @@ package com.scada.dataBase;
 
 import com.scada.model.dataBase.Andon.Andon;
 import com.scada.model.dataBase.ChangeParameterValue.ChangeParameterValue;
+import com.scada.model.dataBase.Controller.Controller;
 import com.scada.model.dataBase.Notification.Notification;
 import com.scada.model.dataBase.Work.Work;
 import org.skife.jdbi.v2.Handle;
@@ -30,10 +31,10 @@ public class GetDBData {
         }
     }
 
-    public Observable<Map<Integer, String>> getStateSpaces() {
+    public Observable<Map<String, String>> getStateSpace() {
         synchronized (this) {
-            return Observable.from(queries.getStateSpaces())
-                    .toMap(res -> res.getId(), res -> res.getName());
+            return Observable.from(queries.getStateSpace())
+                    .toMap(res -> res.getTag(), res -> res.getName());
         }
     }
 
@@ -69,6 +70,24 @@ public class GetDBData {
     public Observable<Map<Integer, Work>> getWorkData(String startDate, String endDate) {
         synchronized (this) {
             return Observable.from(queries.getWorkData(startDate, endDate))
+                    .toMap(res -> res.getId(), res -> res);
+        }
+    }
+
+    //------------------------------------------------------------------
+    //                       GET CONTROLLER DATA
+    //------------------------------------------------------------------
+
+    public Observable<Map<Integer, Controller>> getControllerData() {
+        synchronized (this) {
+            return Observable.from(queries.getControllerData())
+                    .toMap(res -> res.getId(), res -> res);
+        }
+    }
+
+    public Observable<Map<Integer, Controller>> getControllerData(String startDate, String endDate) {
+        synchronized (this) {
+            return Observable.from(queries.getControllerData(startDate, endDate))
                     .toMap(res -> res.getId(), res -> res);
         }
     }

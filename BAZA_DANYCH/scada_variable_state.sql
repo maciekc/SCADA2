@@ -24,7 +24,8 @@ DROP TABLE IF EXISTS `variable_state`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `variable_state` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `tag` varchar(45) DEFAULT NULL,
+  `tag` varchar(45) NOT NULL,
+  `name` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -35,7 +36,7 @@ CREATE TABLE `variable_state` (
 
 LOCK TABLES `variable_state` WRITE;
 /*!40000 ALTER TABLE `variable_state` DISABLE KEYS */;
-INSERT INTO `variable_state` VALUES (1,'ANDON'),(2,'WORK'),(3,'POWER_OFF'),(4,'BREAK'),(5,'CHANGE_PARAMETER_VALUE');
+INSERT INTO `variable_state` VALUES (1,'ANDON','Andon'),(2,'WORK','Praca'),(3,'MANUAL_MODE','Tryb manualny'),(4,'AUTOMATIC_MODE','Tryb automatyczny'),(5,'CHANGE_PARAMETER_VALUE','Zmiana wartości parametrów');
 /*!40000 ALTER TABLE `variable_state` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -48,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-10-28 20:39:15
+-- Dump completed on 2017-10-29 20:37:28

@@ -2,6 +2,7 @@ package com.scada.dataBase;
 
 import com.scada.model.dataBase.Andon.Andon;
 import com.scada.model.dataBase.ChangeParameterValue.ChangeParameterValue;
+import com.scada.model.dataBase.Controller.Controller;
 import com.scada.model.dataBase.Limit.Limit;
 import com.scada.model.dataBase.Work.Work;
 import org.skife.jdbi.v2.Handle;
@@ -17,6 +18,10 @@ public class InsertDataToDB {
         this.queries = this.DBhandle.attach(DBUpdates.class);
     }
 
+    //------------------------------------------------------------------
+    //                        INSERT ANDON
+    //------------------------------------------------------------------
+
     public Observable<Integer> insertAndon(Andon andon) {
         synchronized (this) {
             return Observable.just(queries.insertAndon(andon));
@@ -28,6 +33,10 @@ public class InsertDataToDB {
             return Observable.just(queries.insertAndonToHistory(andon, type));
         }
     }
+
+    //------------------------------------------------------------------
+    //                        INSERT WORK
+    //------------------------------------------------------------------
 
     public Observable<Integer> insertWork(Work work) {
         synchronized (this) {
@@ -41,6 +50,27 @@ public class InsertDataToDB {
         }
     }
 
+    //------------------------------------------------------------------
+    //                        INSERT CONTROLLER
+    //------------------------------------------------------------------
+
+    public Observable<Integer> insertController(Controller controller) {
+        synchronized (this) {
+            return Observable.just(queries.insertController(controller));
+        }
+    }
+
+
+    public Observable<Integer> insertControllerToHistory(Controller controller) {
+        synchronized (this) {
+            return Observable.just(queries.insertControllerToHistory(controller));
+        }
+    }
+
+    //------------------------------------------------------------------
+    //                        INSERT insertChangeParameterValue
+    //------------------------------------------------------------------
+
     public Observable<Integer> insertChangeParameterValue(ChangeParameterValue cpv) {
         synchronized (this) {
             return Observable.just(queries.insertChangeParameterValue(cpv));
@@ -52,6 +82,10 @@ public class InsertDataToDB {
             return Observable.just(queries.insertChangeParameterValueToHistory(cpv, type));
         }
     }
+
+    //------------------------------------------------------------------
+    //                        INSERT LIMIT
+    //------------------------------------------------------------------
 
     public Observable<Integer> insertLimit(Limit limit) {
         synchronized (this) {

@@ -5,17 +5,17 @@ import java.io.Serializable;
 public class Notification implements Serializable {
 
     private Integer id;
-    private String name;
-    private String limitName;
+    private String variableTag;
+    private String limitTag;
     private Double value;
     private Integer type;
     private String date;
 
-    public Notification(Integer id, String name, String limitName, Double value, Integer type, String date) {
+    public Notification(Integer id, String variableTag, String limitTag, Double value, Integer type, String date) {
 
         this.id = id;
-        this.name = name;
-        this.limitName = limitName;
+        this.variableTag = variableTag;
+        this.limitTag = limitTag;
         this.value = value;
         this.type = type;
         this.date = date;
@@ -29,20 +29,20 @@ public class Notification implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getVariableTag() {
+        return variableTag;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setVariableTag(String variableTag) {
+        this.variableTag = variableTag;
     }
 
-    public String getLimitName() {
-        return limitName;
+    public String getLimitTag() {
+        return limitTag;
     }
 
-    public void setLimitName(String limitName) {
-        this.limitName = limitName;
+    public void setLimitTag(String limitTag) {
+        this.limitTag = limitTag;
     }
 
     public Double getValue() {

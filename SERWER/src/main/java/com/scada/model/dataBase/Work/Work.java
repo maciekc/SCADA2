@@ -5,13 +5,13 @@ import java.io.Serializable;
 public class Work implements Serializable{
 
     private Integer id;
-    private String stateSpaceName;
+    private String stateSpaceTag;
     private Double value;
     private String date;
 
-    public Work(Integer id, String stateSpaceName, Double value, String date) {
+    public Work(Integer id, String stateSpaceTag, Double value, String date) {
         this.id = id;
-        this.stateSpaceName = stateSpaceName;
+        this.stateSpaceTag = stateSpaceTag;
         this.value = value;
         this.date = date;
     }
@@ -24,12 +24,12 @@ public class Work implements Serializable{
         this.id = id;
     }
 
-    public String getStateSpaceName() {
-        return stateSpaceName;
+    public String getStateSpaceTag() {
+        return stateSpaceTag;
     }
 
-    public void setStateSpaceName(String stateSpaceName) {
-        this.stateSpaceName = stateSpaceName;
+    public void setStateSpaceTag(String stateSpaceTag) {
+        this.stateSpaceTag = stateSpaceTag;
     }
 
     public Double getValue() {

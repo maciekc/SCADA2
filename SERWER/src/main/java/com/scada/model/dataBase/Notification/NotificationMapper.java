@@ -10,6 +10,6 @@ public class NotificationMapper implements ResultSetMapper<Notification> {
 
     @Override
     public Notification map(int i, ResultSet rs, StatementContext statementContext) throws SQLException {
-        return new Notification(rs.getInt("id"), rs.getString("name"), rs.getString("limit_name"), rs.getDouble("value"), rs.getInt("type"), rs.getString("date"));
+        return new Notification(rs.getInt("id"), rs.getString("variableTag"), rs.getString("limitTag"), rs.getDouble("value"), rs.getInt("type"), rs.getString("date"));
     }
 }

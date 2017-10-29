@@ -16,27 +16,34 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `controler_state`
+-- Table structure for table `controller`
 --
 
-DROP TABLE IF EXISTS `controler_state`;
+DROP TABLE IF EXISTS `controller`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `controler_state` (
+CREATE TABLE `controller` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `state` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+  `state_space_id` int(11) NOT NULL,
+  `variable_state_id` int(11) NOT NULL,
+  `value` double NOT NULL,
+  `date` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_state_space_c_idx` (`state_space_id`),
+  KEY `fk_variable_state_c_idx` (`variable_state_id`),
+  CONSTRAINT `fk_state_space_c` FOREIGN KEY (`state_space_id`) REFERENCES `state_space` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_variable_state_c` FOREIGN KEY (`variable_state_id`) REFERENCES `variable_state` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `controler_state`
+-- Dumping data for table `controller`
 --
 
-LOCK TABLES `controler_state` WRITE;
-/*!40000 ALTER TABLE `controler_state` DISABLE KEYS */;
-INSERT INTO `controler_state` VALUES (1,'auto'),(2,'manual');
-/*!40000 ALTER TABLE `controler_state` ENABLE KEYS */;
+LOCK TABLES `controller` WRITE;
+/*!40000 ALTER TABLE `controller` DISABLE KEYS */;
+INSERT INTO `controller` VALUES (1,5,4,21,'2017-10-29 11:05:00');
+/*!40000 ALTER TABLE `controller` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -48,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-10-28 20:39:15
+-- Dump completed on 2017-10-29 20:37:28

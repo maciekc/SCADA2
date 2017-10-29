@@ -18,8 +18,8 @@ public @interface NotificationBinder {
                 public void bind(SQLStatement q, NotificationBinder bind, Notification arg) {
 
                     q.bind("id", arg.getId());
-                    q.bind("name", arg.getName());
-                    q.bind("limit_name", arg.getLimitName());
+                    q.bind("variableTag", arg.getVariableTag());
+                    q.bind("limitTag", arg.getLimitTag());
                     q.bind("value", arg.getValue());
                     q.bind("date", arg.getDate());
                     q.bind("type", arg.getType());

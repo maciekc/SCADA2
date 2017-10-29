@@ -19,8 +19,8 @@ public @interface AndonBinder {
                 public void bind(SQLStatement q, AndonBinder bind, Andon arg) {
 
                     q.bind("id", arg.getId());
-                    q.bind("limitTag", arg.getLimitName());
-                    q.bind("stateSpaceTag", arg.getStateSpaceName());
+                    q.bind("limitTag", arg.getLimitTag());
+                    q.bind("stateSpaceTag", arg.getStateSpaceTag());
                     q.bind("value", arg.getValue());
                     q.bind("date", arg.getDate());
                 }

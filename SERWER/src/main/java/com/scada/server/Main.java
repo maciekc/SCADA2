@@ -1,78 +1,217 @@
 package com.scada.server;
 
+import akka.NotUsed;
+import akka.actor.ActorSystem;
+import akka.actor.ActorRef;
+import static akka.pattern.PatternsCS.ask;
+import akka.http.javadsl.ConnectHttp;
+import akka.http.javadsl.Http;
+import akka.http.javadsl.ServerBinding;
+import akka.http.javadsl.marshallers.jackson.Jackson;
+import akka.http.javadsl.model.HttpRequest;
+import akka.http.javadsl.model.HttpResponse;
+import akka.http.javadsl.server.AllDirectives;
+import akka.http.javadsl.server.Route;
+import akka.http.javadsl.unmarshalling.StringUnmarshallers;
+import akka.stream.ActorMaterializer;
+import akka.stream.javadsl.Flow;
+import akka.util.Timeout;
 import com.google.gson.Gson;
 import com.scada.dataBase.DBUpdates;
 import com.scada.dataBase.GetDBData;
 import com.scada.dataBase.InsertDataToDB;
 import com.scada.dataBase.UpdateDataInDB;
+
+import com.scada.model.dataBase.Work.Work;
+import com.scada.server.StateVariableActor.*;
+import com.scada.server.ReportDataActor.*;
+import com.scada.server.NotificationActor.*;
+
 import com.scada.model.dataBase.ChangeParameterValue.ChangeParameterValue;
+import com.scada.model.dataBase.Controller.Controller;
 import com.scada.model.dataBase.Limit.Limit;
 import org.skife.jdbi.v2.DBI;
 import org.skife.jdbi.v2.Handle;
+import scala.concurrent.duration.Duration;
+
+import java.io.IOException;
+import java.util.concurrent.*;
 
 
-public class Main {
-    public static void main(String[] args) throws InterruptedException {
+public class Main extends AllDirectives {
 
-        final DBI dbi = new DBI("jdbc:mysql://localhost:3306/scada", "root", "1234");
+    static Timeout t = new Timeout(Duration.create(5, TimeUnit.SECONDS));
 
-        final Handle handle = dbi.open();
-        final GetDBData getDBData = new GetDBData(handle);
-        final InsertDataToDB insertDataToDB = new InsertDataToDB(handle);
-        final UpdateDataInDB updateDataInDB = new UpdateDataInDB(handle);
+    static final DBI dbi = new DBI("jdbc:mysql://localhost:3306/scada", "root", "1234");
+    static final Handle handle = dbi.open();
+    static final GetDBData getDBData = new GetDBData(handle);
+    static final InsertDataToDB insertDataToDB = new InsertDataToDB(handle);
+    static final UpdateDataInDB updateDataInDB = new UpdateDataInDB(handle);
+    static ActorRef getStateVariableData = null;
+    static ActorRef reportData = null;
+    static ActorRef notificationDAta = null;
+    static ActorSystem system = ActorSystem.create("routes");
 
+    public static void main(String[] args) throws InterruptedException, IOException, ExecutionException {
 
         System.out.println("open bd connection");
 
-        String query =
-                "SET @stateSpaceId = (SELECT id from scada.state_space where name LIKE 'level_1');\n" +
-                "SELECT date, value " +
-                "FROM scada.history " +
-                "WHERE state_space_id = @stateSpaceId and date between '2017-10-20 20:00:00' and '2017-10-29 20:00:00';";
 
-//        getDBData.getStateSpaceData("LEVEL_1", "2017-10-20 14:00:00", "2017-10-29 20:00:00")
-//                .subscribe(v -> System.out.println("v : " + new Gson().toJson(v)));
+        getStateVariableData = system.actorOf(StateVariableActor.props(getDBData), "getStateVariableData");
+        reportData = system.actorOf(ReportDataActor.props(getDBData), "reportData");
+        notificationDAta = system.actorOf(NotificationActor.props(getDBData), "notificationData");
+
+        final Http http = Http.get(system);
+        final ActorMaterializer materializer = ActorMaterializer.create(system);
+
+        //In order to access all directives we need an instance where the routes are define.
+        Main app = new Main();
+
+        final Flow<HttpRequest, HttpResponse, NotUsed> routeFlow = app.createRoute().flow(system, materializer);
+        final CompletionStage<ServerBinding> binding = http.bindAndHandle(routeFlow,
+                ConnectHttp.toHost("localhost", 8010), materializer);
+
+
+
+        System.out.println("Server online at http://localhost:8010/\nPress RETURN to stop...");
+        System.in.read(); // let it run until user presses return
+
+        binding
+                .thenCompose(ServerBinding::unbind) // trigger unbinding from the port
+                .thenAccept(unbound -> system.terminate()); // and shutdown when done
 //
-//        getDBData.getStateSpaces()
-//                .subscribe(v -> System.out.println("v : " + new Gson().toJson(v)));
 
-        System.out.println(DBUpdates.insertAndonSQL);
-
-//        Andon andon = new Andon(1,"LEVEL_3", "LEVEL_3_MAX", 120., "2017-10-28 13:43:00");
-//        rx.Observable.concat(insertDataToDB.insertAndon(andon), insertDataToDB.insertAndonToHistory(andon, "ANDON"))
-//                .subscribe(v -> System.out.println("add new andon"));
-
-//        getDBData.insertAndon(andon)
-//                .subscribe(v -> System.out.println("add new andon"));
-//
-//        getDBData.insertHistoryRecord(new Andon(1,"LEVEL_3", "LEVEL_3_MAX", 120., "2017-10-28 13:43:00"), "ANDON")
-//                .subscribe(v -> System.out.println("add new history record"));
-
-        getDBData.getAndonData("2017-10-28 13:00:00", "2017-10-28 14:00:00")
-                .subscribe(v -> System.out.println("v : " + new Gson().toJson(v)));
-
-//        Work work = new Work(1,"LEVEL_3", 57., "2017-10-28 15:43:00");
-//        rx.Observable.concat(insertDataToDB.insertWork(work), insertDataToDB.insertWorkToHistory(work, "WORK"))
-//                .subscribe(v -> System.out.println("add new work"));
-
-        ChangeParameterValue cpv= new ChangeParameterValue(1,"SET_POINT", 25., "2017-10-28 16:43:00");
-        rx.Observable.concat(insertDataToDB.insertChangeParameterValue(cpv), insertDataToDB.insertChangeParameterValueToHistory(cpv, "CHANGE_PARAMETER_VALUE"))
-                .subscribe(v -> System.out.println("add new cpv"));
-
-        getDBData.getChangeParameterValueData()
-                .subscribe(v -> System.out.println("CPV : " + new Gson().toJson(v)));
-
-//        final Limit limit = new Limit(1, "LEVEL_1_MIN", "Poziom 1 min", "LEVEL_1", 2.5, -1);
-//        updateDataInDB.updateLimit(limit)
-//                .subscribe(v -> System.out.println("update all limit : " + new Gson().toJson(v)));
-//
-//        updateDataInDB.updateLimit("LEVEL_2_MIN", 2.9)
-//                .subscribe(v -> System.out.println("update limit value : " + new Gson().toJson(v)));
-
-        getDBData.getNotifications()
-                .subscribe(v -> System.out.println("not : " + new Gson().toJson(v)));
         handle.close();
 
     }
 
+    private Route createRoute() {
+        return route(
+                path("selectAll", () ->
+                    get(() -> {
+                                final StateVariabeData message = new StateVariabeData("VALVE_1", "2017-10-27 15:00:00", "2017-10-29 12:00:00");
+                                final CompletionStage<Object> futureResult = ask(getStateVariableData, message, t);
+                                System.out.println(futureResult);
+                                return onSuccess(() -> futureResult, result ->
+                                        completeOK(result, Jackson.marshaller())
+
+                                );
+                    })
+                ),
+                path("stateVariableData", () ->
+                    get(() ->
+                            parameter(StringUnmarshallers.STRING,"name", tag -> {
+                                final StateVariabeData message = new StateVariabeData(tag, "2017-10-27 15:00:00", "2017-10-29 12:00:00");
+                                final CompletionStage<Object> futureResult = ask(getStateVariableData, message, t);
+                                return onSuccess(() -> futureResult, result ->
+                                        completeOK(result, Jackson.marshaller()));
+                            })
+                        )
+                ),
+                path("stateSpace", () ->
+                    get(() -> {
+                        final CompletionStage<Object> getStateSpace = ask(getStateVariableData, "getStateSpace", t);
+                        return onSuccess(() -> getStateSpace, result ->
+                            completeOK(result, Jackson.marshaller()));
+                    })
+                ),
+
+                pathPrefix("andon", () -> route(
+                    pathEnd(() ->
+                        get(() -> {
+                            final CompletionStage<Object> andonData = ask(reportData, new AndonData(), t);
+                            return onSuccess(() -> andonData, result ->
+                                    completeOK(result, Jackson.marshaller()));
+                        })
+                    ),
+                    path("range", () ->
+                            get(() ->
+                                    parameterList(param -> {
+                                        final String startDate = param.get(0).getValue();
+                                        final String endDate = param.get(1).getValue();
+                                        final CompletionStage<Object> andonData = ask(reportData, new AndonData(startDate, endDate), t);
+                                        return onSuccess(() -> andonData, result -> completeOK(result, Jackson.marshaller()));
+                                    })
+                            )
+                    ))
+                ),
+                pathPrefix("work", () -> route(
+                        pathEnd(() ->
+                                get(() -> {
+                                    final CompletionStage<Object> workData = ask(reportData, new WorkData(), t);
+                                    return onSuccess(() -> workData, result ->
+                                            completeOK(result, Jackson.marshaller()));
+                                })
+                        ),
+                        path("range", () ->
+                                get(() ->
+                                        parameterList(param -> {
+                                            final String startDate = param.get(0).getValue();
+                                            final String endDate = param.get(1).getValue();
+                                            final CompletionStage<Object> workData = ask(reportData, new WorkData(startDate, endDate), t);
+                                            return onSuccess(() -> workData, result -> completeOK(result, Jackson.marshaller()));
+                                        })
+                                )
+                        ))
+                ),
+                pathPrefix("controller", () -> route(
+                        pathEnd(() ->
+                                get(() -> {
+                                    final CompletionStage<Object> controllerData = ask(reportData, new ControllerData(), t);
+                                    return onSuccess(() -> controllerData, result ->
+                                            completeOK(result, Jackson.marshaller()));
+                                })
+                        ),
+                        path("range", () ->
+                                get(() ->
+                                        parameterList(param -> {
+                                            final String startDate = param.get(0).getValue();
+                                            final String endDate = param.get(1).getValue();
+                                            final CompletionStage<Object> controllerData = ask(reportData, new ControllerData(startDate, endDate), t);
+                                            return onSuccess(() -> controllerData, result -> completeOK(result, Jackson.marshaller()));
+                                        })
+                                )
+                        ))
+                ),
+                pathPrefix("changeParameter", () -> route(
+                        pathEnd(() ->
+                                get(() -> {
+                                    final CompletionStage<Object> cpvData = ask(reportData, new ChangeParameterValueData(), t);
+                                    return onSuccess(() -> cpvData, result ->
+                                            completeOK(result, Jackson.marshaller()));
+                                })
+                        ),
+                        path("range", () ->
+                                get(() ->
+                                        parameterList(param -> {
+                                            final String startDate = param.get(0).getValue();
+                                            final String endDate = param.get(1).getValue();
+                                            final CompletionStage<Object> cpvData = ask(reportData, new ChangeParameterValueData(startDate, endDate), t);
+                                            return onSuccess(() -> cpvData, result -> completeOK(result, Jackson.marshaller()));
+                                        })
+                                )
+                        ))
+                ),
+                pathPrefix("notification", () -> route(
+                        pathEnd(() ->
+                                get(() -> {
+                                    final CompletionStage<Object> notification = ask(notificationDAta, new NotificationData(), t);
+                                    return onSuccess(() -> notification, result ->
+                                            completeOK(result, Jackson.marshaller()));
+                                })
+                        ),
+                        path("range", () ->
+                                get(() ->
+                                        parameterList(param -> {
+                                            final String startDate = param.get(0).getValue();
+                                            final String endDate = param.get(1).getValue();
+                                            final CompletionStage<Object> notification = ask(notificationDAta, new NotificationData(startDate, endDate), t);
+                                            return onSuccess(() -> notification, result -> completeOK(result, Jackson.marshaller()));
+                                        })
+                                )
+                        ))
+                )
+
+        );
+    }
 }

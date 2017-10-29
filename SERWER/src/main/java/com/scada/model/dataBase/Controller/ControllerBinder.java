@@ -1,4 +1,4 @@
-package com.scada.model.dataBase.Work;
+package com.scada.model.dataBase.Controller;
 
 import org.skife.jdbi.v2.SQLStatement;
 import org.skife.jdbi.v2.sqlobject.Binder;
@@ -7,18 +7,19 @@ import org.skife.jdbi.v2.sqlobject.BindingAnnotation;
 
 import java.lang.annotation.*;
 
-@BindingAnnotation(WorkBinder.WorkBinderFactory.class)
+@BindingAnnotation(ControllerBinder.ControlerBinderFactory.class)
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.PARAMETER})
-public @interface WorkBinder {
+public @interface ControllerBinder {
 
-    public static class WorkBinderFactory implements BinderFactory {
+    public static class ControlerBinderFactory implements BinderFactory {
         @Override
         public Binder build(Annotation annotation) {
-            return new Binder<WorkBinder, Work>() {
-                public void bind(SQLStatement q, WorkBinder bind, Work arg) {
+            return new Binder<ControllerBinder, Controller>() {
+                public void bind(SQLStatement q, ControllerBinder bind, Controller arg) {
 
                     q.bind("id", arg.getId());
+                    q.bind("variableStateTag", arg.getVariableStateTag());
                     q.bind("stateSpaceTag", arg.getStateSpaceTag());
                     q.bind("value", arg.getValue());
                     q.bind("date", arg.getDate());
