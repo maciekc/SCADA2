@@ -34,6 +34,12 @@ public class InsertDataToDB {
         }
     }
 
+    public Observable<Integer> logAndonRecord(Andon andon) {
+        synchronized (this) {
+            return Observable.concat(this.insertAndon(andon), this.insertAndonToHistory(andon, "ANDON"));
+        }
+    }
+
     //------------------------------------------------------------------
     //                        INSERT WORK
     //------------------------------------------------------------------
@@ -47,6 +53,12 @@ public class InsertDataToDB {
     public Observable<Integer> insertWorkToHistory(Work work, String type) {
         synchronized (this) {
             return Observable.just(queries.insertWorkToHistory(work, type));
+        }
+    }
+
+    public Observable<Integer> logWorkRecord(Work work) {
+        synchronized (this) {
+            return Observable.concat(this.insertWork(work), this.insertWorkToHistory(work, "WORK"));
         }
     }
 

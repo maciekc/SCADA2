@@ -17,6 +17,13 @@ public class Andon implements Serializable{
         this.value = value;
         this.date = date;
     }
+    public Andon(Integer id, String limit, Double value, String date) {
+        this.id = id;
+        this.stateSpaceTag = "";
+        this.limitTag = limit;
+        this.value = value;
+        this.date = date;
+    }
 
     public Integer getId() {
         return id;

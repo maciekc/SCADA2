@@ -28,7 +28,7 @@ public interface DBUpdates {
                     "date)\n" +
                     "VALUES\n" +
                     "((SELECT id FROM limits WHERE tag LIKE :limitTag), " +
-                    "(SELECT id FROM state_space WHERE tag LIKE :stateSpaceTag), " +
+                    "(SELECT state_space_id FROM limits WHERE tag LIKE :limitTag), " +
                     ":value, " +
                     ":date);";
 
@@ -45,7 +45,7 @@ public interface DBUpdates {
                     "date)\n" +
                 "VALUES\n" +
                     "((SELECT id FROM scada.variable_state WHERE tag LIKE :var_state), " +
-                    "(SELECT id FROM state_space WHERE tag LIKE :stateSpaceTag), " +
+                    "(SELECT id FROM limits WHERE tag LIKE :limitTag), " +
                     "(SELECT max(id) FROM scada.andon), " +
                     ":value, " +
                     ":date);";

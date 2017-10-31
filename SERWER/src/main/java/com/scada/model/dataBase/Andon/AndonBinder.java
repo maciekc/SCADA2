@@ -20,7 +20,7 @@ public @interface AndonBinder {
 
                     q.bind("id", arg.getId());
                     q.bind("limitTag", arg.getLimitTag());
-                    q.bind("stateSpaceTag", arg.getStateSpaceTag());
+//                    q.bind("stateSpaceTag", arg.getStateSpaceTag());
                     q.bind("value", arg.getValue());
                     q.bind("date", arg.getDate());
                 }

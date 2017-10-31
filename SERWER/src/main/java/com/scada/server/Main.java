@@ -26,6 +26,7 @@ import com.scada.model.dataBase.Work.Work;
 import com.scada.server.StateVariableActor.*;
 import com.scada.server.ReportDataActor.*;
 import com.scada.server.NotificationActor.*;
+import com.scada.server.OPCDataLoggerActor.*;
 
 import com.scada.model.dataBase.ChangeParameterValue.ChangeParameterValue;
 import com.scada.model.dataBase.Controller.Controller;
@@ -50,16 +51,20 @@ public class Main extends AllDirectives {
     static ActorRef getStateVariableData = null;
     static ActorRef reportData = null;
     static ActorRef notificationDAta = null;
+    static ActorRef OPCDataLogger = null;
     static ActorSystem system = ActorSystem.create("routes");
 
     public static void main(String[] args) throws InterruptedException, IOException, ExecutionException {
 
         System.out.println("open bd connection");
 
+        final OPCServer opcServer = new OPCServer();
 
         getStateVariableData = system.actorOf(StateVariableActor.props(getDBData), "getStateVariableData");
         reportData = system.actorOf(ReportDataActor.props(getDBData), "reportData");
         notificationDAta = system.actorOf(NotificationActor.props(getDBData), "notificationData");
+        OPCDataLogger = system.actorOf(OPCDataLoggerActor.props(insertDataToDB, opcServer), "OPCDataLogger");
+//        OPCDataLogger.tell(new StartLogging(), ActorRef.noSender());
 
         final Http http = Http.get(system);
         final ActorMaterializer materializer = ActorMaterializer.create(system);
@@ -210,7 +215,15 @@ public class Main extends AllDirectives {
                                         })
                                 )
                         ))
+                ),
+                path("requestAndon", () ->
+                        get(() -> {
+                            final CompletionStage<Object> andonRequest = ask(notificationDAta, new NotificationActor.AndonRequest(OPCDataLogger), t);
+                            return onSuccess(() -> andonRequest, result ->
+                                    completeOK(result, Jackson.marshaller()));
+                        })
                 )
+
 
         );
     }
