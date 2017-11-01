@@ -14,6 +14,8 @@ import { MessagesComponent } from './components/messages/messages.component';
 import { WarningMessagesComponent } from './components/warning-messages/warning-messages.component';
 import { ErrorMessagesComponent } from './components/error-messages/error-messages.component';
 import { InfoMessagesComponent } from './components/info-messages/info-messages.component'
+import { StateVariablesService } from './services/stateVariableService/state-variables.service';
+import { StatisticService } from './services/statistic-service/statistic-service.service';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,7 @@ import { InfoMessagesComponent } from './components/info-messages/info-messages.
 
     ])
   ],
-  providers: [],
+  providers: [StateVariablesService, StatisticService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

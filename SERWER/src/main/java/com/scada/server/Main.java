@@ -64,6 +64,10 @@ public class Main extends AllDirectives {
         reportData = system.actorOf(ReportDataActor.props(getDBData), "reportData");
         notificationDAta = system.actorOf(NotificationActor.props(getDBData), "notificationData");
         OPCDataLogger = system.actorOf(OPCDataLoggerActor.props(insertDataToDB, opcServer), "OPCDataLogger");
+
+        //----------------------------------------------------------------
+        //                      LOGOWANIE
+        //----------------------------------------------------------------
 //        OPCDataLogger.tell(new StartLogging(), ActorRef.noSender());
 
         final Http http = Http.get(system);
@@ -106,7 +110,8 @@ public class Main extends AllDirectives {
                 path("stateVariableData", () ->
                     get(() ->
                             parameter(StringUnmarshallers.STRING,"name", tag -> {
-                                final StateVariabeData message = new StateVariabeData(tag, "2017-10-27 15:00:00", "2017-10-29 12:00:00");
+                                System.out.println("tag : " + tag);
+                                final StateVariabeData message = new StateVariabeData(tag);
                                 final CompletionStage<Object> futureResult = ask(getStateVariableData, message, t);
                                 return onSuccess(() -> futureResult, result ->
                                         completeOK(result, Jackson.marshaller()));

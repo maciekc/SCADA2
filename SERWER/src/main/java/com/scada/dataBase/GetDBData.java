@@ -3,10 +3,12 @@ package com.scada.dataBase;
 import com.scada.model.dataBase.Andon.Andon;
 import com.scada.model.dataBase.ChangeParameterValue.ChangeParameterValue;
 import com.scada.model.dataBase.Controller.Controller;
+import com.scada.model.dataBase.FigurePoint.FigurePoint;
 import com.scada.model.dataBase.Notification.Notification;
 import com.scada.model.dataBase.Work.Work;
 import org.skife.jdbi.v2.Handle;
 
+import java.util.List;
 import java.util.Map;
 import rx.Observable;
 
@@ -28,6 +30,16 @@ public class GetDBData {
         synchronized (this) {
             return Observable.from(queries.getStateSpaceData(stateSpace, startDate, endDate))
                     .toMap(res -> res.getDate(), res -> res.getValue());
+        }
+    }
+
+    public Observable<List<FigurePoint>> getStateSpaceData(String stateSpace) {
+        synchronized (this) {
+            return Observable.from(queries.getStateSpaceData(stateSpace))
+                    .toList();
+
+
+//                    .toMap(res -> res.getDate(), res -> res.getValue());
         }
     }
 

@@ -26,14 +26,26 @@ public interface DBQueries {
     //                       GET STATE SPACE DATA
     //------------------------------------------------------------------
 
-    String getStateSpaceDate =
+    String getStateSpaceDate_dateRange =
             "SELECT date, value " + "\n" +
             "FROM scada.history " + "\n" +
             "WHERE state_space_id = (SELECT id from scada.state_space where tag LIKE :stateSpace) and date between :startDate and :endDate " + "\n" +
-            "ORDER BY date asc;";
+            "ORDER BY date desc " + "\n" +
+            "LIMIT 100;";
+    @RegisterMapper(FigurePointMapper.class)
+    @SqlQuery(getStateSpaceDate_dateRange)
+    List<FigurePoint> getStateSpaceData(@Bind("stateSpace") String stateSpace, @Bind("startDate") String startDate, @Bind("endDate") String endDate);
+
+    String getStateSpaceDate =
+            "SELECT date, value " + "\n" +
+                    "FROM scada.history " + "\n" +
+                    "WHERE state_space_id = (SELECT id from scada.state_space where tag LIKE :stateSpace) " + "\n" +
+                    "ORDER BY date desc " + "\n" +
+                    "LIMIT 100;";
     @RegisterMapper(FigurePointMapper.class)
     @SqlQuery(getStateSpaceDate)
-    List<FigurePoint> getStateSpaceData(@Bind("stateSpace") String stateSpace, @Bind("startDate") String startDate, @Bind("endDate") String endDate);
+    List<FigurePoint> getStateSpaceData(@Bind("stateSpace") String stateSpace);
+
 
 
     String getSateSpacesQuery =

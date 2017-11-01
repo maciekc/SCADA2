@@ -36,13 +36,13 @@ public class NotificationActor extends AbstractActor {
                         getDBData.getNotifications()
                                 .subscribe(v -> {
                                     log.info("Notification data: {}", v);
-                                    getSender().tell(new Gson().toJson(v), getSelf());
+                                    getSender().tell(v, getSelf());
                                 });
                     } else {
                         getDBData.getNotifications(m.getStartDate(), m.getEndDate())
                                 .subscribe(v -> {
                                     log.info("Notification data: {}", v);
-                                    getSender().tell(new Gson().toJson(v), getSelf());
+                                    getSender().tell(v, getSelf());
                                 });
                     }
                 })

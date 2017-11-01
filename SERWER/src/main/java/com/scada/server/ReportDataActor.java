@@ -30,13 +30,13 @@ public class ReportDataActor extends AbstractActor {
                         getDBData.getAndonData()
                                 .subscribe(v -> {
                                     log.info("Andon data: {}", v);
-                                    getSender().tell(new Gson().toJson(v), getSelf());
+                                    getSender().tell(v, getSelf());
                                 });
                     } else {
                         getDBData.getAndonData(m.getStartDate(), m.getEndDate())
                                 .subscribe(v -> {
                                     log.info("Andon data: {}", v);
-                                    getSender().tell(new Gson().toJson(v), getSelf());
+                                    getSender().tell(v, getSelf());
                                 });
                     }
                 })
@@ -45,13 +45,13 @@ public class ReportDataActor extends AbstractActor {
                         getDBData.getWorkData()
                                 .subscribe(v -> {
                                     log.info("Work data : {}", v);
-                                    getSender().tell(new Gson().toJson(v), getSelf());
+                                    getSender().tell(v, getSelf());
                                 });
                     } else {
                         getDBData.getWorkData(m.getStartDate(), m.getEndDate())
                                 .subscribe(v -> {
                                     log.info("Work data : {}", v);
-                                    getSender().tell(new Gson().toJson(v), getSelf());
+                                    getSender().tell(v, getSelf());
                                 });
                     }
                 })
@@ -60,13 +60,13 @@ public class ReportDataActor extends AbstractActor {
                         getDBData.getWorkData()
                                 .subscribe(v -> {
                                     log.info("Controller data : {}", v);
-                                    getSender().tell(new Gson().toJson(v), getSelf());
+                                    getSender().tell(v, getSelf());
                                 });
                     } else {
                         getDBData.getWorkData(m.getStartDate(), m.getEndDate())
                                 .subscribe(v -> {
                                     log.info("Controller data : {}", v);
-                                    getSender().tell(new Gson().toJson(v), getSelf());
+                                    getSender().tell(v, getSelf());
                                 });
                     }
                 })
@@ -75,13 +75,13 @@ public class ReportDataActor extends AbstractActor {
                         getDBData.getChangeParameterValueData()
                                 .subscribe(v -> {
                                     log.info("CPV data : {}", v);
-                                    getSender().tell(new Gson().toJson(v), getSelf());
+                                    getSender().tell(v, getSelf());
                                 });
                     } else {
                         getDBData.getChangeParameterValueData(m.getStartDate(), m.getEndDate())
                                 .subscribe(v -> {
                                     log.info("CPV data : {}", v);
-                                    getSender().tell(new Gson().toJson(v), getSelf());
+                                    getSender().tell(v, getSelf());
                                 });
                     }
                 })

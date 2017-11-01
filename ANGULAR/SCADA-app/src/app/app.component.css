@@ -13,7 +13,7 @@ a > h1 {
 
 .rootPanel {
     width: calc(100% - 10px);
-    height: calc(100% - 86px);
+    height: calc(100% - 70px);
     background-color: #F0F0F0;
     margin: 5px;
     left: 0;

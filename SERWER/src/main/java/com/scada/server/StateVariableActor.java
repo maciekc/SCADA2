@@ -8,8 +8,10 @@ import akka.event.Logging;
 import akka.event.LoggingAdapter;
 import com.google.gson.Gson;
 import com.scada.dataBase.GetDBData;
+import org.codehaus.jackson.map.ObjectMapper;
 import rx.Observable;
 
+import java.io.IOException;
 import java.util.Map;
 
 public class StateVariableActor extends AbstractActor {
@@ -27,6 +29,40 @@ public class StateVariableActor extends AbstractActor {
         this.getDBData = getDBData;
     }
 
+    @Override
+    public Receive createReceive() {
+        return receiveBuilder()
+                .match(StateVariabeData.class, m -> {
+                    if (m.getEndDate() == "") {
+                        getDBData.getStateSpaceData(m.getStateVariable())
+                                .subscribe(v -> {
+                                    log.info("SV data: {}", new Gson().toJson(v));
+                                    getSender().tell(v, getSelf());
+                                });
+                        } else {
+                        getDBData.getStateSpaceData(m.getStateVariable(), m.getStartDate(), m.getEndDate())
+                                .subscribe(v -> {
+                                    log.info("SV data: {}", v);
+                                    getSender().tell(v, getSelf());
+                                });
+                        }
+                    }
+                )
+                .match(String.class, m ->
+                    getDBData.getStateSpace()
+                            .subscribe(v -> {
+                                log.info("SS data: {}", v);
+                                getSender().tell(v, getSelf());
+                            })
+                )
+                .matchAny(o -> log.info("received unknown message"))
+                .build();
+    }
+
+    //-----------------------------------------------------------
+    //                      MESSAGES CLASS
+    //-----------------------------------------------------------
+
     static public class StateVariabeData {
         private final String stateVariable;
         private final String startDate;
@@ -36,6 +72,12 @@ public class StateVariableActor extends AbstractActor {
             this.stateVariable = stateVariable;
             this.startDate = startDate;
             this.endDate = endDate;
+        }
+
+        public StateVariabeData(String stateVariable) {
+            this.stateVariable = stateVariable;
+            this.startDate = "";
+            this.endDate = "";
         }
 
         public String getStateVariable() {
@@ -49,27 +91,6 @@ public class StateVariableActor extends AbstractActor {
         public String getEndDate() {
             return endDate;
         }
-    }
-
-    @Override
-    public Receive createReceive() {
-        return receiveBuilder()
-                .match(StateVariabeData.class, m ->
-                    getDBData.getStateSpaceData(m.getStateVariable(), m.getStartDate(), m.getEndDate())
-                            .subscribe(v -> {
-                                log.info("SV data: {}", v);
-                                getSender().tell(new Gson().toJson(v), getSelf());
-                            })
-                )
-                .match(String.class, m ->
-                    getDBData.getStateSpace()
-                            .subscribe(v -> {
-                                log.info("SS data: {}", v);
-                                getSender().tell(new Gson().toJson(v), getSelf());
-                            })
-                )
-                .matchAny(o -> log.info("received unknown message"))
-                .build();
     }
 
 }
