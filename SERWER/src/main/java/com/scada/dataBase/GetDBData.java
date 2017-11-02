@@ -43,6 +43,26 @@ public class GetDBData {
         }
     }
 
+    public Observable<List<FigurePoint>> getStateVariableDaily(String stateSpace) {
+        synchronized (this) {
+            return Observable.from(queries.getStateSpaceDataDaily(stateSpace))
+                    .toList();
+
+
+//                    .toMap(res -> res.getDate(), res -> res.getValue());
+        }
+    }
+
+    public Observable<List<FigurePoint>> getStateVariableHourly(String stateSpace) {
+        synchronized (this) {
+            return Observable.from(queries.getStateSpaceDataHourly(stateSpace))
+                    .toList();
+
+
+//                    .toMap(res -> res.getDate(), res -> res.getValue());
+        }
+    }
+
     public Observable<Map<String, String>> getStateSpace() {
         synchronized (this) {
             return Observable.from(queries.getStateSpace())

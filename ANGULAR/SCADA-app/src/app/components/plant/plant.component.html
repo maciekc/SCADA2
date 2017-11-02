@@ -1,52 +1,38 @@
-<!-- <div style="width: 100%; height: 100%;"> -->
-  <div class="plotPanel">
-    <div class="titleHeader">
-      <h2>Statystyki systemu</h2>
+<div class="plotPanel">
+  
+  <div class="plotBox" style="height: 100%;">
+    <div class="plotHeader">
+      <div style="width: 35%;height: 100%;float: left;"></div>
+      <div style="float:left;height: 100%; width: 30%;">Stężenie</div>
+      <div style="width: 35%;height: 100%;float: left;"></div>
     </div>
-    <div class="plotBox">
-      <div class="plotHeader">
-        <div style="width: 15%;height: 100%;float: left;"></div>
-        <div style="float:left;height: 100%; width: 40%;">Zmienna systemu </div>
-        <div class="btn-group" style="float: left; color: #555555;height: 100%; width: 30%;">
-            <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              położenie
-            </button>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">położenie</a>
-              <a class="dropdown-item" href="#">prędkość</a>
-              <a class="dropdown-item" href="#">cos tam</a>
-              <a class="dropdown-item" href="#">cos tam 2</a>
-            </div>
-        </div>
-        <div style="width: 15%;height: 100%;float: left;"></div>
-      </div>
-      <div class="plotArea" id="outputPlot"></div>
-    </div>
+    <div class="plotArea" id="outputPlot"></div>
+  </div>
 
-    <div class="plotBox">
-      <div class="plotHeader">
-        <div style="width: 15%;height: 100%;float: left;"></div>
-        <div style="float:left;height: 100%; width: 40%;">Zmienna systemu </div>
-        <div class="btn-group" style="float: left; color: #555555;height: 100%; width: 30%;">
-            <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              prędkość
-            </button>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">położenie</a>
-              <a class="dropdown-item" href="#">prędkość</a>
-              <a class="dropdown-item" href="#">cos tam</a>
-              <a class="dropdown-item" href="#">cos tam 2</a>
-            </div>
-        </div>
-        <div style="width: 15%;height: 100%;float: left;"></div>
+  <div class="plotBox" style="height: 100%;">
+    <div class="plotHeader">
+      <div style="width: 15%;height: 100%;float: left;"></div>
+      <div style="float:left;height: 100%; width: 40%;">Zmienna systemu</div>
+      <div class="btn-group" style="float: left; color: #555555;height: 100%; width: 30%;">
+          <button id="SVDropButton" type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Poziom 1
+          </button>
+          <div class="dropdown-menu">
+            <a id = "LEVEL_1" class="dropdown-item" (click) = "changeStateVariable($event)">Poziom 1</a>
+            <a id = "LEVEL_2" class="dropdown-item" (click) = "changeStateVariable($event)">Poziom 2</a>
+            <a id = "LEVEL_3" class="dropdown-item" (click) = "changeStateVariable($event)">Poziom 3</a>
+          </div>
       </div>
-      <div class="plotArea" id="controlPlot"></div>
+      <div style="width: 15%;height: 100%;float: left;"></div>
     </div>
+    <div class="plotArea" id="plantPlot"></div>
   </div>
-  <div class="detailsPanel">
-    <div class="titleHeader">
-        <h2>Parametry systemu</h2>
-    </div>
+</div>
+
+<div class="detailsPanel">
+  <div class="titleHeader">
+      <h2>Parametry systemu</h2>
   </div>
-<!-- </div> -->
+</div>
+
 

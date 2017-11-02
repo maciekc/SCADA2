@@ -107,16 +107,40 @@ public class Main extends AllDirectives {
                                 );
                     })
                 ),
-                path("stateVariableData", () ->
-                    get(() ->
-                            parameter(StringUnmarshallers.STRING,"name", tag -> {
-                                System.out.println("tag : " + tag);
-                                final StateVariabeData message = new StateVariabeData(tag);
-                                final CompletionStage<Object> futureResult = ask(getStateVariableData, message, t);
-                                return onSuccess(() -> futureResult, result ->
-                                        completeOK(result, Jackson.marshaller()));
-                            })
-                        )
+                pathPrefix("stateVariableData", () -> route(
+                    pathEnd(() ->
+                        get(() ->
+                                parameter(StringUnmarshallers.STRING,"name", tag -> {
+                                    System.out.println("tag : " + tag);
+                                    final StateVariabeData message = new StateVariabeData(tag);
+                                    final CompletionStage<Object> futureResult = ask(getStateVariableData, message, t);
+                                    return onSuccess(() -> futureResult, result ->
+                                            completeOK(result, Jackson.marshaller()));
+                                })
+                            )
+                    ),
+                    path("BAR_DAY", () ->
+                            get(() ->
+                                    parameter(StringUnmarshallers.STRING,"name", tag -> {
+                                        System.out.println("tag : " + tag);
+                                        final StateVariabeData message = new StateVariableData_dailyMode(tag);
+                                        final CompletionStage<Object> futureResult = ask(getStateVariableData, message, t);
+                                        return onSuccess(() -> futureResult, result ->
+                                                completeOK(result, Jackson.marshaller()));
+                                    })
+                            )
+                    ),
+                    path("BAR_HOUR", () ->
+                            get(() ->
+                                    parameter(StringUnmarshallers.STRING,"name", tag -> {
+                                        System.out.println("tag : " + tag);
+                                        final StateVariabeData message = new StateVariableData_hourlyMode(tag);
+                                        final CompletionStage<Object> futureResult = ask(getStateVariableData, message, t);
+                                        return onSuccess(() -> futureResult, result ->
+                                                completeOK(result, Jackson.marshaller()));
+                                    })
+                            )
+                    ))
                 ),
                 path("stateSpace", () ->
                     get(() -> {

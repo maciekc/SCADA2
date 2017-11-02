@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import {Observable} from "rxjs";
-import 'rxjs';
+import {Observable, Subscription} from "rxjs";
+
+import { PlantService } from '../../services/plant-service/plant.service';
+import { Figure, LineFigure } from '../../class/figure';
 
 declare var Plotly: any;
 
@@ -10,46 +12,67 @@ declare var Plotly: any;
   templateUrl: './plant.component.html',
   styleUrls: ['./plant.component.css']
 })
-export class PlantComponent implements OnInit {
+export class PlantComponent implements OnInit, OnDestroy {
 
-  constructor() { }
+  private serviceSubscriptions: Subscription [] = [];
+  
+  private outputFigure: Figure;
+  private outputFigureId: HTMLElement;  
+  private stateVariableFigure: Figure;
+  private stateVariableFigureId: HTMLElement;  
+
+
+  constructor(private plantService: PlantService) {}
+  
+  changeStateVariable(event) {
+    let target = event.target;
+    let id = target.id;
+    document.getElementById("SVDropButton").innerText = target.innerText;
+    this.plantService.chanegStateVariablePlotTab(id)
+  }
 
   ngOnInit() {
-    let figure = document.getElementById('outputPlot');
-    // console.log("fig " + figure.tagName)
-    let outpuData = {
-      type: 'scatter',
-      x: [1, 2, 3, 4, 5],
-      y: [1, 2, 4, 8, 16],
-      line: {color: 'blue'},
-      mode: 'lines',
-      name: 'wyjście'
-    };
+    console.log("on init")
+    this.initFigures()
 
-    let reference = {
-      type: 'scatter',
-      x: [1, 2, 3, 4, 5],
-      y: [0, 3, 4, 4, 4],
-      line: {color: 'red'},
-      mode: 'lines',
-      name: 'wart. zadana'
-    };
-    Plotly.newPlot(figure, [outpuData, reference], {
-      margin: { t: 0 }, 
-      xaxis : {title : 'Czas [s]'},
-      yaxis : {title : 'Temeratura [^C]'} } );
+    this.plantService.startService()
+    
+    let output = Observable.interval(5000)
+    .subscribe(r => {
+      let dates = this.plantService.getOutputDates();
+      let values = this.plantService.getOutputValues()
+      this.outputFigure.updatePlotData(dates, values, 'wyjście');
+    })
+    this.serviceSubscriptions.push(output);
 
-    let figure2 = document.getElementById('controlPlot');
-    // console.log("fig " + figure.tagName)
-    let data = [{
-      x: [1, 2, 3, 4, 5],
-      y: [1, 2, 4, 8, 16],
-    }];
-    let layout = {
-      margin: { t: 0 },
-      xaxis : {title : 'Czas [s]'},
-      yaxis : {title : 'Napięcie [V]'}
-    }
-    Plotly.newPlot(figure2, data, layout);
+    let stateVariable = Observable.interval(5000)
+    .subscribe(r => {
+      let dates = this.plantService.getStateVariableDates();
+      let values = this.plantService.getStateVariableValues()
+      this.stateVariableFigure.updatePlotData(dates, values, 'Poziom [cm]', 'orange');
+    })
+    this.serviceSubscriptions.push(stateVariable);
+
+
+    
+  }
+
+  ngOnDestroy() {
+    console.log("on destroy")
+    this.plantService.stopService();
+    this.stopService()
+  }
+
+  private stopService() {
+    this.serviceSubscriptions.forEach(s => s.unsubscribe());
+    this.serviceSubscriptions = [];
+  }
+
+  private initFigures() {
+    this.outputFigureId = document.getElementById('outputPlot');
+    this.outputFigure = new LineFigure(this.outputFigureId, "Czas [s]", "Stężenie [%]");
+
+    this.stateVariableFigureId = document.getElementById('plantPlot');
+    this.stateVariableFigure = new LineFigure(this.stateVariableFigureId, "Czas [s]", "Poziom [cm]");
   }
 }

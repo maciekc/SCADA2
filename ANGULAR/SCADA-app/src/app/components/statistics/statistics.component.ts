@@ -4,8 +4,8 @@ import {Observable, Subscription} from "rxjs";
 
 import { StateVariablesService } from '../../services/stateVariableService/state-variables.service';
 import { StatisticService } from '../../services/statistic-service/statistic-service.service';
-import { Figure } from '../../class/figure';
-
+import { LineFigure, AreaFigure, BarFigure, Figure } from '../../class/figure';
+import { Label } from '../../class/label';
 declare var Plotly: any;
 
 @Component({
@@ -18,11 +18,20 @@ export class StatisticsComponent implements OnInit, OnDestroy {
   private serviceSubscriptions: Subscription [] = [];
   private outputFigure: Figure;
   private outputFigureId: HTMLElement;  
-  private controllerFigure: Figure;
-  private controllerFigureId: HTMLElement;
-  private stateVariableFigure: Figure;
-  private stateVariableFigureId: HTMLElement;  
 
+  private stateVariableFigure: Figure;
+  private stateVariableFigureId: HTMLElement;
+
+  private productionFigure: Figure;
+  private productionFigureId: HTMLElement;
+
+  private concentrationLabelId: HTMLElement;
+  private concentrationLabel: Label;
+  private currentProductionLabelId: HTMLElement;
+  private currentProductionLabel: Label;
+
+  // private currentConcentration: number = 0;
+  // private currentLevel: number = 0;
 
   constructor(private statisticService: StatisticService) {}
   
@@ -33,12 +42,15 @@ export class StatisticsComponent implements OnInit, OnDestroy {
     this.statisticService.chanegStateVariablePlotTab(id)
   }
 
-  changeController(event) {
+  changeProductionFigureMode(event) {
     let target = event.target;
-    let id = target.id; 
-    document.getElementById("ConDropButton").innerText = target.innerText;
-    this.statisticService.chanegControllPlotTab(id)
+    let id = target.id;
+    document.getElementById("SVDropButton").innerText = target.innerText;
+    //BAR_HOUR
+    //BAR_DAY
+    this.statisticService.changeProductionFigureMode(id)
   }
+
 
   ngOnInit() {
     console.log("on init")
@@ -49,48 +61,35 @@ export class StatisticsComponent implements OnInit, OnDestroy {
     let output = Observable.interval(5000)
     .subscribe(r => {
       let dates = this.statisticService.getOutputDates();
-      let values = this.statisticService.getOutputValues()
+      let values = this.statisticService.getOutputValues();
+      this.concentrationLabel.setLabelValue(this.statisticService.getCurrentConcentration());
       this.outputFigure.updatePlotData(dates, values, 'wyjście');
     })
-
     this.serviceSubscriptions.push(output);
-
-    let controller = Observable.interval(5000)
-    .subscribe(r => {
-      let dates = this.statisticService.getControllerDates();
-      let values = this.statisticService.getControllerValues()
-      this.controllerFigure.updatePlotData(dates, values, 'sterowanie', 'orange');
-    })
-    this.serviceSubscriptions.push(controller);
 
     let stateVariable = Observable.interval(5000)
     .subscribe(r => {
       let dates = this.statisticService.getStateVariableDates();
       let values = this.statisticService.getStateVariableValues()
-      this.stateVariableFigure.updatePlotData(dates, values, 'Poziom [cm]');
+      this.stateVariableFigure.updatePlotData(dates, values, 'Poziom [cm]', 'orange');
     })
     this.serviceSubscriptions.push(stateVariable);
 
+    let productionVariable = Observable.interval(5000)
+    .subscribe(r => {
+      let dates = this.statisticService.getProductionDates();
+      let values = this.statisticService.getProductionValues();
+      let currentLevel = values[values.length - 1];
 
-    let data = [{
-      line: {color: "blue"},
-      mode: "lines",
-      name: "wyjście",
-      type: "scatter",
-      x: [1, 2, 3, 4, 5],
-      y: [1, 2, 4, 8, 16],
-    }];
-    let layout = {
-      margin: { t: 0 },
-      xaxis : {title : 'Czas [s]'},
-      yaxis : {title : 'Napięcie [V]'}
-    }
-
-    // let figure3 = document.getElementById('plantPlot');
-    // Plotly.newPlot(figure3, data, layout);
+      //tozeroy - niebieski
+      //tonexty - czerwony
+      console.log(currentLevel)
+      console.log(values.length)
+      this.productionFigure.updatePlotData(dates, values, 'Produkcja', 'tonexty');
+      this.currentProductionLabel.setLabelValue(this.statisticService.getCurrentProduction());
+    })
+    this.serviceSubscriptions.push(productionVariable);
     
-    let figure4 = document.getElementById('controlerPlot');
-    Plotly.newPlot(figure4, data, layout);
   }
 
   ngOnDestroy() {
@@ -106,13 +105,19 @@ export class StatisticsComponent implements OnInit, OnDestroy {
 
   private initFigures() {
     this.outputFigureId = document.getElementById('outputPlot');
-    this.outputFigure = new Figure(this.outputFigureId, "Czas [s]", "Stężenie [%]");
-
-    this.controllerFigureId = document.getElementById('controlPlot');
-    this.controllerFigure = new Figure(this.controllerFigureId, "Czas [s]", "Sterowanie [V]");
+    this.outputFigure = new LineFigure(this.outputFigureId, "Czas [s]", "Stężenie [%]");
 
     this.stateVariableFigureId = document.getElementById('plantPlot');
-    this.stateVariableFigure = new Figure(this.stateVariableFigureId, "Czas [s]", "Poziom [cm]");
+    this.stateVariableFigure = new LineFigure(this.stateVariableFigureId, "Czas [s]", "Poziom [cm]");
+
+    this.productionFigureId = document.getElementById('productionPlot');
+    this.productionFigure = new AreaFigure(this.productionFigureId, "Czas [s]", "Produkcja")
+
+    this.concentrationLabelId = document.getElementById('concentrationLabel');
+    this.concentrationLabel = new Label(this.concentrationLabelId, '%');
+
+    this.currentProductionLabelId = document.getElementById('currentProduction');
+    this.currentProductionLabel = new Label(this.currentProductionLabelId, "");
   }
 
 

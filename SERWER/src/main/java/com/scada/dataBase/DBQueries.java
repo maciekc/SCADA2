@@ -46,6 +46,25 @@ public interface DBQueries {
     @SqlQuery(getStateSpaceDate)
     List<FigurePoint> getStateSpaceData(@Bind("stateSpace") String stateSpace);
 
+    String getStateSpaceDataDaily =
+            "SELECT date, value " + "\n" +
+                    "FROM scada.history " + "\n" +
+                    "WHERE state_space_id = (SELECT id from scada.state_space where tag LIKE :stateSpace) " + "\n" +
+                    "ORDER BY date desc " + "\n" +
+                    "LIMIT 8;";
+    @RegisterMapper(FigurePointMapper.class)
+    @SqlQuery(getStateSpaceDataDaily)
+    List<FigurePoint> getStateSpaceDataDaily(@Bind("stateSpace") String stateSpace);
+
+    String getStateSpaceDataHourly =
+            "SELECT date, value " + "\n" +
+                    "FROM scada.history " + "\n" +
+                    "WHERE state_space_id = (SELECT id from scada.state_space where tag LIKE :stateSpace) " + "\n" +
+                    "ORDER BY date desc " + "\n" +
+                    "LIMIT 7;";
+    @RegisterMapper(FigurePointMapper.class)
+    @SqlQuery(getStateSpaceDataHourly)
+    List<FigurePoint> getStateSpaceDataHourly(@Bind("stateSpace") String stateSpace);
 
 
     String getSateSpacesQuery =

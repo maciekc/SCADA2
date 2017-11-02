@@ -48,6 +48,20 @@ public class StateVariableActor extends AbstractActor {
                         }
                     }
                 )
+                .match(StateVariableData_dailyMode.class, m -> {
+                    getDBData.getStateVariableDaily(m.getStateVariable())
+                            .subscribe(v -> {
+                                log.info("SV data: {}", new Gson().toJson(v));
+                                getSender().tell(v, getSelf());
+                            });
+                })
+                .match(StateVariableData_hourlyMode.class, m -> {
+                    getDBData.getStateVariableHourly(m.getStateVariable())
+                            .subscribe(v -> {
+                                log.info("SV data: {}", new Gson().toJson(v));
+                                getSender().tell(v, getSelf());
+                            });
+                })
                 .match(String.class, m ->
                     getDBData.getStateSpace()
                             .subscribe(v -> {
@@ -67,6 +81,7 @@ public class StateVariableActor extends AbstractActor {
         private final String stateVariable;
         private final String startDate;
         private final String endDate;
+
 
         public StateVariabeData(String stateVariable, String startDate, String endDate) {
             this.stateVariable = stateVariable;
@@ -91,6 +106,23 @@ public class StateVariableActor extends AbstractActor {
         public String getEndDate() {
             return endDate;
         }
+
+    }
+
+    static public class StateVariableData_dailyMode extends StateVariabeData {
+
+        public StateVariableData_dailyMode(String stateVariable) {
+            super(stateVariable);
+        }
+
+    }
+
+    static public class StateVariableData_hourlyMode extends StateVariabeData {
+
+        public StateVariableData_hourlyMode(String stateVariable) {
+            super(stateVariable);
+        }
+
     }
 
 }

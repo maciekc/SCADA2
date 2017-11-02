@@ -16,6 +16,8 @@ import { ErrorMessagesComponent } from './components/error-messages/error-messag
 import { InfoMessagesComponent } from './components/info-messages/info-messages.component'
 import { StateVariablesService } from './services/stateVariableService/state-variables.service';
 import { StatisticService } from './services/statistic-service/statistic-service.service';
+import { ControllerService } from './services/controller-service/controller-service.service';
+import { PlantService } from './services/plant-service/plant.service';
 
 @NgModule({
   declarations: [
@@ -54,7 +56,7 @@ import { StatisticService } from './services/statistic-service/statistic-service
 
     ])
   ],
-  providers: [StateVariablesService, StatisticService],
+  providers: [StateVariablesService, StatisticService, ControllerService, PlantService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

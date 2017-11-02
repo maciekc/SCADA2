@@ -1,76 +1,76 @@
 <div style="height: 100%;width: 100%;border: 1px solid #cacaca;border-radius: 2px;">
   <div class="plotPanel">
-    <div class="titleHeader">
+    <!-- <div class="titleHeader">
       <h2>Statystyki systemu</h2>
-    </div>
-    <div class="plotBox">
+    </div> -->
+    <div class="plotBox" style="height: 100%;">
       <div class="plotHeader">
         <div style="width: 35%;height: 100%;float: left;"></div>
-        <div style="float:left;height: 100%; width: 30%;">Wyjście systemu</div>
+        <div style="float:left;height: 100%; width: 30%;">Stężenie</div>
         <div style="width: 35%;height: 100%;float: left;"></div>
       </div>
       <div class="plotArea" id="outputPlot"></div>
     </div>
 
-    <div class="plotBox">
-      <div class="plotHeader">
-        <div style="width: 20%;height: 100%;float: left;"></div>
-        <div style="float:left;height: 100%; width: 30%;">Sterowanie</div>
-        <div class="btn-group" style="float: left; color: #555555;height: 100%; width: 30%;">
-          <button id="ConDropButton" type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Zawór 1
-          </button>
-          <div class="dropdown-menu">
-            <a id = "VALVE_1" class="dropdown-item" (click) = "changeController($event)">Zawór 1</a>
-            <a id = "VALVE_2" class="dropdown-item" (click) = "changeController($event)">Zawór 2</a>
-            <a id = "VALVE_3" class="dropdown-item" (click) = "changeController($event)">Zawór 3</a>
-            <a id = "VALVE_4" class="dropdown-item" (click) = "changeController($event)">Zawór 4</a>
-          </div>
-      </div>
-        <div style="width: 20%;height: 100%;float: left;"></div>
-      </div>
-      <div class="plotArea" id="controlPlot"></div>
-    </div>
-  </div>
-
-  <div class="plotPanel">
     <div class="plotBox" style="height: 100%;">
       <div class="plotHeader">
         <div style="width: 15%;height: 100%;float: left;"></div>
         <div style="float:left;height: 100%; width: 40%;">Zmienna systemu</div>
         <div class="btn-group" style="float: left; color: #555555;height: 100%; width: 30%;">
             <button id="SVDropButton" type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Poziom 1
+              Liniowy
             </button>
             <div class="dropdown-menu">
-              <a id = "LEVEL_1" class="dropdown-item" (click) = "changeStateVariable($event)">Poziom 1</a>
-              <a id = "LEVEL_2" class="dropdown-item" (click) = "changeStateVariable($event)">Poziom 2</a>
-              <a id = "LEVEL_3" class="dropdown-item" (click) = "changeStateVariable($event)">Poziom 3</a>
+              <a id = "LINE" class="dropdown-item" (click) = "changeProductionFigureMode($event)">Liniowy</a>
+              <a id = "BAR_HOUR" class="dropdown-item" (click) = "changeProductionFigureMode($event)">Godzinowy</a>
+              <a id = "BAR_DAY" class="dropdown-item" (click) = "changeProductionFigureMode($event)">Dzienny</a>
             </div>
         </div>
         <div style="width: 15%;height: 100%;float: left;"></div>
       </div>
       <div class="plotArea" id="plantPlot"></div>
     </div>
+  </div>
 
-    <div class="plotBox">
-      <div class="plotHeader">
-        <div style="width: 15%;height: 100%;float: left;"></div>
-        <div style="float:left;height: 100%; width: 40%;">Parametry regulatora</div>
-        <div class="btn-group" style="float: left; color: #555555;height: 100%; width: 30%;">
-            <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              sterowanie
-            </button>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">sterowanie</a>
-              <a class="dropdown-item" href="#">wsk.jakości 1</a>
-              <a class="dropdown-item" href="#">wsk.jakości 2</a>
-              <a class="dropdown-item" href="#">energia</a>
-            </div>
+  <div class="detailsPanel">
+    
+    <div class="dataPanel">
+      <div class="wrapper"></div>
+      <div class="wrapper">
+        <div class="caption">
+          <div style="height: 50%; width: 100%"></div>
+          <div style="height: 50%; width: 100%">Stężenie</div> 
         </div>
-        <div style="width: 15%;height: 100%;float: left;"></div>
+        <div class="indicator" id="concentrationLabel"></div>
       </div>
-      <div class="plotArea" id="controlerPlot"></div>
+      <div class="wrapper">
+          <div class="caption">
+            <div style="height: 50%; width: 100%"></div>
+            <div style="height: 50%; width: 100%">Poziom </div>
+          </div>
+          <div class="indicator" id="currentProduction"></div>
+      </div>
+      <div class="wrapper"></div>
     </div>
+
+    <div class="productionPlotBox">
+        <div class="plotHeader">
+            <div style="width: 15%;height: 100%;float: left;"></div>
+            <div style="float:left;height: 100%; width: 40%;">Produkcja</div>
+            <div class="btn-group" style="float: left; color: #555555;height: 100%; width: 30%;">
+                <button id="SVDropButton" type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Poziom 1
+                </button>
+                <div class="dropdown-menu">
+                  <a id = "LEVEL_1" class="dropdown-item" (click) = "changeStateVariable($event)">Poziom 1</a>
+                  <a id = "LEVEL_2" class="dropdown-item" (click) = "changeStateVariable($event)">Poziom 2</a>
+                  <a id = "LEVEL_3" class="dropdown-item" (click) = "changeStateVariable($event)">Poziom 3</a>
+                </div>
+            </div>
+            <div style="width: 15%;height: 100%;float: left;"></div>
+          </div>
+          <div class="plotArea" id="productionPlot"></div>
+    </div>
+    
   </div>
 </div>
