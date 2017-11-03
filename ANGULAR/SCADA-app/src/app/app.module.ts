@@ -18,6 +18,7 @@ import { StateVariablesService } from './services/stateVariableService/state-var
 import { StatisticService } from './services/statistic-service/statistic-service.service';
 import { ControllerService } from './services/controller-service/controller-service.service';
 import { PlantService } from './services/plant-service/plant.service';
+import { CommonService } from './services/common-service/common.service';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,7 @@ import { PlantService } from './services/plant-service/plant.service';
 
     ])
   ],
-  providers: [StateVariablesService, StatisticService, ControllerService, PlantService],
+  providers: [StateVariablesService, StatisticService, ControllerService, PlantService, CommonService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

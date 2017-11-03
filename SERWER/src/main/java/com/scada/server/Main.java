@@ -68,7 +68,7 @@ public class Main extends AllDirectives {
         //----------------------------------------------------------------
         //                      LOGOWANIE
         //----------------------------------------------------------------
-//        OPCDataLogger.tell(new StartLogging(), ActorRef.noSender());
+        //OPCDataLogger.tell(new StartLogging(), ActorRef.noSender());
 
         final Http http = Http.get(system);
         final ActorMaterializer materializer = ActorMaterializer.create(system);
@@ -122,7 +122,7 @@ public class Main extends AllDirectives {
                     path("BAR_DAY", () ->
                             get(() ->
                                     parameter(StringUnmarshallers.STRING,"name", tag -> {
-                                        System.out.println("tag : " + tag);
+                                        System.out.println("BAR_DAY : " + tag);
                                         final StateVariabeData message = new StateVariableData_dailyMode(tag);
                                         final CompletionStage<Object> futureResult = ask(getStateVariableData, message, t);
                                         return onSuccess(() -> futureResult, result ->
@@ -133,7 +133,7 @@ public class Main extends AllDirectives {
                     path("BAR_HOUR", () ->
                             get(() ->
                                     parameter(StringUnmarshallers.STRING,"name", tag -> {
-                                        System.out.println("tag : " + tag);
+                                        System.out.println("BAR_HOUR : " + tag);
                                         final StateVariabeData message = new StateVariableData_hourlyMode(tag);
                                         final CompletionStage<Object> futureResult = ask(getStateVariableData, message, t);
                                         return onSuccess(() -> futureResult, result ->
@@ -161,8 +161,8 @@ public class Main extends AllDirectives {
                     path("range", () ->
                             get(() ->
                                     parameterList(param -> {
-                                        final String startDate = param.get(0).getValue();
-                                        final String endDate = param.get(1).getValue();
+                                        final String startDate = param.get(0).getValue().toString();
+                                        final String endDate = param.get(1).getValue().toString();
                                         final CompletionStage<Object> andonData = ask(reportData, new AndonData(startDate, endDate), t);
                                         return onSuccess(() -> andonData, result -> completeOK(result, Jackson.marshaller()));
                                     })
@@ -180,8 +180,8 @@ public class Main extends AllDirectives {
                         path("range", () ->
                                 get(() ->
                                         parameterList(param -> {
-                                            final String startDate = param.get(0).getValue();
-                                            final String endDate = param.get(1).getValue();
+                                            final String startDate = param.get(0).getValue().toString();
+                                            final String endDate = param.get(1).getValue().toString();
                                             final CompletionStage<Object> workData = ask(reportData, new WorkData(startDate, endDate), t);
                                             return onSuccess(() -> workData, result -> completeOK(result, Jackson.marshaller()));
                                         })
@@ -199,8 +199,8 @@ public class Main extends AllDirectives {
                         path("range", () ->
                                 get(() ->
                                         parameterList(param -> {
-                                            final String startDate = param.get(0).getValue();
-                                            final String endDate = param.get(1).getValue();
+                                            final String startDate = param.get(0).getValue().toString();
+                                            final String endDate = param.get(1).getValue().toString();
                                             final CompletionStage<Object> controllerData = ask(reportData, new ControllerData(startDate, endDate), t);
                                             return onSuccess(() -> controllerData, result -> completeOK(result, Jackson.marshaller()));
                                         })
@@ -218,8 +218,8 @@ public class Main extends AllDirectives {
                         path("range", () ->
                                 get(() ->
                                         parameterList(param -> {
-                                            final String startDate = param.get(0).getValue();
-                                            final String endDate = param.get(1).getValue();
+                                            final String startDate = param.get(0).getValue().toString();
+                                            final String endDate = param.get(1).getValue().toString();
                                             final CompletionStage<Object> cpvData = ask(reportData, new ChangeParameterValueData(startDate, endDate), t);
                                             return onSuccess(() -> cpvData, result -> completeOK(result, Jackson.marshaller()));
                                         })
@@ -237,8 +237,8 @@ public class Main extends AllDirectives {
                         path("range", () ->
                                 get(() ->
                                         parameterList(param -> {
-                                            final String startDate = param.get(0).getValue();
-                                            final String endDate = param.get(1).getValue();
+                                            final String startDate = param.get(0).getValue().toString();
+                                            final String endDate = param.get(1).getValue().toString();
                                             final CompletionStage<Object> notification = ask(notificationDAta, new NotificationData(startDate, endDate), t);
                                             return onSuccess(() -> notification, result -> completeOK(result, Jackson.marshaller()));
                                         })

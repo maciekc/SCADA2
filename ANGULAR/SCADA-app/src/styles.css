@@ -35,3 +35,36 @@
     height: calc(100% - 29px);
     padding-top: 10px;
 }
+
+.indicator {
+    color: #555555;
+    font-size: 200%;
+    float: left;
+    height: 100%;
+    width: 50%;
+    text-align: left;
+}
+
+.caption {
+    color: #555555;
+    font-size: 125%;
+    float: left;
+    padding-right: 20px;
+    height: 100%;
+    width: 50%;
+    text-align: right;
+    /* vertical-align: bottom;
+    display: table-cell; */
+}
+
+.wrapper {
+    width: 100%;
+    height: 25%;
+    /* padding: 10px; */
+}
+
+.limitInput{
+    color: #555555;
+    width: 100%; 
+    height: 100%;
+}

@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import {Observable, Subscription} from "rxjs";
 
 import { PlantService } from '../../services/plant-service/plant.service';
+import { CommonService } from '../../services/common-service/common.service';
 import { Figure, LineFigure } from '../../class/figure';
 
 declare var Plotly: any;
@@ -21,9 +22,33 @@ export class PlantComponent implements OnInit, OnDestroy {
   private stateVariableFigure: Figure;
   private stateVariableFigureId: HTMLElement;  
 
+  private level_1: number = 0;
+  private level_2: number = 0;
+  private level_3: number = 0;
+  private output: number = 0;
 
-  constructor(private plantService: PlantService) {}
+  private limitMin: number = 0;
+  private limitMinCrit: number = 0;
+  private limitMax: number = 0;
+  private limitMaxCrit: number = 0;
+
+  private limitTag: String;
   
+  // private commonDAtaGetter: CommonService;
+
+  constructor(private plantService: PlantService, private commonDataService: CommonService) {}
+  
+  changeLimitSubmit(event) {
+    this.plantService.changeLimitsValues(this.limitTag, this.limitMin, this.limitMax, this.limitMinCrit, this.limitMaxCrit);
+  }
+
+  changeLimits(event) {
+    let target = event.target;
+    this.limitTag = target.id;
+    document.getElementById("SVDropButton").innerText = target.innerText;
+    this.commonDataService.getLimitData(this.limitTag)
+  }
+
   changeStateVariable(event) {
     let target = event.target;
     let id = target.id;
@@ -53,6 +78,14 @@ export class PlantComponent implements OnInit, OnDestroy {
     })
     this.serviceSubscriptions.push(stateVariable);
 
+    let commonData = Observable.interval(5000)
+    .subscribe(r => {
+      this.level_1 = this.commonDataService.getCurrentValue("LEVEL_1")[1]
+      this.level_2 = this.commonDataService.getCurrentValue("LEVEL_2")[1]
+      this.level_3 = this.commonDataService.getCurrentValue("LEVEL_3")[1]
+      this.output = this.commonDataService.getCurrentValue("OUTPUT")[1]
+    })
+    this.serviceSubscriptions.push(commonData);
 
     
   }

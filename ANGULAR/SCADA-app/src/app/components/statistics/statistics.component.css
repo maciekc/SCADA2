@@ -27,25 +27,3 @@
     float: left;
 }
 
-.indicator {
-    color: #555555;
-    font-size: 200%;
-    float: left;
-    height: 100%;
-}
-
-.caption {
-    color: #555555;
-    font-size: 100%;
-    float: left;
-    margin-right: 20px;
-    height: 100%;
-    vertical-align: bottom;
-    display: table-cell;
-}
-
-.wrapper {
-    width: 100%;
-    height: 25%;
-    padding: 10px;
-}

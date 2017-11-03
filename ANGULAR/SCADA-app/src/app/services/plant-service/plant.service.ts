@@ -4,6 +4,7 @@ import {Observable, Subscription} from "rxjs";
 
 
 import { PlotDataGetter } from '../../class/plotDataGetter';
+import { SendDataToServer } from '../../class/sendValuesToServer';
 
 
 @Injectable()
@@ -13,12 +14,14 @@ export class PlantService {
   private outputPlotDataGetter: PlotDataGetter;
   // private controllPlotDataGetter: PlotDataGetter;
   private stateVariablePlotDataGetter: PlotDataGetter;
+  private sendDataToServer : SendDataToServer;
   
 
   constructor(private http: HttpClient) {
     this.outputPlotDataGetter = new PlotDataGetter(http, "OUTPUT");
     // this.controllPlotDataGetter = new PlotDataGetter(this.http, "VALVE_1");
     this.stateVariablePlotDataGetter = new PlotDataGetter(this.http, "LEVEL_1");
+    this.sendDataToServer = new SendDataToServer(http);
   }
 
 
@@ -53,6 +56,10 @@ export class PlantService {
   public stopService() {
     this.subscriptions.forEach(s => s.unsubscribe())
     this.subscriptions = [];
+  }
+
+  public changeLimitsValues(limitTag: String, limitMin: number, limitMax: number, limitMinCrit: number, limitMaxCrit: number) {
+    this.sendDataToServer.sendLimitsToServer(limitTag, limitMin, limitMax, limitMinCrit, limitMaxCrit)
   }
 
 

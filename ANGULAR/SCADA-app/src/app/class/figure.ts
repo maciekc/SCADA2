@@ -15,23 +15,23 @@ export abstract class Figure {
     }
 
 
-    protected plotDataSeries(dates: String [], values: number [], name: String, lineColor = 'blue', type ='scatter', mode = 'lines'):any {
+    protected plotDataSeries(dates: String [], values: number [], name: String, lineColor = 'rgb(2, 119, 216)', type ='scatter', mode = 'lines'):any {
         return {
             type: type,
             x: dates,
             y: values,
             line: {color: lineColor},
             mode: mode,
-            name: name,
+            name: name
             };
     }
 
-    public updatePlotData(dates: String [], values: number [], name: String, lineColor = 'blue', type ='scatter', mode = 'lines') {
+    public updatePlotData(dates: String [], values: number [], name: String, lineColor = 'rgb(2, 119, 216)', type ='scatter', mode = 'lines') {
         let newData = this.plotDataSeries(dates, values, name, lineColor, type, mode)
         Plotly.newPlot(this.figureId, [newData], this.layout)
     }
 
-    public createPlotData(dates: String [], values: number [], name: String, lineColor = 'blue', type ='scatter', mode = 'lines') {
+    public createPlotData(dates: String [], values: number [], name: String, lineColor = 'rgb(2, 119, 216)', type ='scatter', mode = 'lines') {
         let newData = this.plotDataSeries(dates, values, name, lineColor, type, mode)
         Plotly.newPlot(this.figureId, [newData], this.layout)
     }
@@ -47,14 +47,14 @@ export class LineFigure extends Figure {
     }
 
 
-    protected plotDataSeries(dates: String [], values: number [], name: String, lineColor = 'blue', type ='scatter', mode = 'lines') {
+    protected plotDataSeries(dates: String [], values: number [], name: String, lineColor = 'rgb(2, 119, 216)', type ='scatter', mode = 'lines') {
         return {
             type: type,
             x: dates,
             y: values,
             line: {color: lineColor},
             mode: mode,
-            name: name,
+            name: name
           };
     }
 
@@ -73,7 +73,7 @@ export class AreaFigure extends Figure {
             x: dates,
             y: values,
             fill: fill,
-            name: name,
+            name: name
           };
     }
 
@@ -85,16 +85,15 @@ export class BarFigure extends Figure {
             super(figureId, xLabel, yLabel);     
         }
        
-        protected plotDataSeries(dates: String [], values: number [], name: String, color = 'blue', type ='bar', mode = 'lines'): any {
-            console.log("area")
+        protected plotDataSeries(dates: String [], values: number [], name: String, color = 'rgb(0, 220, 131)', type ='bar', mode = 'lines'): any {
+            console.log("bar")
             return {
-                type: type,
                 x: dates,
                 y: values,
+                type: 'bar',
                 marker: {
-                    color: color
-                },
-                name: name,
+                    color: 'rgb(0, 220, 131)'
+                }
               };
         }
     

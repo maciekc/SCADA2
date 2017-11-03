@@ -15,6 +15,11 @@ export class PlotDataGetter {
 
     public setMode(mode: String) {
         this.mode = mode;
+        if (mode != "LINE") {
+            this.url = "http://localhost:8010/stateVariableData/" + mode
+        } else {
+            this.url = this.url = "http://localhost:8010/stateVariableData"
+        }
     }
     public setTag(newTag : String) {
         this.tag = newTag;
@@ -31,9 +36,7 @@ export class PlotDataGetter {
     let subscription: Subscription = Observable.interval(5000) 
     .subscribe(v => {
         let params = new HttpParams().set('name', this.tag.toString());
-        if (this.mode != "LINE") {
-            params.append('mode', this.mode.toString());
-        } 
+       
         let dates: String[] = [];
         let values: number[] = [];
         

@@ -1,11 +1,14 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { DatePipe } from '@angular/common';
 import {Observable, Subscription} from "rxjs";
 
 import { StateVariablesService } from '../../services/stateVariableService/state-variables.service';
 import { StatisticService } from '../../services/statistic-service/statistic-service.service';
 import { LineFigure, AreaFigure, BarFigure, Figure } from '../../class/figure';
 import { Label } from '../../class/label';
+import { Time } from '../../class/time';
+
 declare var Plotly: any;
 
 @Component({
@@ -25,10 +28,17 @@ export class StatisticsComponent implements OnInit, OnDestroy {
   private productionFigure: Figure;
   private productionFigureId: HTMLElement;
 
+  private productionBarFigure: Figure;
+  private productionBarFigureId: HTMLElement;
+  private productionLineFigure: Figure;
+  private productionLineFigureId: HTMLElement;
+
   private concentrationLabelId: HTMLElement;
   private concentrationLabel: Label;
   private currentProductionLabelId: HTMLElement;
   private currentProductionLabel: Label;
+
+  public time: Date;
 
   // private currentConcentration: number = 0;
   // private currentLevel: number = 0;
@@ -45,9 +55,15 @@ export class StatisticsComponent implements OnInit, OnDestroy {
   changeProductionFigureMode(event) {
     let target = event.target;
     let id = target.id;
-    document.getElementById("SVDropButton").innerText = target.innerText;
+    document.getElementById("ProductionDropButton").innerText = target.innerText;
     //BAR_HOUR
     //BAR_DAY
+    if (id == "BAR_HOUR" || id == "BAR_DAY") {
+      console.log("bar_mode")
+      this.productionFigure = this.productionBarFigure;
+    } else {
+      this.productionFigure = this.productionLineFigure;
+    }
     this.statisticService.changeProductionFigureMode(id)
   }
 
@@ -63,7 +79,7 @@ export class StatisticsComponent implements OnInit, OnDestroy {
       let dates = this.statisticService.getOutputDates();
       let values = this.statisticService.getOutputValues();
       this.concentrationLabel.setLabelValue(this.statisticService.getCurrentConcentration());
-      this.outputFigure.updatePlotData(dates, values, 'wyjście');
+      this.outputFigure.updatePlotData(dates, values, 'Stężenie');
     })
     this.serviceSubscriptions.push(output);
 
@@ -71,7 +87,7 @@ export class StatisticsComponent implements OnInit, OnDestroy {
     .subscribe(r => {
       let dates = this.statisticService.getStateVariableDates();
       let values = this.statisticService.getStateVariableValues()
-      this.stateVariableFigure.updatePlotData(dates, values, 'Poziom [cm]', 'orange');
+      this.stateVariableFigure.updatePlotData(dates, values, 'Poziom [cm]', 'rgb(255, 148, 0)');
     })
     this.serviceSubscriptions.push(stateVariable);
 
@@ -83,12 +99,17 @@ export class StatisticsComponent implements OnInit, OnDestroy {
 
       //tozeroy - niebieski
       //tonexty - czerwony
-      console.log(currentLevel)
-      console.log(values.length)
+      console.log(values)
       this.productionFigure.updatePlotData(dates, values, 'Produkcja', 'tonexty');
       this.currentProductionLabel.setLabelValue(this.statisticService.getCurrentProduction());
     })
     this.serviceSubscriptions.push(productionVariable);
+
+    let timeObs = Observable.interval(1000)
+    .subscribe(r => {
+      this.time = new Date();
+    })
+    this.serviceSubscriptions.push(timeObs);
     
   }
 
@@ -111,7 +132,9 @@ export class StatisticsComponent implements OnInit, OnDestroy {
     this.stateVariableFigure = new LineFigure(this.stateVariableFigureId, "Czas [s]", "Poziom [cm]");
 
     this.productionFigureId = document.getElementById('productionPlot');
-    this.productionFigure = new AreaFigure(this.productionFigureId, "Czas [s]", "Produkcja")
+    this.productionLineFigure = new AreaFigure(this.productionFigureId, "Czas [s]", "Produkcja");
+    this.productionFigure = this.productionLineFigure;
+    this.productionBarFigure = new BarFigure(this.productionFigureId, "Data", "Produkcja")
 
     this.concentrationLabelId = document.getElementById('concentrationLabel');
     this.concentrationLabel = new Label(this.concentrationLabelId, '%');

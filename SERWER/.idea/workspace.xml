@@ -24,20 +24,27 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/server/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="463">
-              <caret line="125" column="57" lean-forward="false" selection-start-line="125" selection-start-column="57" selection-end-line="125" selection-end-column="57" />
+            <state relative-caret-position="199">
+              <caret line="70" column="10" lean-forward="false" selection-start-line="70" selection-start-column="10" selection-end-line="70" selection-end-column="10" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#7802#8292#0" expanded="false" />
-                <element signature="e#8977#9484#0" expanded="false" />
-                <element signature="e#9694#10032#0" expanded="false" />
-                <element signature="e#10201#10726#0" expanded="false" />
-                <element signature="e#10941#11275#0" expanded="false" />
-                <element signature="e#11444#11965#0" expanded="false" />
-                <element signature="e#12688#13217#0" expanded="false" />
+                <element signature="e#4015#4566#0" expanded="false" />
+                <element signature="e#4793#5293#0" expanded="false" />
+                <element signature="e#6945#7234#0" expanded="false" />
+                <element signature="e#7367#7658#0" expanded="false" />
+                <element signature="e#7811#8323#0" expanded="false" />
+                <element signature="e#8519#8839#0" expanded="false" />
+                <element signature="e#9008#9537#0" expanded="false" />
+                <element signature="e#9747#10085#0" expanded="false" />
+                <element signature="e#10254#10801#0" expanded="false" />
+                <element signature="e#11016#11350#0" expanded="false" />
+                <element signature="e#11519#12062#0" expanded="false" />
+                <element signature="e#12274#12616#0" expanded="false" />
+                <element signature="e#12785#13336#0" expanded="false" />
+                <element signature="e#13489#13826#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -46,16 +53,12 @@
       <file leaf-file-name="StateVariableActor.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/server/StateVariableActor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="568">
-              <caret line="119" column="78" lean-forward="false" selection-start-line="119" selection-start-column="78" selection-end-line="119" selection-end-column="78" />
+            <state relative-caret-position="586">
+              <caret line="71" column="17" lean-forward="false" selection-start-line="71" selection-start-column="17" selection-end-line="71" selection-end-column="17" />
               <folding>
                 <element signature="class#StateVariabeData#0;class#StateVariableActor#0" expanded="false" />
                 <element signature="class#StateVariableData_dailyMode#0;class#StateVariableActor#0" expanded="false" />
-                <element signature="e#4001#4002#0" expanded="true" />
-                <element signature="e#4045#4046#0" expanded="true" />
                 <element signature="class#StateVariableData_hourlyMode#0;class#StateVariableActor#0" expanded="false" />
-                <element signature="e#4202#4203#0" expanded="true" />
-                <element signature="e#4246#4247#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -64,7 +67,7 @@
       <file leaf-file-name="GetDBData.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/dataBase/GetDBData.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="426">
+            <state relative-caret-position="527">
               <caret line="57" column="66" lean-forward="false" selection-start-line="57" selection-start-column="43" selection-end-line="57" selection-end-column="66" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -73,11 +76,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DBQueries.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DBQueries.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/dataBase/DBQueries.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="63" column="31" lean-forward="true" selection-start-line="63" selection-start-column="31" selection-end-line="63" selection-end-column="31" />
+            <state relative-caret-position="476">
+              <caret line="46" column="79" lean-forward="true" selection-start-line="46" selection-start-column="79" selection-end-line="46" selection-end-column="79" />
               <folding />
             </state>
           </provider>
@@ -164,8 +167,8 @@
         <option value="$PROJECT_DIR$/src/main/java/com/scada/server/NotificationActor.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/scada/server/ReportDataActor.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/scada/dataBase/GetDBData.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/scada/dataBase/DBQueries.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/scada/server/StateVariableActor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/scada/dataBase/DBQueries.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/scada/server/Main.java" />
       </list>
     </option>
@@ -205,6 +208,8 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -260,8 +265,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
-      <pane id="Scratches" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -460,11 +463,12 @@
       <workItem from="1509488552586" duration="1161000" />
       <workItem from="1509529586130" duration="7496000" />
       <workItem from="1509646349460" duration="2803000" />
+      <workItem from="1509730808717" duration="5316000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="118606000" />
+    <option name="totallyTimeSpent" value="123922000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1358" y="-8" width="1296" height="1040" extended-state="6" />
@@ -478,8 +482,8 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29834256" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15690608" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -490,8 +494,8 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -511,7 +515,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/scada/server/StateVariableActor.java</url>
-          <line>119</line>
+          <line>120</line>
           <properties />
           <option name="timeStamp" value="4" />
         </line-breakpoint>
@@ -535,13 +539,20 @@
           <caret line="72" column="55" lean-forward="false" selection-start-line="72" selection-start-column="55" selection-end-line="72" selection-end-column="55" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#7802#8292#0" expanded="false" />
-            <element signature="e#8977#9484#0" expanded="false" />
-            <element signature="e#9694#10032#0" expanded="false" />
-            <element signature="e#10201#10726#0" expanded="false" />
-            <element signature="e#10941#11275#0" expanded="false" />
-            <element signature="e#11444#11965#0" expanded="false" />
-            <element signature="e#12688#13217#0" expanded="false" />
+            <element signature="e#4015#4566#0" expanded="false" />
+            <element signature="e#4793#5293#0" expanded="false" />
+            <element signature="e#6945#7234#0" expanded="false" />
+            <element signature="e#7367#7658#0" expanded="false" />
+            <element signature="e#7811#8323#0" expanded="false" />
+            <element signature="e#8519#8839#0" expanded="false" />
+            <element signature="e#9008#9537#0" expanded="false" />
+            <element signature="e#9747#10085#0" expanded="false" />
+            <element signature="e#10254#10801#0" expanded="false" />
+            <element signature="e#11016#11350#0" expanded="false" />
+            <element signature="e#11519#12062#0" expanded="false" />
+            <element signature="e#12274#12616#0" expanded="false" />
+            <element signature="e#12785#13336#0" expanded="false" />
+            <element signature="e#13489#13826#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -601,13 +612,20 @@
           <caret line="6" column="21" lean-forward="true" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#7802#8292#0" expanded="false" />
-            <element signature="e#8977#9484#0" expanded="false" />
-            <element signature="e#9694#10032#0" expanded="false" />
-            <element signature="e#10201#10726#0" expanded="false" />
-            <element signature="e#10941#11275#0" expanded="false" />
-            <element signature="e#11444#11965#0" expanded="false" />
-            <element signature="e#12688#13217#0" expanded="false" />
+            <element signature="e#4015#4566#0" expanded="false" />
+            <element signature="e#4793#5293#0" expanded="false" />
+            <element signature="e#6945#7234#0" expanded="false" />
+            <element signature="e#7367#7658#0" expanded="false" />
+            <element signature="e#7811#8323#0" expanded="false" />
+            <element signature="e#8519#8839#0" expanded="false" />
+            <element signature="e#9008#9537#0" expanded="false" />
+            <element signature="e#9747#10085#0" expanded="false" />
+            <element signature="e#10254#10801#0" expanded="false" />
+            <element signature="e#11016#11350#0" expanded="false" />
+            <element signature="e#11519#12062#0" expanded="false" />
+            <element signature="e#12274#12616#0" expanded="false" />
+            <element signature="e#12785#13336#0" expanded="false" />
+            <element signature="e#13489#13826#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -626,13 +644,20 @@
           <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#7802#8292#0" expanded="false" />
-            <element signature="e#8977#9484#0" expanded="false" />
-            <element signature="e#9694#10032#0" expanded="false" />
-            <element signature="e#10201#10726#0" expanded="false" />
-            <element signature="e#10941#11275#0" expanded="false" />
-            <element signature="e#11444#11965#0" expanded="false" />
-            <element signature="e#12688#13217#0" expanded="false" />
+            <element signature="e#4015#4566#0" expanded="false" />
+            <element signature="e#4793#5293#0" expanded="false" />
+            <element signature="e#6945#7234#0" expanded="false" />
+            <element signature="e#7367#7658#0" expanded="false" />
+            <element signature="e#7811#8323#0" expanded="false" />
+            <element signature="e#8519#8839#0" expanded="false" />
+            <element signature="e#9008#9537#0" expanded="false" />
+            <element signature="e#9747#10085#0" expanded="false" />
+            <element signature="e#10254#10801#0" expanded="false" />
+            <element signature="e#11016#11350#0" expanded="false" />
+            <element signature="e#11519#12062#0" expanded="false" />
+            <element signature="e#12274#12616#0" expanded="false" />
+            <element signature="e#12785#13336#0" expanded="false" />
+            <element signature="e#13489#13826#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -652,13 +677,20 @@
           <caret line="14" column="48" lean-forward="false" selection-start-line="14" selection-start-column="48" selection-end-line="14" selection-end-column="48" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#7802#8292#0" expanded="false" />
-            <element signature="e#8977#9484#0" expanded="false" />
-            <element signature="e#9694#10032#0" expanded="false" />
-            <element signature="e#10201#10726#0" expanded="false" />
-            <element signature="e#10941#11275#0" expanded="false" />
-            <element signature="e#11444#11965#0" expanded="false" />
-            <element signature="e#12688#13217#0" expanded="false" />
+            <element signature="e#4015#4566#0" expanded="false" />
+            <element signature="e#4793#5293#0" expanded="false" />
+            <element signature="e#6945#7234#0" expanded="false" />
+            <element signature="e#7367#7658#0" expanded="false" />
+            <element signature="e#7811#8323#0" expanded="false" />
+            <element signature="e#8519#8839#0" expanded="false" />
+            <element signature="e#9008#9537#0" expanded="false" />
+            <element signature="e#9747#10085#0" expanded="false" />
+            <element signature="e#10254#10801#0" expanded="false" />
+            <element signature="e#11016#11350#0" expanded="false" />
+            <element signature="e#11519#12062#0" expanded="false" />
+            <element signature="e#12274#12616#0" expanded="false" />
+            <element signature="e#12785#13336#0" expanded="false" />
+            <element signature="e#13489#13826#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -831,7 +863,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="12" column="34" lean-forward="false" selection-start-line="12" selection-start-column="34" selection-end-line="12" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -900,7 +931,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/dataBase/GetDBData.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="426">
+        <state relative-caret-position="527">
           <caret line="57" column="66" lean-forward="false" selection-start-line="57" selection-start-column="43" selection-end-line="57" selection-end-column="66" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -910,42 +941,45 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/server/StateVariableActor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="568">
-          <caret line="119" column="78" lean-forward="false" selection-start-line="119" selection-start-column="78" selection-end-line="119" selection-end-column="78" />
+        <state relative-caret-position="586">
+          <caret line="71" column="17" lean-forward="false" selection-start-line="71" selection-start-column="17" selection-end-line="71" selection-end-column="17" />
           <folding>
             <element signature="class#StateVariabeData#0;class#StateVariableActor#0" expanded="false" />
             <element signature="class#StateVariableData_dailyMode#0;class#StateVariableActor#0" expanded="false" />
-            <element signature="e#4001#4002#0" expanded="true" />
-            <element signature="e#4045#4046#0" expanded="true" />
             <element signature="class#StateVariableData_hourlyMode#0;class#StateVariableActor#0" expanded="false" />
-            <element signature="e#4202#4203#0" expanded="true" />
-            <element signature="e#4246#4247#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/server/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="463">
-          <caret line="125" column="57" lean-forward="false" selection-start-line="125" selection-start-column="57" selection-end-line="125" selection-end-column="57" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#7802#8292#0" expanded="false" />
-            <element signature="e#8977#9484#0" expanded="false" />
-            <element signature="e#9694#10032#0" expanded="false" />
-            <element signature="e#10201#10726#0" expanded="false" />
-            <element signature="e#10941#11275#0" expanded="false" />
-            <element signature="e#11444#11965#0" expanded="false" />
-            <element signature="e#12688#13217#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/dataBase/DBQueries.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="63" column="31" lean-forward="true" selection-start-line="63" selection-start-column="31" selection-end-line="63" selection-end-column="31" />
+        <state relative-caret-position="476">
+          <caret line="46" column="79" lean-forward="true" selection-start-line="46" selection-start-column="79" selection-end-line="46" selection-end-column="79" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/server/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="199">
+          <caret line="70" column="10" lean-forward="false" selection-start-line="70" selection-start-column="10" selection-end-line="70" selection-end-column="10" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#4015#4566#0" expanded="false" />
+            <element signature="e#4793#5293#0" expanded="false" />
+            <element signature="e#6945#7234#0" expanded="false" />
+            <element signature="e#7367#7658#0" expanded="false" />
+            <element signature="e#7811#8323#0" expanded="false" />
+            <element signature="e#8519#8839#0" expanded="false" />
+            <element signature="e#9008#9537#0" expanded="false" />
+            <element signature="e#9747#10085#0" expanded="false" />
+            <element signature="e#10254#10801#0" expanded="false" />
+            <element signature="e#11016#11350#0" expanded="false" />
+            <element signature="e#11519#12062#0" expanded="false" />
+            <element signature="e#12274#12616#0" expanded="false" />
+            <element signature="e#12785#13336#0" expanded="false" />
+            <element signature="e#13489#13826#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

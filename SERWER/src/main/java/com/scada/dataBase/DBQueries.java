@@ -47,21 +47,25 @@ public interface DBQueries {
     List<FigurePoint> getStateSpaceData(@Bind("stateSpace") String stateSpace);
 
     String getStateSpaceDataDaily =
-            "SELECT date, value " + "\n" +
-                    "FROM scada.history " + "\n" +
-                    "WHERE state_space_id = (SELECT id from scada.state_space where tag LIKE :stateSpace) " + "\n" +
-                    "ORDER BY date desc " + "\n" +
-                    "LIMIT 8;";
+            "SELECT sum(value) as value, date(date) as date \n" +
+                    "\tFROM scada.history \n" +
+                    "\tWHERE state_space_id = (SELECT id from scada.state_space where tag LIKE :stateSpace) \n" +
+                    "    group by day(date), month(date)\n" +
+                    "\tORDER BY date desc \n" +
+                    "\tLIMIT 7;";
+
     @RegisterMapper(FigurePointMapper.class)
     @SqlQuery(getStateSpaceDataDaily)
     List<FigurePoint> getStateSpaceDataDaily(@Bind("stateSpace") String stateSpace);
 
     String getStateSpaceDataHourly =
-            "SELECT date, value " + "\n" +
-                    "FROM scada.history " + "\n" +
-                    "WHERE state_space_id = (SELECT id from scada.state_space where tag LIKE :stateSpace) " + "\n" +
-                    "ORDER BY date desc " + "\n" +
-                    "LIMIT 7;";
+            "SELECT sum(value) as value, min(date) as date \n" +
+                    "\tFROM scada.history \n" +
+                    "\tWHERE state_space_id = (SELECT id from scada.state_space where tag LIKE :stateSpace) \n" +
+                    "    group by hour(date), day(date), month(date)\n" +
+                    "\tORDER BY date desc \n" +
+                    "\tLIMIT 24;";
+
     @RegisterMapper(FigurePointMapper.class)
     @SqlQuery(getStateSpaceDataHourly)
     List<FigurePoint> getStateSpaceDataHourly(@Bind("stateSpace") String stateSpace);

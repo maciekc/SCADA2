@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import {Observable, Subscription} from "rxjs";
 
 import { ControllerService } from '../../services/controller-service/controller-service.service';
+import { CommonService } from '../../services/common-service/common.service';
 import { Figure, LineFigure } from '../../class/figure';
 
 declare var Plotly: any;
@@ -19,10 +20,17 @@ export class ControlerComponent implements OnInit, OnDestroy {
   private controllerFigure: Figure;
   private controllerFigureId: HTMLElement;
   private stateVariableFigure: Figure;
-  private stateVariableFigureId: HTMLElement;  
+  private stateVariableFigureId: HTMLElement;
 
+  private valve_1: number = 0;
+  private valve_2: number = 0;
+  private valve_3: number = 0;
+  private valve_4: number = 0;
+  private output: number = 0;
+  
+  // private commonDAtaGetter: CommonService;
 
-  constructor(private conrtollerService: ControllerService) {}
+  constructor(private conrtollerService: ControllerService, private commonDataService: CommonService) {}
   
   changeStateVariable(event) {
     let target = event.target;
@@ -59,6 +67,16 @@ export class ControlerComponent implements OnInit, OnDestroy {
       this.stateVariableFigure.updatePlotData(dates, values, 'Poziom [cm]', 'orange');
     })
     this.serviceSubscriptions.push(stateVariable);
+
+    let commonData = Observable.interval(5000)
+    .subscribe(r => {
+      this.valve_1 = this.commonDataService.getCurrentValue("VALVE_1")[1]
+      this.valve_2 = this.commonDataService.getCurrentValue("VALVE_2")[1]
+      this.valve_3 = this.commonDataService.getCurrentValue("VALVE_3")[1]
+      this.valve_4 = this.commonDataService.getCurrentValue("VALVE_4")[1]
+      this.output = this.commonDataService.getCurrentValue("OUTPUT")[1]
+    })
+    this.serviceSubscriptions.push(commonData);
  
   }
 

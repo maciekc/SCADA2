@@ -32,33 +32,18 @@ public class StateVariableActor extends AbstractActor {
     @Override
     public Receive createReceive() {
         return receiveBuilder()
-                .match(StateVariabeData.class, m -> {
-                    if (m.getEndDate() == "") {
-                        getDBData.getStateSpaceData(m.getStateVariable())
-                                .subscribe(v -> {
-                                    log.info("SV data: {}", new Gson().toJson(v));
-                                    getSender().tell(v, getSelf());
-                                });
-                        } else {
-                        getDBData.getStateSpaceData(m.getStateVariable(), m.getStartDate(), m.getEndDate())
-                                .subscribe(v -> {
-                                    log.info("SV data: {}", v);
-                                    getSender().tell(v, getSelf());
-                                });
-                        }
-                    }
-                )
+
                 .match(StateVariableData_dailyMode.class, m -> {
                     getDBData.getStateVariableDaily(m.getStateVariable())
                             .subscribe(v -> {
-                                log.info("SV data: {}", new Gson().toJson(v));
+                                log.info("BAR {} data: {}", m.getStateVariable(), new Gson().toJson(v));
                                 getSender().tell(v, getSelf());
                             });
                 })
                 .match(StateVariableData_hourlyMode.class, m -> {
                     getDBData.getStateVariableHourly(m.getStateVariable())
                             .subscribe(v -> {
-                                log.info("SV data: {}", new Gson().toJson(v));
+                                log.info("BAR {} data: {}", m.getStateVariable(), new Gson().toJson(v));
                                 getSender().tell(v, getSelf());
                             });
                 })
@@ -68,6 +53,22 @@ public class StateVariableActor extends AbstractActor {
                                 log.info("SS data: {}", v);
                                 getSender().tell(v, getSelf());
                             })
+                )
+                .match(StateVariabeData.class, m -> {
+                            if (m.getEndDate() == "") {
+                                getDBData.getStateSpaceData(m.getStateVariable())
+                                        .subscribe(v -> {
+                                            log.info("SV data: {}", new Gson().toJson(v));
+                                            getSender().tell(v, getSelf());
+                                        });
+                            } else {
+                                getDBData.getStateSpaceData(m.getStateVariable(), m.getStartDate(), m.getEndDate())
+                                        .subscribe(v -> {
+                                            log.info("SV data: {}", v);
+                                            getSender().tell(v, getSelf());
+                                        });
+                            }
+                        }
                 )
                 .matchAny(o -> log.info("received unknown message"))
                 .build();
