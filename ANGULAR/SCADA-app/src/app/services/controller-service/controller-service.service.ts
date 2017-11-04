@@ -62,6 +62,13 @@ export class ControllerService {
   }
 
 
+  public initControllPlotDataGetter() {
+    return this.controllPlotDataGetter.initPlotDataGetter()
+  }
+  
+  public initStateVariablePlotDataGetter() {
+    return this.stateVariablePlotDataGetter.initPlotDataGetter()
+  }
 
 }
 

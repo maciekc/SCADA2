@@ -108,5 +108,20 @@ export class StatisticService {
   }
 
 
+  public initOutputPlotDataGetter() {
+    return this.outputPlotDataGetter.initPlotDataGetter()
+  }
+
+  public initControllPlotDataGetter() {
+    return this.controllPlotDataGetter.initPlotDataGetter()
+  }
+  
+  public initStateVariablePlotDataGetter() {
+    return this.stateVariablePlotDataGetter.initPlotDataGetter()
+  }
+
+  public initProductionPlotDataGetter() {
+    return this.productionPlotDataGetter.initPlotDataGetter()
+  }
 
 }

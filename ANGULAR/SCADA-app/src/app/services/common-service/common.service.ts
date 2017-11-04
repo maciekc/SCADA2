@@ -16,7 +16,7 @@ export class CommonService {
   }
 
   public startService() {
-    let sub = this.commonDataGetter.dataGetter();
+    let sub = this.commonDataGetter.currentDataGetter();
     this.subscriptions.push(sub);
   }
 
@@ -26,10 +26,20 @@ export class CommonService {
   }
 
   public getCurrentValue(tag: String) {
-    return this.commonDataGetter.getData().get(tag)
+    
+    try {
+     return this.commonDataGetter.getData().get(tag)[1].toPrecision(2);
+    } 
+    catch (e) {
+      return "0"
+    }
   }
 
-  public getLimitData(tag: String) {
-    return this.commonDataGetter.getLimitData(tag);
+  public initLimitsData(tag: String) {
+    return this.commonDataGetter.limitsDataGetter(tag);
+  }
+
+  public initCurrentData() {
+    return this.commonDataGetter.initCommonDataGetter()
   }
 }

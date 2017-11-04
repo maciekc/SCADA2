@@ -5,6 +5,7 @@ import {Observable, Subscription} from "rxjs";
 
 import { StateVariablesService } from '../../services/stateVariableService/state-variables.service';
 import { StatisticService } from '../../services/statistic-service/statistic-service.service';
+import { CommonService } from '../../services/common-service/common.service';
 import { LineFigure, AreaFigure, BarFigure, Figure } from '../../class/figure';
 import { Label } from '../../class/label';
 import { Time } from '../../class/time';
@@ -43,13 +44,14 @@ export class StatisticsComponent implements OnInit, OnDestroy {
   // private currentConcentration: number = 0;
   // private currentLevel: number = 0;
 
-  constructor(private statisticService: StatisticService) {}
+  constructor(private statisticService: StatisticService, private commonDataService: CommonService) {}
   
   changeStateVariable(event) {
     let target = event.target;
     let id = target.id;
     document.getElementById("SVDropButton").innerText = target.innerText;
     this.statisticService.chanegStateVariablePlotTab(id)
+    this.updateStateVariablePlotData()
   }
 
   changeProductionFigureMode(event) {
@@ -65,6 +67,7 @@ export class StatisticsComponent implements OnInit, OnDestroy {
       this.productionFigure = this.productionLineFigure;
     }
     this.statisticService.changeProductionFigureMode(id)
+    this.updateProductionPlotData()
   }
 
 
@@ -72,13 +75,18 @@ export class StatisticsComponent implements OnInit, OnDestroy {
     console.log("on init")
     this.initFigures()
 
-    this.statisticService.startService()
+    this.statisticService.startService();
+    this.commonDataService.startService()
     
+    this.updatePlotsData()
+
+    this.updateIndicators()
+
     let output = Observable.interval(5000)
     .subscribe(r => {
       let dates = this.statisticService.getOutputDates();
       let values = this.statisticService.getOutputValues();
-      this.concentrationLabel.setLabelValue(this.statisticService.getCurrentConcentration());
+      // this.concentrationLabel.setLabelValue(this.statisticService.getCurrentConcentration());
       this.outputFigure.updatePlotData(dates, values, 'Stężenie');
     })
     this.serviceSubscriptions.push(output);
@@ -101,9 +109,19 @@ export class StatisticsComponent implements OnInit, OnDestroy {
       //tonexty - czerwony
       console.log(values)
       this.productionFigure.updatePlotData(dates, values, 'Produkcja', 'tonexty');
-      this.currentProductionLabel.setLabelValue(this.statisticService.getCurrentProduction());
+      // this.currentProductionLabel.setLabelValue(this.statisticService.getCurrentProduction());
     })
     this.serviceSubscriptions.push(productionVariable);
+
+    let currenValues = Observable.interval(5000)
+    .subscribe(r => {
+      let prod = this.commonDataService.getCurrentValue("LEVEL_3");
+      let output = this.commonDataService.getCurrentValue("OUTPUT");
+      this.concentrationLabel.setLabelValue(output.toString());
+      this.currentProductionLabel.setLabelValue(prod.toString());
+    })
+    this.serviceSubscriptions.push(currenValues);
+
 
     let timeObs = Observable.interval(1000)
     .subscribe(r => {
@@ -116,6 +134,7 @@ export class StatisticsComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     console.log("on destroy")
     this.statisticService.stopService();
+    this.commonDataService.stopService();
     this.stopService()
   }
 
@@ -141,6 +160,50 @@ export class StatisticsComponent implements OnInit, OnDestroy {
 
     this.currentProductionLabelId = document.getElementById('currentProduction');
     this.currentProductionLabel = new Label(this.currentProductionLabelId, "");
+  }
+
+  private updateIndicators() {
+    this.commonDataService.initCurrentData()
+    .then(r => {
+      let prod = r.get("LEVEL_3")[1].toPrecision(3);
+      let output = r.get("OUTPUT")[1].toPrecision(3);
+      this.concentrationLabel.setLabelValue(output.toString());
+      this.currentProductionLabel.setLabelValue(prod.toString());
+
+      this.time = new Date();
+    })
+  }
+
+  private updateOutputPlotsData() {
+    this.statisticService.initOutputPlotDataGetter()
+    .then(r => {
+      let dates = r.getDates();
+      let values = r.getValues()
+      this.outputFigure.updatePlotData(dates, values, 'wyjście');
+    })
+  }
+
+  private updateStateVariablePlotData() {
+    this.statisticService.initStateVariablePlotDataGetter()
+    .then(r => {
+      let dates = r.getDates();
+      let values = r.getValues();
+      this.stateVariableFigure.updatePlotData(dates, values, 'Poziom [cm]', 'orange');
+    })
+  }
+
+  private updateProductionPlotData() {
+    this.statisticService.initProductionPlotDataGetter()
+    .then(r => {
+      let dates = r.getDates();
+      let values = r.getValues();
+      this.productionFigure.updatePlotData(dates, values, 'Produkcja', 'tonexty');
+    })
+  }
+  private updatePlotsData() {
+    this.updateOutputPlotsData()
+    this.updateStateVariablePlotData()  
+    this.updateProductionPlotData()
   }
 
 

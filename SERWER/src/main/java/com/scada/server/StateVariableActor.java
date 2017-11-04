@@ -70,6 +70,20 @@ public class StateVariableActor extends AbstractActor {
                             }
                         }
                 )
+                .match(CurrentSystemData.class, m -> {
+                    getDBData.getCurrenSystemData()
+                            .subscribe(v -> {
+                                log.info("CV data {}", v);
+                                getSender().tell(v, getSelf());
+                            });
+                })
+                .match(LimitsData.class, m -> {
+                    getDBData.getLimitsData(m.getTag())
+                            .subscribe(v -> {
+                                log.info("LIMITS data {}", v);
+                                getSender().tell(v, getSelf());
+                            });
+                })
                 .matchAny(o -> log.info("received unknown message"))
                 .build();
     }
@@ -125,5 +139,20 @@ public class StateVariableActor extends AbstractActor {
         }
 
     }
+
+    static public class CurrentSystemData {}
+
+    static public class LimitsData {
+        private final String tag;
+
+        public LimitsData(String tag) {
+            this.tag = tag;
+        }
+
+        public String getTag() {
+            return tag;
+        }
+    }
+
 
 }

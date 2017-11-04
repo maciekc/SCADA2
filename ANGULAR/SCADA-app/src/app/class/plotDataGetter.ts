@@ -35,12 +35,22 @@ export class PlotDataGetter {
     public plotGetter(): Subscription {
     let subscription: Subscription = Observable.interval(5000) 
     .subscribe(v => {
+            this.getCurrentServerPlotData()
+    });
+    return subscription;
+    }
+
+    public initPlotDataGetter() {
+        return this.getCurrentServerPlotData().then(v => new PlotData(this.dates, this.values))
+    }
+
+    private getCurrentServerPlotData() {
         let params = new HttpParams().set('name', this.tag.toString());
-       
+        
         let dates: String[] = [];
         let values: number[] = [];
         
-        this.http.get<Point []>(this.url, {params} )
+        return this.http.get<Point []>(this.url, {params} )
         .forEach(r => {
         r.forEach(e => {
             dates.push(e["date"]);
@@ -48,9 +58,18 @@ export class PlotDataGetter {
         })
         this.dates = dates;
         this.values = values;
-        })      
-    });
-    return subscription;
+        })
     }
 
+}
+
+export class PlotData {
+    constructor(private dates: String[],private values: number []) {}
+    public getDates() {
+        return this.dates;
+    }
+
+    public getValues() {
+        return this.values;
+    }
 }

@@ -5,6 +5,7 @@ import {Observable, Subscription} from "rxjs";
 import { PlantService } from '../../services/plant-service/plant.service';
 import { CommonService } from '../../services/common-service/common.service';
 import { Figure, LineFigure } from '../../class/figure';
+import { PlotData } from '../../class/plotDataGetter';
 
 declare var Plotly: any;
 
@@ -39,14 +40,15 @@ export class PlantComponent implements OnInit, OnDestroy {
   constructor(private plantService: PlantService, private commonDataService: CommonService) {}
   
   changeLimitSubmit(event) {
+    console.log(this.limitMin)
     this.plantService.changeLimitsValues(this.limitTag, this.limitMin, this.limitMax, this.limitMinCrit, this.limitMaxCrit);
   }
 
   changeLimits(event) {
     let target = event.target;
     this.limitTag = target.id;
-    document.getElementById("SVDropButton").innerText = target.innerText;
-    this.commonDataService.getLimitData(this.limitTag)
+    document.getElementById("LimitDropButton").innerText = target.innerText;
+    this.updateLimits(this.limitTag)
   }
 
   changeStateVariable(event) {
@@ -54,13 +56,20 @@ export class PlantComponent implements OnInit, OnDestroy {
     let id = target.id;
     document.getElementById("SVDropButton").innerText = target.innerText;
     this.plantService.chanegStateVariablePlotTab(id)
+    this.updateStateVariablePlotData()
   }
 
   ngOnInit() {
     console.log("on init")
     this.initFigures()
 
-    this.plantService.startService()
+    this.plantService.startService();
+    this.commonDataService.startService();
+
+    this.updatePlotsData();
+
+    this.updateLimits("LEVEL_1")
+    this.updateIndicators()
     
     let output = Observable.interval(5000)
     .subscribe(r => {
@@ -80,10 +89,10 @@ export class PlantComponent implements OnInit, OnDestroy {
 
     let commonData = Observable.interval(5000)
     .subscribe(r => {
-      this.level_1 = this.commonDataService.getCurrentValue("LEVEL_1")[1]
-      this.level_2 = this.commonDataService.getCurrentValue("LEVEL_2")[1]
-      this.level_3 = this.commonDataService.getCurrentValue("LEVEL_3")[1]
-      this.output = this.commonDataService.getCurrentValue("OUTPUT")[1]
+      this.level_1 = this.commonDataService.getCurrentValue("LEVEL_1")
+      this.level_2 = this.commonDataService.getCurrentValue("LEVEL_2")
+      this.level_3 = this.commonDataService.getCurrentValue("LEVEL_3")
+      this.output = this.commonDataService.getCurrentValue("OUTPUT")
     })
     this.serviceSubscriptions.push(commonData);
 
@@ -93,6 +102,7 @@ export class PlantComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     console.log("on destroy")
     this.plantService.stopService();
+    this.commonDataService.stopService();
     this.stopService()
   }
 
@@ -107,5 +117,58 @@ export class PlantComponent implements OnInit, OnDestroy {
 
     this.stateVariableFigureId = document.getElementById('plantPlot');
     this.stateVariableFigure = new LineFigure(this.stateVariableFigureId, "Czas [s]", "Poziom [cm]");
+  }
+
+  private updateLimits(tag: String) {
+    
+    this.commonDataService.initLimitsData(tag)
+    .then(r => {
+        console.log(r)
+        let values = r.values();
+        try {
+          this.limitMin = values.next().value[0];
+          this.limitMinCrit = values.next().value[0];
+          this.limitMax = values.next().value[0];
+          this.limitMaxCrit = values.next().value[0];
+        } catch (e) {
+          this.limitMin = 0;
+          this.limitMinCrit = 0;
+          this.limitMax = 0;
+          this.limitMaxCrit = 0;
+        }
+      }
+    )    
+  }
+
+  private updateIndicators() {
+    this.commonDataService.initCurrentData()
+    .then(r => {
+      this.level_1 = r.get("LEVEL_1")[1].toPrecision(3);
+      this.level_2 = r.get("LEVEL_2")[1].toPrecision(3);
+      this.level_3 = r.get("LEVEL_3")[1].toPrecision(3);
+      this.output = r.get("OUTPUT") [1].toPrecision(3);
+    })
+  }
+
+  private updateOutputPlotData() {
+    this.plantService.initOutputPlotDataGetter()
+    .then(r => {
+      let dates = r.getDates();
+      let values = r.getValues()
+      this.outputFigure.updatePlotData(dates, values, 'wyjście');
+    })
+  }
+
+  private updateStateVariablePlotData() {
+    this.plantService.initStateVariablePlotDataGetter()
+    .then(r => {
+      let dates = r.getDates();
+      let values = r.getValues();
+      this.stateVariableFigure.updatePlotData(dates, values, 'Poziom [cm]', 'orange');
+    })
+  }
+  private updatePlotsData() {
+    this.updateOutputPlotData()
+    this.updateStateVariablePlotData()
   }
 }

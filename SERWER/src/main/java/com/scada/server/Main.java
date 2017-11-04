@@ -251,7 +251,30 @@ public class Main extends AllDirectives {
                             return onSuccess(() -> andonRequest, result ->
                                     completeOK(result, Jackson.marshaller()));
                         })
+                ),
+                path("currentData", () ->
+                    pathEnd(() ->
+                            get(() -> {
+                                final CompletionStage<Object> currentSystemData = ask(getStateVariableData, new CurrentSystemData(), t);
+                                return onSuccess(() -> currentSystemData, result ->
+                                        completeOK(result, Jackson.marshaller()));
+                            }
+                        ))
+                ),
+                path("limitsData", () ->
+                                get(() ->
+                                        parameter("stateVariableTag", tag -> {
+                                            final CompletionStage<Object> currentSystemData = ask(getStateVariableData, new LimitsData(tag), t);
+                                            return onSuccess(() -> currentSystemData, result ->
+                                                    completeOK(result, Jackson.marshaller()));
+                                        }
+                                ))
                 )
+
+                //--------------------------------------------------
+                //                  POST REQUESTS
+                //--------------------------------------------------
+
 
 
         );

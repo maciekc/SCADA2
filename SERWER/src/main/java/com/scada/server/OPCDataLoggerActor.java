@@ -8,6 +8,7 @@ import akka.event.LoggingAdapter;
 import com.scada.dataBase.GetDBData;
 import com.scada.dataBase.InsertDataToDB;
 import com.scada.model.dataBase.Andon.Andon;
+import com.scada.model.dataBase.Controller.Controller;
 import com.scada.model.dataBase.Work.Work;
 import rx.Observable;
 
@@ -68,11 +69,16 @@ public class OPCDataLoggerActor extends AbstractActor {
 
     private void logOPCData() {
         Observable.interval(5, TimeUnit.SECONDS)
-                .subscribe(t ->
-                        Observable.merge(opcServer.getSystemVariableData().stream()
-                            .map(r -> insertDataToDB.logWorkRecord(new Work(1, r.getTag(), r.getValue(), r.getDate())))
-                            .collect(Collectors.toList())
-                        ).subscribe(res -> log.info("Log data in DB."))
+                .subscribe(t -> {
+                            Observable.merge(opcServer.getControllersData().stream()
+                                    .map(r -> insertDataToDB.logControllerRecord(new Controller(1, r.getTag(), r.getMode(), r.getValue(), r.getDate())))
+                                    .collect(Collectors.toList())
+                            ).subscribe(res -> log.info("Log controller data in DB."));
+                            Observable.merge(opcServer.getSystemVariableData().stream()
+                                    .map(r -> insertDataToDB.logWorkRecord(new Work(1, r.getTag(), r.getValue(), r.getDate())))
+                                    .collect(Collectors.toList())
+                            ).subscribe(res -> log.info("Log data in DB."));
+                        }
                 );
     }
 

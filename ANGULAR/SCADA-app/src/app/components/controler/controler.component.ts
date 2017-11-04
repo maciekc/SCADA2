@@ -37,6 +37,7 @@ export class ControlerComponent implements OnInit, OnDestroy {
     let id = target.id;
     document.getElementById("SVDropButton").innerText = target.innerText;
     this.conrtollerService.chanegStateVariablePlotTab(id)
+    this.updateStateVariablePlotData()
   }
 
   changeController(event) {
@@ -44,6 +45,7 @@ export class ControlerComponent implements OnInit, OnDestroy {
     let id = target.id; 
     document.getElementById("ConDropButton").innerText = target.innerText;
     this.conrtollerService.chanegControllPlotTab(id)
+    this.updateControllerPlotData()
   }
 
   ngOnInit() {
@@ -51,6 +53,8 @@ export class ControlerComponent implements OnInit, OnDestroy {
     this.initFigures()
 
     this.conrtollerService.startService()
+
+    this.updatePlotsData()
     
     let controller = Observable.interval(5000)
     .subscribe(r => {
@@ -102,6 +106,27 @@ export class ControlerComponent implements OnInit, OnDestroy {
     this.stateVariableFigure = new LineFigure(this.stateVariableFigureId, "Czas [s]", "Poziom [cm]");
   }
 
+  private updateControllerPlotData() {
+    this.conrtollerService.initControllPlotDataGetter()
+    .then(r => {
+      let dates = r.getDates();
+      let values = r.getValues()
+      this.controllerFigure.updatePlotData(dates, values, 'Sterowanie', 'green');
+    })
+  }
+
+  private updateStateVariablePlotData() {
+    this.conrtollerService.initStateVariablePlotDataGetter()
+    .then(r => {
+      let dates = r.getDates();
+      let values = r.getValues();
+      this.stateVariableFigure.updatePlotData(dates, values, 'Poziom [cm]', 'orange');
+    })
+  }
+  private updatePlotsData() {
+    this.updateControllerPlotData()
+    this.updateStateVariablePlotData()
+  }
 
 
 }

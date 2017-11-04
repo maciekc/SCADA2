@@ -47,10 +47,15 @@ public class OPCServer {
         values.add(new Record("LEVEL_1"));
         values.add(new Record("LEVEL_2"));
         values.add(new Record("LEVEL_3"));
-        values.add(new Record("VALVE_1"));
-        values.add(new Record("VALVE_2"));
-        values.add(new Record("VALVE_3"));
-        values.add(new Record("VALVE_4"));
+        return values;
+    }
+
+    public List<ControllerRecord> getControllersData() {
+        final List<ControllerRecord> values = new ArrayList<>();
+        values.add(new ControllerRecord("VALVE_1", "AUTOMATIC_MODE"));
+        values.add(new ControllerRecord("VALVE_2", "AUTOMATIC_MODE"));
+        values.add(new ControllerRecord("VALVE_3", "AUTOMATIC_MODE"));
+        values.add(new ControllerRecord("VALVE_4", "AUTOMATIC_MODE"));
         return values;
     }
 
@@ -99,6 +104,28 @@ public class OPCServer {
 
         public void setDate(String date) {
             this.date = date;
+        }
+    }
+
+    public static class ControllerRecord extends Record {
+
+        private  String mode;
+        public ControllerRecord(String tag, String mode, Double value, String date) {
+            super(tag, value, date);
+            this.mode = mode;
+        }
+
+        public ControllerRecord(String tag, String mode) {
+            super(tag);
+            this.mode = mode;
+        }
+
+        public String getMode() {
+            return mode;
+        }
+
+        public void setMode(String mode) {
+            this.mode = mode;
         }
     }
 }

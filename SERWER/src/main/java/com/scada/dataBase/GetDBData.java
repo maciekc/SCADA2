@@ -4,6 +4,7 @@ import com.scada.model.dataBase.Andon.Andon;
 import com.scada.model.dataBase.ChangeParameterValue.ChangeParameterValue;
 import com.scada.model.dataBase.Controller.Controller;
 import com.scada.model.dataBase.FigurePoint.FigurePoint;
+import com.scada.model.dataBase.Limit.Limit;
 import com.scada.model.dataBase.Notification.Notification;
 import com.scada.model.dataBase.Work.Work;
 import org.skife.jdbi.v2.Handle;
@@ -159,6 +160,30 @@ public class GetDBData {
                     .toMap(res -> res.getId(), res -> res);
         }
     }
+
+    //------------------------------------------------------------------
+    //                       GET CURRENT SYSTEM DATA
+    //------------------------------------------------------------------
+
+    public Observable<List<Work>> getCurrenSystemData() {
+        synchronized (this) {
+            return Observable.from((queries.getCurrentSystemData()))
+                    .toList();
+        }
+    }
+
+    //------------------------------------------------------------------
+    //                       GET LIMITS DATA
+    //------------------------------------------------------------------
+
+    public Observable<List<Limit>> getLimitsData(String tag) {
+        synchronized (this) {
+            return Observable.from((queries.getLimitsData(tag)))
+                    .toList();
+        }
+    }
+
+
 
 
 //    public Observable<Map<String, Double>> getStateSpaceData() {

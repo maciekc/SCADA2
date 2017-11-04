@@ -8,6 +8,8 @@ import com.scada.model.dataBase.Controller.Controller;
 import com.scada.model.dataBase.Controller.ControllerMapper;
 import com.scada.model.dataBase.FigurePoint.FigurePoint;
 import com.scada.model.dataBase.FigurePoint.FigurePointMapper;
+import com.scada.model.dataBase.Limit.Limit;
+import com.scada.model.dataBase.Limit.LimitMapper;
 import com.scada.model.dataBase.Notification.Notification;
 import com.scada.model.dataBase.Notification.NotificationMapper;
 import com.scada.model.dataBase.StateVariable.StateVariable;
@@ -198,6 +200,36 @@ String getAndonDataQuery =
     @SqlQuery(getCPVDataQuery_dateRange)
     List<Notification> getNotificationsData(@Bind("startDate") String startDate, @Bind("endDate") String endDate);
 
+
+    //------------------------------------------------------------------
+    //                       GET CURRENT SYSTEM DATA
+    //------------------------------------------------------------------
+
+    String getCurrentSystemData =
+            "(SELECT sw.id, sss.tag as stateSpace, sw.value, sw.date FROM scada.work as sw\n" +
+                    "LEFT JOIN scada.state_space as sss ON sss.id = sw.state_space_id\n" +
+                    "order by sw.id desc\n" +
+                    "LIMIT 4)\n" +
+            "union\n" +
+            "(SELECT sc.id, sss.tag, sc.value as stateSpace, sc.date FROM scada.controller as sc\n" +
+                    "LEFT JOIN scada.state_space as sss ON sss.id = sc.state_space_id\n" +
+                    "order by sc.id desc\n" +
+                    "LIMIT 4);";
+    @RegisterMapper(WorkMapper.class)
+    @SqlQuery(getCurrentSystemData)
+    List<Work> getCurrentSystemData ();
+
+
+    //------------------------------------------------------------------
+    //                       GET LIMITS DATA
+    //------------------------------------------------------------------
+
+    String getLimitsData =
+            "SELECT id, tag, name, state_space_id as stateSpaceName, value, type FROM scada.limits" + "\n" +
+                    "WHERE state_space_id = (SELECT id FROM scada.state_space WHERE tag LIKE :stateVariableTag);";
+    @RegisterMapper(LimitMapper.class)
+    @SqlQuery(getLimitsData)
+    List<Limit> getLimitsData (@Bind("stateVariableTag") String tag);
 
 
 

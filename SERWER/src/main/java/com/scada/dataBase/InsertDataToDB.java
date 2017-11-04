@@ -79,6 +79,12 @@ public class InsertDataToDB {
         }
     }
 
+    public Observable<Integer> logControllerRecord(Controller controller) {
+        synchronized (this) {
+            return Observable.concat(this.insertController(controller), this.insertControllerToHistory(controller));
+        }
+    }
+
     //------------------------------------------------------------------
     //                        INSERT insertChangeParameterValue
     //------------------------------------------------------------------
@@ -92,6 +98,12 @@ public class InsertDataToDB {
     public Observable<Integer> insertChangeParameterValueToHistory(ChangeParameterValue cpv, String type) {
         synchronized (this) {
             return Observable.just(queries.insertChangeParameterValueToHistory(cpv, type));
+        }
+    }
+
+    public Observable<Integer> logChangeParameterValueRecord(ChangeParameterValue cpv) {
+        synchronized (this) {
+            return Observable.concat(this.insertChangeParameterValue(cpv), this.insertChangeParameterValueToHistory(cpv, "CHANGE_PARAMETER_VALUE"));
         }
     }
 

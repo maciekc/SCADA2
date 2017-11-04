@@ -62,6 +62,14 @@ export class PlantService {
     this.sendDataToServer.sendLimitsToServer(limitTag, limitMin, limitMax, limitMinCrit, limitMaxCrit)
   }
 
+  public initOutputPlotDataGetter(){
+    return this.outputPlotDataGetter.initPlotDataGetter()
+  }
+
+  public initStateVariablePlotDataGetter() {
+    return this.stateVariablePlotDataGetter.initPlotDataGetter()
+  }
+
 
 
 }

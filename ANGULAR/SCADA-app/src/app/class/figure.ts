@@ -67,7 +67,6 @@ export class AreaFigure extends Figure {
     }
    
     protected plotDataSeries(dates: String [], values: number [], name: String, fill = 'tozeroy', type ='scatter', mode = 'lines'): any {
-        console.log("area")
         return {
             type: type,
             x: dates,
