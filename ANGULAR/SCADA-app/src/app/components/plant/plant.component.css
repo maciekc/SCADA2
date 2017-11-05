@@ -1,6 +1,6 @@
 .plotPanel {
-    border: 1px solid #cacaca;
-    border-radius: 2px;
+    /* border: 1px solid #cacaca;
+    border-radius: 2px; */
     width: 100%; 
     height: 60%;
     padding: 10px;
@@ -8,10 +8,73 @@
 
 .detailsPanel {
     width: 100%;
-    height: calc(40% - 5px);
-    margin-top: 5px;
+    height: calc(40%);
+    /* margin-top: 5px; */
     padding: 10px;
-    border: 1px solid #cacaca;
+    /* border: 1px solid #cacaca;
+    border-radius: 2px; */
+}
+
+.indicator {
+    /* color: #555555; */
+    font-size: 4.5vh;
+    float: left;
+    height: 100%;
+    width: 40%;
+    text-align: left;
+}
+
+.limitInput{
+    color: #555555;
+    /* font-size: 4vh; */
+    width: 100%; 
+    height: calc(100% - 5px);
+    /* padding-bottom: 10px; */
+}
+
+.caption {
+    /* color: #555555; */
+    font-size: 2.5vh;
+    float: left;
+    padding-right: 10px;
+    height: 100%;
+    width: 60%;
+    text-align: left;
+}
+
+.dataBox {
+    width: calc(35% - 10px);
+    height: 100%;
+    float: left;
+    margin: 5px;
+    
+}
+
+.limitDataBox {
+    background-color: #fcf8e3;
+    height: calc(100% - 40px);
+    border-radius: 2px 2px 0px 0px;
+    margin-top: 10px;
+}
+
+.levelDataBox {
+    height: calc(100% - 30px - 10px); 
+    width: 100%; 
+    float: left;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-top: 10px;
+    color: #fafafa;
+    background-color: #0bdc83;
+    /* background-color: #C2FAE2; */
     border-radius: 2px;
+}
+
+.whiteFont {
+    color: #fafafa;
+}
+
+.whiteBorder {
+    border-bottom: 1px solid #fafafa;
 }
 

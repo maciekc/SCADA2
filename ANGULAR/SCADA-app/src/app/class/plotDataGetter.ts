@@ -8,10 +8,16 @@ export class PlotDataGetter {
 
     private dates: String[] = [];
     private values: number[] = [];
-    private url: string = "http://localhost:8010/stateVariableData";
-    private mode: String = "LINE"
+    private url: string = "";
+    // private mode: String = "LINE"
 
-    constructor(private http: HttpClient, private tag: String) {}
+    constructor(private http: HttpClient, private tag: String, private mode: String = "LINE") {
+        if(this.mode == "LINE") {
+            this.url =  "http://localhost:8010/stateVariableData";
+        } else {
+            this.url =  "http://localhost:8010/stateVariableData/" + mode
+        }
+    }
 
     public setMode(mode: String) {
         this.mode = mode;

@@ -40,6 +40,9 @@ export class StatisticsComponent implements OnInit, OnDestroy {
   private currentProductionLabel: Label;
 
   public time: Date;
+  private LEVEL_1: String = "";
+  private LEVEL_2: String = "";
+  private LEVEL_3: String = "";
 
   // private currentConcentration: number = 0;
   // private currentLevel: number = 0;
@@ -61,7 +64,6 @@ export class StatisticsComponent implements OnInit, OnDestroy {
     //BAR_HOUR
     //BAR_DAY
     if (id == "BAR_HOUR" || id == "BAR_DAY") {
-      console.log("bar_mode")
       this.productionFigure = this.productionBarFigure;
     } else {
       this.productionFigure = this.productionLineFigure;
@@ -115,7 +117,10 @@ export class StatisticsComponent implements OnInit, OnDestroy {
 
     let currenValues = Observable.interval(5000)
     .subscribe(r => {
-      let prod = this.commonDataService.getCurrentValue("LEVEL_3");
+      this.LEVEL_1 = this.commonDataService.getCurrentValue("LEVEL_1");
+      this.LEVEL_2 = this.commonDataService.getCurrentValue("LEVEL_2");
+      this.LEVEL_3 = this.commonDataService.getCurrentValue("LEVEL_3");
+      let prod = this.commonDataService.getCurrentValue("VALVE_4");
       let output = this.commonDataService.getCurrentValue("OUTPUT");
       this.concentrationLabel.setLabelValue(output.toString());
       this.currentProductionLabel.setLabelValue(prod.toString());
@@ -165,7 +170,10 @@ export class StatisticsComponent implements OnInit, OnDestroy {
   private updateIndicators() {
     this.commonDataService.initCurrentData()
     .then(r => {
-      let prod = r.get("LEVEL_3")[1].toPrecision(3);
+      this.LEVEL_1 = this.commonDataService.getCurrentValue("LEVEL_1");
+      this.LEVEL_2 = this.commonDataService.getCurrentValue("LEVEL_2");
+      this.LEVEL_3 = this.commonDataService.getCurrentValue("LEVEL_3");
+      let prod = this.commonDataService.getCurrentValue("VALVE_4");
       let output = r.get("OUTPUT")[1].toPrecision(3);
       this.concentrationLabel.setLabelValue(output.toString());
       this.currentProductionLabel.setLabelValue(prod.toString());

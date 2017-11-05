@@ -68,7 +68,7 @@ public class OPCDataLoggerActor extends AbstractActor {
     }
 
     private void logOPCData() {
-        Observable.interval(5, TimeUnit.SECONDS)
+        Observable.interval(60, TimeUnit.SECONDS)
                 .subscribe(t -> {
                             Observable.merge(opcServer.getControllersData().stream()
                                     .map(r -> insertDataToDB.logControllerRecord(new Controller(1, r.getTag(), r.getMode(), r.getValue(), r.getDate())))

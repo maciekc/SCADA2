@@ -14,6 +14,7 @@ export class PlantService {
   private outputPlotDataGetter: PlotDataGetter;
   // private controllPlotDataGetter: PlotDataGetter;
   private stateVariablePlotDataGetter: PlotDataGetter;
+  private materialPlotDataGetter: PlotDataGetter;
   private sendDataToServer : SendDataToServer;
   
 
@@ -22,6 +23,7 @@ export class PlantService {
     // this.controllPlotDataGetter = new PlotDataGetter(this.http, "VALVE_1");
     this.stateVariablePlotDataGetter = new PlotDataGetter(this.http, "LEVEL_1");
     this.sendDataToServer = new SendDataToServer(http);
+    this.materialPlotDataGetter = new PlotDataGetter(this.http, "VALVE_1", "BAR_DAY");
   }
 
 
@@ -29,6 +31,9 @@ export class PlantService {
     this.stateVariablePlotDataGetter.setTag(tag);
   }
 
+  public changeMaterialFigureMode(mode: String) {
+    this.materialPlotDataGetter.setMode(mode);
+  }
   
   public getOutputValues() {
     return this.outputPlotDataGetter.getValues()
@@ -45,12 +50,22 @@ export class PlantService {
   public getStateVariableDates() {
     return this.stateVariablePlotDataGetter.getDates()
   }
+
+  public getMaterialValues() {
+    return this.materialPlotDataGetter.getValues()
+  }
+  
+  public getMaterialDates() {
+    return this.materialPlotDataGetter.getDates()
+  }
   
   public startService() {
     let sub2 = this.outputPlotDataGetter.plotGetter();
     this.subscriptions.push(sub2);
     let sub3 = this.stateVariablePlotDataGetter.plotGetter()
     this.subscriptions.push(sub3)
+    let sub4 = this.materialPlotDataGetter.plotGetter()
+    this.subscriptions.push(sub4)
   }
 
   public stopService() {
@@ -70,6 +85,8 @@ export class PlantService {
     return this.stateVariablePlotDataGetter.initPlotDataGetter()
   }
 
-
+  public initMaterialPlotDataGetter() {
+    return this.materialPlotDataGetter.initPlotDataGetter()
+  }
 
 }

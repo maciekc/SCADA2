@@ -4,7 +4,7 @@ import {Observable, Subscription} from "rxjs";
 
 import { PlantService } from '../../services/plant-service/plant.service';
 import { CommonService } from '../../services/common-service/common.service';
-import { Figure, LineFigure } from '../../class/figure';
+import { Figure, LineFigure, BarFigure } from '../../class/figure';
 import { PlotData } from '../../class/plotDataGetter';
 
 declare var Plotly: any;
@@ -21,7 +21,9 @@ export class PlantComponent implements OnInit, OnDestroy {
   private outputFigure: Figure;
   private outputFigureId: HTMLElement;  
   private stateVariableFigure: Figure;
-  private stateVariableFigureId: HTMLElement;  
+  private stateVariableFigureId: HTMLElement; 
+  private materialFigure: Figure;
+  private materialFigureId: HTMLElement; 
 
   private level_1: number = 0;
   private level_2: number = 0;
@@ -59,6 +61,14 @@ export class PlantComponent implements OnInit, OnDestroy {
     this.updateStateVariablePlotData()
   }
 
+  changeMaterialPlot(event) {
+    let target = event.target;
+    let id = target.id;
+    document.getElementById("MaterialDropButton").innerText = target.innerText;
+    this.plantService.changeMaterialFigureMode(id)
+    this.updateMaterialPlotData()
+  }
+
   ngOnInit() {
     console.log("on init")
     this.initFigures()
@@ -86,6 +96,14 @@ export class PlantComponent implements OnInit, OnDestroy {
       this.stateVariableFigure.updatePlotData(dates, values, 'Poziom [cm]', 'orange');
     })
     this.serviceSubscriptions.push(stateVariable);
+
+    let materialVariable = Observable.interval(5000)
+    .subscribe(r => {
+      let dates = this.plantService.getMaterialDates();
+      let values = this.plantService.getMaterialValues()
+      this.materialFigure.updatePlotData(dates, values, 'Ilość [m^3]', 'green');
+    })
+    this.serviceSubscriptions.push(materialVariable);
 
     let commonData = Observable.interval(5000)
     .subscribe(r => {
@@ -117,6 +135,9 @@ export class PlantComponent implements OnInit, OnDestroy {
 
     this.stateVariableFigureId = document.getElementById('plantPlot');
     this.stateVariableFigure = new LineFigure(this.stateVariableFigureId, "Czas [s]", "Poziom [cm]");
+
+    this.materialFigureId = document.getElementById('materialPlot');;
+    this.materialFigure = new BarFigure(this.materialFigureId, "Data", "Produkcja")
   }
 
   private updateLimits(tag: String) {
@@ -150,6 +171,15 @@ export class PlantComponent implements OnInit, OnDestroy {
     })
   }
 
+  private updateMaterialPlotData() {
+    this.plantService.initMaterialPlotDataGetter()
+    .then(r => {
+      let dates = r.getDates();
+      let values = r.getValues()
+      this.materialFigure.updatePlotData(dates, values, 'wyjście');
+    })
+  }
+
   private updateOutputPlotData() {
     this.plantService.initOutputPlotDataGetter()
     .then(r => {
@@ -170,5 +200,6 @@ export class PlantComponent implements OnInit, OnDestroy {
   private updatePlotsData() {
     this.updateOutputPlotData()
     this.updateStateVariablePlotData()
+    this.updateMaterialPlotData()
   }
 }
