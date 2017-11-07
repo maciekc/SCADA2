@@ -8,14 +8,22 @@ import akka.http.javadsl.ConnectHttp;
 import akka.http.javadsl.Http;
 import akka.http.javadsl.ServerBinding;
 import akka.http.javadsl.marshallers.jackson.Jackson;
+import akka.http.javadsl.model.HttpEntity;
 import akka.http.javadsl.model.HttpRequest;
 import akka.http.javadsl.model.HttpResponse;
-import akka.http.javadsl.server.AllDirectives;
-import akka.http.javadsl.server.Route;
+import akka.http.javadsl.model.StatusCodes;
+import akka.http.javadsl.model.headers.HttpOrigin;
+import akka.http.javadsl.model.headers.HttpOriginRange;
+import akka.http.javadsl.server.*;
 import akka.http.javadsl.unmarshalling.StringUnmarshallers;
+import akka.http.javadsl.unmarshalling.Unmarshaller;
 import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
 import akka.util.Timeout;
+import ch.megard.akka.http.cors.javadsl.settings.CorsSettings;
+
+import static ch.megard.akka.http.cors.javadsl.CorsDirectives.cors;
+import static ch.megard.akka.http.cors.javadsl.CorsDirectives.corsRejectionHandler;
 import com.google.gson.Gson;
 import com.scada.dataBase.DBUpdates;
 import com.scada.dataBase.GetDBData;
@@ -36,7 +44,10 @@ import org.skife.jdbi.v2.Handle;
 import scala.concurrent.duration.Duration;
 
 import java.io.IOException;
+import java.util.NoSuchElementException;
 import java.util.concurrent.*;
+import java.util.function.Function;
+import java.util.function.Supplier;
 
 
 public class Main extends AllDirectives {
@@ -53,6 +64,8 @@ public class Main extends AllDirectives {
     static ActorRef notificationDAta = null;
     static ActorRef OPCDataLogger = null;
     static ActorSystem system = ActorSystem.create("routes");
+
+    private final Unmarshaller<HttpEntity, LimitUpdate> limitUnmarshaller = Jackson.unmarshaller(LimitUpdate.class);
 
     public static void main(String[] args) throws InterruptedException, IOException, ExecutionException {
 
@@ -94,8 +107,28 @@ public class Main extends AllDirectives {
 
     }
 
-    private Route createRoute() {
-        return route(
+        private Route createRoute() {
+
+            // Your CORS settings
+            final CorsSettings settings = CorsSettings.defaultSettings()
+                    .withAllowedOrigins(HttpOriginRange.create(HttpOrigin.parse("http://localhost:4200")));
+
+            // Your rejection handler
+            final RejectionHandler rejectionHandler = corsRejectionHandler().withFallback(RejectionHandler.defaultHandler());
+
+            // Your exception handler
+            final ExceptionHandler exceptionHandler = ExceptionHandler.newBuilder()
+                    .match(NoSuchElementException.class, ex -> complete(StatusCodes.NOT_FOUND, ex.getMessage()))
+                    .build();
+
+            // Combining the two handlers only for convenience
+            final Function<Supplier<Route>, Route> handleErrors = inner -> Directives.allOf(
+                    s -> handleExceptions(exceptionHandler, s),
+                    s -> handleRejections(rejectionHandler, s),
+                    inner
+            );
+
+        return handleErrors.apply(() -> cors(settings, () -> handleErrors.apply(() -> route(
                 path("selectAll", () ->
                     get(() -> {
                                 final StateVariabeData message = new StateVariabeData("VALVE_1", "2017-10-27 15:00:00", "2017-10-29 12:00:00");
@@ -262,21 +295,29 @@ public class Main extends AllDirectives {
                         ))
                 ),
                 path("limitsData", () ->
-                                get(() ->
-                                        parameter("stateVariableTag", tag -> {
-                                            final CompletionStage<Object> currentSystemData = ask(getStateVariableData, new LimitsData(tag), t);
-                                            return onSuccess(() -> currentSystemData, result ->
-                                                    completeOK(result, Jackson.marshaller()));
-                                        }
-                                ))
-                )
+                    get(() ->
+                            parameter("stateVariableTag", tag -> {
+                                final CompletionStage<Object> currentSystemData = ask(getStateVariableData, new LimitsData(tag), t);
+                                return onSuccess(() -> currentSystemData, result ->
+                                        completeOK(result, Jackson.marshaller()));
+                            }
+                    ))
+                ),
 
                 //--------------------------------------------------
                 //                  POST REQUESTS
                 //--------------------------------------------------
 
-
-
-        );
+                path("limits", () ->
+                    post(() ->
+                        entity(this.limitUnmarshaller, lu -> {
+                                    System.out.println("get " + lu.getValue() + " " + lu.getTag());
+                                    return completeOK("OK", Jackson.marshaller());
+                                }
+                        )
+                    )
+                )
+            ))
+        ));
     }
 }

@@ -27,36 +27,10 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/server/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="469">
-              <caret line="70" column="10" lean-forward="false" selection-start-line="70" selection-start-column="10" selection-end-line="70" selection-end-column="10" />
+            <state relative-caret-position="5129">
+              <caret line="321" column="5" lean-forward="false" selection-start-line="321" selection-start-column="5" selection-end-line="321" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#4015#4566#0" expanded="false" />
-                <element signature="e#4793#5293#0" expanded="false" />
-                <element signature="e#5509#6048#0" expanded="false" />
-                <element signature="e#6265#6806#0" expanded="false" />
-                <element signature="e#7367#7658#0" expanded="false" />
-                <element signature="e#7811#8323#0" expanded="false" />
-                <element signature="e#8519#8839#0" expanded="false" />
-                <element signature="e#9747#10085#0" expanded="false" />
-                <element signature="e#10254#10801#0" expanded="false" />
-                <element signature="e#11016#11350#0" expanded="false" />
-                <element signature="e#11519#12062#0" expanded="false" />
-                <element signature="e#12274#12616#0" expanded="false" />
-                <element signature="e#12785#13336#0" expanded="false" />
-                <element signature="e#13489#13826#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="OPCDataLoggerActor.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/server/OPCDataLoggerActor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="353">
-              <caret line="70" column="30" lean-forward="false" selection-start-line="70" selection-start-column="30" selection-end-line="70" selection-end-column="30" />
-              <folding>
-                <element signature="class#UpdateAndonData#0;class#OPCDataLoggerActor#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -76,67 +50,6 @@
                 <element signature="e#5292#5293#0" expanded="true" />
                 <element signature="e#5326#5327#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="OPCServer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/server/OPCServer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="884">
-              <caret line="57" column="39" lean-forward="false" selection-start-line="57" selection-start-column="39" selection-end-line="57" selection-end-column="39" />
-              <folding>
-                <element signature="class#Record#0;class#OPCServer#0" expanded="false" />
-                <element signature="method#Record#0;class#Record#0;class#OPCServer#0" expanded="false" />
-                <element signature="method#Record#1;class#Record#0;class#OPCServer#0" expanded="false" />
-                <element signature="class#ControllerRecord#0;class#OPCServer#0" expanded="false" />
-                <element signature="e#4455#4456#0" expanded="true" />
-                <element signature="e#4490#4491#0" expanded="true" />
-                <element signature="e#4534#4535#0" expanded="true" />
-                <element signature="e#4574#4575#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="InsertDataToDB.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/dataBase/InsertDataToDB.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1683">
-              <caret line="105" column="144" lean-forward="false" selection-start-line="105" selection-start-column="144" selection-end-line="105" selection-end-column="144" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GetDBData.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/dataBase/GetDBData.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2873">
-              <caret line="180" column="61" lean-forward="false" selection-start-line="180" selection-start-column="61" selection-end-line="180" selection-end-column="61" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DBQueries.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/dataBase/DBQueries.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2594">
-              <caret line="236" column="0" lean-forward="true" selection-start-line="236" selection-start-column="0" selection-end-line="236" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LimitMapper.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/model/dataBase/Limit/LimitMapper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="12" column="113" lean-forward="false" selection-start-line="12" selection-start-column="99" selection-end-line="12" selection-end-column="113" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -174,7 +87,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/scada/server/AndonMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/scada/server/Work.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/scada/server/WorkMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/scada/server/WorkBinder.java" />
@@ -207,7 +119,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/scada/model/dataBase/Work/WorkBinder.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/scada/model/dataBase/Notification/NotificationMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/scada/model/dataBase/Notification/NotificationBinder.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/scada/model/dataBase/StateVariable/StateVariableMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/scada/model/dataBase/StateVariable/StateVariable.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/scada/server/OPCDataLogger.java" />
@@ -224,6 +135,8 @@
         <option value="$PROJECT_DIR$/src/main/java/com/scada/dataBase/GetDBData.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/scada/dataBase/DBQueries.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/scada/server/OPCDataLoggerActor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/scada/server/LimitUpdate.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/scada/server/Main.java" />
       </list>
     </option>
@@ -241,7 +154,7 @@
       </MavenImportingSettings>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="1358" />
     <option name="y" value="-8" />
     <option name="width" value="1296" />
@@ -263,7 +176,6 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="AndroidView" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
@@ -321,6 +233,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -520,15 +433,18 @@
       <workItem from="1509646349460" duration="2803000" />
       <workItem from="1509730808717" duration="5316000" />
       <workItem from="1509790620755" duration="8994000" />
-      <workItem from="1509875142589" duration="1326000" />
+      <workItem from="1509875142589" duration="15451000" />
+      <workItem from="1509997392086" duration="5253000" />
+      <workItem from="1510007802239" duration="267000" />
+      <workItem from="1510088070563" duration="2272000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="134242000" />
+    <option name="totallyTimeSpent" value="156159000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1358" y="-8" width="1296" height="1040" extended-state="7" />
+    <frame x="1358" y="-8" width="1296" height="1040" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -539,20 +455,20 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29834256" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29834256" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23624596" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24838188" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928804" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -576,52 +492,18 @@
           <properties />
           <option name="timeStamp" value="4" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/scada/server/Main.java</url>
-          <line>134</line>
-          <properties />
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/scada/server/Main.java</url>
-          <line>154</line>
-          <properties />
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
       </breakpoints>
       <option name="time" value="8" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/dataBase/DBQueries.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="35" column="73" lean-forward="false" selection-start-line="35" selection-start-column="73" selection-end-line="35" selection-end-column="73" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/server/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1224">
           <caret line="72" column="55" lean-forward="false" selection-start-line="72" selection-start-column="55" selection-end-line="72" selection-end-column="55" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4015#4566#0" expanded="false" />
-            <element signature="e#4793#5293#0" expanded="false" />
-            <element signature="e#5509#6048#0" expanded="false" />
-            <element signature="e#6265#6806#0" expanded="false" />
-            <element signature="e#7367#7658#0" expanded="false" />
-            <element signature="e#7811#8323#0" expanded="false" />
-            <element signature="e#8519#8839#0" expanded="false" />
-            <element signature="e#9747#10085#0" expanded="false" />
-            <element signature="e#10254#10801#0" expanded="false" />
-            <element signature="e#11016#11350#0" expanded="false" />
-            <element signature="e#11519#12062#0" expanded="false" />
-            <element signature="e#12274#12616#0" expanded="false" />
-            <element signature="e#12785#13336#0" expanded="false" />
-            <element signature="e#13489#13826#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -630,7 +512,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="901">
           <caret line="53" column="5" lean-forward="true" selection-start-line="53" selection-start-column="5" selection-end-line="53" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -646,9 +527,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
           <caret line="29" column="72" lean-forward="false" selection-start-line="29" selection-start-column="72" selection-end-line="29" selection-end-column="72" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -670,7 +548,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="16" column="20" lean-forward="false" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -681,20 +558,6 @@
           <caret line="6" column="21" lean-forward="true" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4015#4566#0" expanded="false" />
-            <element signature="e#4793#5293#0" expanded="false" />
-            <element signature="e#5509#6048#0" expanded="false" />
-            <element signature="e#6265#6806#0" expanded="false" />
-            <element signature="e#7367#7658#0" expanded="false" />
-            <element signature="e#7811#8323#0" expanded="false" />
-            <element signature="e#8519#8839#0" expanded="false" />
-            <element signature="e#9747#10085#0" expanded="false" />
-            <element signature="e#10254#10801#0" expanded="false" />
-            <element signature="e#11016#11350#0" expanded="false" />
-            <element signature="e#11519#12062#0" expanded="false" />
-            <element signature="e#12274#12616#0" expanded="false" />
-            <element signature="e#12785#13336#0" expanded="false" />
-            <element signature="e#13489#13826#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -713,20 +576,6 @@
           <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4015#4566#0" expanded="false" />
-            <element signature="e#4793#5293#0" expanded="false" />
-            <element signature="e#5509#6048#0" expanded="false" />
-            <element signature="e#6265#6806#0" expanded="false" />
-            <element signature="e#7367#7658#0" expanded="false" />
-            <element signature="e#7811#8323#0" expanded="false" />
-            <element signature="e#8519#8839#0" expanded="false" />
-            <element signature="e#9747#10085#0" expanded="false" />
-            <element signature="e#10254#10801#0" expanded="false" />
-            <element signature="e#11016#11350#0" expanded="false" />
-            <element signature="e#11519#12062#0" expanded="false" />
-            <element signature="e#12274#12616#0" expanded="false" />
-            <element signature="e#12785#13336#0" expanded="false" />
-            <element signature="e#13489#13826#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -746,20 +595,6 @@
           <caret line="14" column="48" lean-forward="false" selection-start-line="14" selection-start-column="48" selection-end-line="14" selection-end-column="48" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4015#4566#0" expanded="false" />
-            <element signature="e#4793#5293#0" expanded="false" />
-            <element signature="e#5509#6048#0" expanded="false" />
-            <element signature="e#6265#6806#0" expanded="false" />
-            <element signature="e#7367#7658#0" expanded="false" />
-            <element signature="e#7811#8323#0" expanded="false" />
-            <element signature="e#8519#8839#0" expanded="false" />
-            <element signature="e#9747#10085#0" expanded="false" />
-            <element signature="e#10254#10801#0" expanded="false" />
-            <element signature="e#11016#11350#0" expanded="false" />
-            <element signature="e#11519#12062#0" expanded="false" />
-            <element signature="e#12274#12616#0" expanded="false" />
-            <element signature="e#12785#13336#0" expanded="false" />
-            <element signature="e#13489#13826#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -791,13 +626,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="23" column="64" lean-forward="false" selection-start-line="23" selection-start-column="64" selection-end-line="23" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/model/dataBase/Limit/Limit.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="523">
-          <caret line="41" column="0" lean-forward="true" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -854,21 +682,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="12" column="98" lean-forward="false" selection-start-line="12" selection-start-column="98" selection-end-line="12" selection-end-column="98" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/dataBase/UpdateDataInDB.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="65" lean-forward="false" selection-start-line="24" selection-start-column="65" selection-end-line="24" selection-end-column="65" />
         </state>
       </provider>
     </entry>
@@ -950,28 +763,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/dataBase/InsertDataToDB.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1683">
-          <caret line="105" column="144" lean-forward="false" selection-start-line="105" selection-start-column="144" selection-end-line="105" selection-end-column="144" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/server/OPCServer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="884">
           <caret line="57" column="39" lean-forward="false" selection-start-line="57" selection-start-column="39" selection-end-line="57" selection-end-column="39" />
-          <folding>
-            <element signature="class#Record#0;class#OPCServer#0" expanded="false" />
-            <element signature="method#Record#0;class#Record#0;class#OPCServer#0" expanded="false" />
-            <element signature="method#Record#1;class#Record#0;class#OPCServer#0" expanded="false" />
-            <element signature="class#ControllerRecord#0;class#OPCServer#0" expanded="false" />
-            <element signature="e#4455#4456#0" expanded="true" />
-            <element signature="e#4490#4491#0" expanded="true" />
-            <element signature="e#4534#4535#0" expanded="true" />
-            <element signature="e#4574#4575#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -993,7 +788,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="12" column="113" lean-forward="false" selection-start-line="12" selection-start-column="99" selection-end-line="12" selection-end-column="113" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1017,17 +811,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2873">
           <caret line="180" column="61" lean-forward="false" selection-start-line="180" selection-start-column="61" selection-end-line="180" selection-end-column="61" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/dataBase/DBQueries.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2594">
-          <caret line="236" column="0" lean-forward="true" selection-start-line="236" selection-start-column="0" selection-end-line="236" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="3672">
+          <caret line="236" column="0" lean-forward="false" selection-start-line="236" selection-start-column="0" selection-end-line="236" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1041,26 +831,48 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/model/dataBase/Limit/Limit.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="523">
+          <caret line="41" column="0" lean-forward="true" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/dataBase/InsertDataToDB.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1938">
+          <caret line="120" column="0" lean-forward="false" selection-start-line="120" selection-start-column="0" selection-end-line="120" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/dataBase/UpdateDataInDB.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="24" column="65" lean-forward="false" selection-start-line="24" selection-start-column="65" selection-end-line="24" selection-end-column="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/server/LimitUpdate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="23" lean-forward="false" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="553">
+          <caret line="47" column="21" lean-forward="false" selection-start-line="47" selection-start-column="21" selection-end-line="47" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/server/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="469">
-          <caret line="70" column="10" lean-forward="false" selection-start-line="70" selection-start-column="10" selection-end-line="70" selection-end-column="10" />
+        <state relative-caret-position="5129">
+          <caret line="321" column="5" lean-forward="false" selection-start-line="321" selection-start-column="5" selection-end-line="321" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4015#4566#0" expanded="false" />
-            <element signature="e#4793#5293#0" expanded="false" />
-            <element signature="e#5509#6048#0" expanded="false" />
-            <element signature="e#6265#6806#0" expanded="false" />
-            <element signature="e#7367#7658#0" expanded="false" />
-            <element signature="e#7811#8323#0" expanded="false" />
-            <element signature="e#8519#8839#0" expanded="false" />
-            <element signature="e#9747#10085#0" expanded="false" />
-            <element signature="e#10254#10801#0" expanded="false" />
-            <element signature="e#11016#11350#0" expanded="false" />
-            <element signature="e#11519#12062#0" expanded="false" />
-            <element signature="e#12274#12616#0" expanded="false" />
-            <element signature="e#12785#13336#0" expanded="false" />
-            <element signature="e#13489#13826#0" expanded="false" />
           </folding>
         </state>
       </provider>
