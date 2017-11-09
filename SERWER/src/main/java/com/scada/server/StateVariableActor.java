@@ -58,7 +58,7 @@ public class StateVariableActor extends AbstractActor {
                             if (m.getEndDate() == "") {
                                 getDBData.getStateSpaceData(m.getStateVariable())
                                         .subscribe(v -> {
-                                            log.info("SV data: {}", new Gson().toJson(v));
+//                                            log.info("SV data: {}", new Gson().toJson(v));
                                             getSender().tell(v, getSelf());
                                         });
                             } else {
@@ -82,7 +82,7 @@ public class StateVariableActor extends AbstractActor {
                             .subscribe(v -> {
                                 log.info("LIMITS data {}", v);
                                 getSender().tell(v, getSelf());
-                            });
+                                });
                 })
                 .matchAny(o -> log.info("received unknown message"))
                 .build();

@@ -181,10 +181,11 @@ public interface DBUpdates {
             "UPDATE scada.limits\n" +
                     "SET\n" +
                     "value = :value\n" +
-                    "WHERE tag LIKE :tag;";
+                    "WHERE state_space_id = (SELECT id FROM scada.state_space WHERE tag LIKE :stateSpaceTag) " +
+                    "and type = :type;";
 
     @SqlUpdate(updateLimitValueSQL)
-    int updateLimit(@Bind("tag") String tag, @Bind("value") Double value);
+    int updateLimit(@Bind("stateSpaceTag") String stateSpaceTag, @Bind("value") Double value, @Bind("type") int type);
 
     String insertLimitSQL =
         "INSERT INTO `scada`.`limits`\n"+

@@ -12,25 +12,38 @@ export class SendDataToServer {
     //TODO
     public sendLimitsToServer(limitTag: String, limitMin: number, limitMax: number, limitMinCrit: number, limitMaxCrit: number) {
 
-        let y = new LimitUpdate("LEVEL_1", 23.3);
-        let re = new HttpHeaders({'Content-Type': 'application/json'})
+        let header = new HttpHeaders({'Content-Type': 'application/json'})
+        header.append('Accept', 'text/plain; charset=UTF-8');
+        header.append('Accept', 'application/json');
 
-        re.append('Accept', 'text/plain; charset=UTF-8');
-        re.append('Accept', 'application/json');
+        let minlimit = new LimitUpdate(limitTag, limitMin, -1);
+        let minCritlimit = new LimitUpdate(limitTag, limitMinCrit, -2);
+        let maxlimit = new LimitUpdate(limitTag, limitMax, 1);
+        let maxCritlimit = new LimitUpdate(limitTag, limitMaxCrit, 2);
         
-        let ww = JSON.stringify(y);
+        let minlimitJSON = JSON.stringify(minlimit);
+        let minCritlimitJSON = JSON.stringify(minCritlimit)
+        let maxlimitJSON = JSON.stringify(maxlimit)
+        let maxCritlimitJSON = JSON.stringify(maxCritlimit)
 
-        const headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
-        console.log(JSON.stringify(y))
-        this.http
-            .post('http://localhost:8010/limits', ww, {headers: re, responseType:'json'})
-            .subscribe(v => console.log("send req 3 json"))
-            this.http
+        let minObs = this.http
+            .post('http://localhost:8010/limits', minlimitJSON, {headers: header, responseType:'json'})
+        let minCritObs = this.http
+            .post('http://localhost:8010/limits', minCritlimitJSON, {headers: header, responseType:'json'})
+        let maxObs = this.http
+            .post('http://localhost:8010/limits', maxlimitJSON, {headers: header, responseType:'json'})
+        let maxCritObs = this.http
+            .post('http://localhost:8010/limits', maxCritlimitJSON, {headers: header, responseType:'json'})
 
-        return;
+        return Observable.zip(minObs, minCritObs, maxObs, maxCritObs)
+        // Observable.concat(minObs, minCritObs, maxObs, maxCritObs)
+        //     .subscribe(v => console.log("send all of limits to update in DB."))
+
+
+        // return;
     }
 }
 
 class LimitUpdate {
-    constructor(private tag: String, private value: number){}
+    constructor(private tag: String, private value: number, private type: number){}
 }

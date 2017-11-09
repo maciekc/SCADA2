@@ -29,6 +29,8 @@ public class GetDBData {
 
     public Observable<Map<String, Double>> getStateSpaceData(String stateSpace, String startDate, String endDate) {
         synchronized (this) {
+//            return Observable.fromCallable(() -> queries.getStateSpaceData(stateSpace, startDate, endDate))
+
             return Observable.from(queries.getStateSpaceData(stateSpace, startDate, endDate))
                     .toMap(res -> res.getDate(), res -> res.getValue());
         }

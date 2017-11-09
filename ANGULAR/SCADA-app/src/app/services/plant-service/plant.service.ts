@@ -74,7 +74,7 @@ export class PlantService {
   }
 
   public changeLimitsValues(limitTag: String, limitMin: number, limitMax: number, limitMinCrit: number, limitMaxCrit: number) {
-    this.sendDataToServer.sendLimitsToServer(limitTag, limitMin, limitMax, limitMinCrit, limitMaxCrit)
+    return this.sendDataToServer.sendLimitsToServer(limitTag, limitMin, limitMax, limitMinCrit, limitMaxCrit)
   }
 
   public initOutputPlotDataGetter(){

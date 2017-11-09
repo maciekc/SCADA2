@@ -4,7 +4,7 @@ import {Observable, Subscription} from "rxjs";
 
 import { PlantService } from '../../services/plant-service/plant.service';
 import { CommonService } from '../../services/common-service/common.service';
-import { Figure, LineFigure, BarFigure } from '../../class/figure';
+import { Figure, LineFigure, BarFigure, LineFigureThreeSeries } from '../../class/figure';
 import { PlotData } from '../../class/plotDataGetter';
 
 declare var Plotly: any;
@@ -34,8 +34,14 @@ export class PlantComponent implements OnInit, OnDestroy {
   private limitMinCrit: number = 0;
   private limitMax: number = 0;
   private limitMaxCrit: number = 0;
+  
+  private SVLimitMin: number = 0;
+  private SVLimitMinCrit: number = 0;
+  private SVLimitMax: number = 0;
+  private SVLimitMaxCrit: number = 0;
 
-  private limitTag: String;
+  private limitTag: String = "LEVEL_1";
+  private stateVariable: String = "LEVEL_1";
   
   // private commonDAtaGetter: CommonService;
 
@@ -43,7 +49,17 @@ export class PlantComponent implements OnInit, OnDestroy {
   
   changeLimitSubmit(event) {
     console.log(this.limitMin)
-    this.plantService.changeLimitsValues(this.limitTag, this.limitMin, this.limitMax, this.limitMinCrit, this.limitMaxCrit);
+    this.plantService.changeLimitsValues(this.limitTag, this.limitMin, this.limitMax, this.limitMinCrit, this.limitMaxCrit)
+    .subscribe( v => {
+      this.updateLimits(this.limitTag)
+      if(document.getElementById("SVDropButton").id == this.limitTag) {
+        this.changeStateVariableLimits(this.limitTag)
+        .then(r => this.updateStateVariablePlotData());                
+      }
+      else {
+        this.changeStateVariableLimits(this.limitTag);
+      }
+    })
   }
 
   changeLimits(event) {
@@ -55,10 +71,12 @@ export class PlantComponent implements OnInit, OnDestroy {
 
   changeStateVariable(event) {
     let target = event.target;
-    let id = target.id;
+    this.stateVariable = target.id;
     document.getElementById("SVDropButton").innerText = target.innerText;
-    this.plantService.chanegStateVariablePlotTab(id)
-    this.updateStateVariablePlotData()
+    this.plantService.chanegStateVariablePlotTab(this.stateVariable)
+
+    this.changeStateVariableLimits(this.stateVariable)
+    .then(r => this.updateStateVariablePlotData())
   }
 
   changeMaterialPlot(event) {
@@ -76,11 +94,12 @@ export class PlantComponent implements OnInit, OnDestroy {
     this.plantService.startService();
     this.commonDataService.startService();
 
-    this.updatePlotsData();
-
     this.updateLimits("LEVEL_1")
     this.updateIndicators()
-    
+
+    this.changeStateVariableLimits(this.stateVariable)
+    .then(r => this.updatePlotsData())
+
     let output = Observable.interval(5000)
     .subscribe(r => {
       let dates = this.plantService.getOutputDates();
@@ -93,7 +112,14 @@ export class PlantComponent implements OnInit, OnDestroy {
     .subscribe(r => {
       let dates = this.plantService.getStateVariableDates();
       let values = this.plantService.getStateVariableValues()
-      this.stateVariableFigure.updatePlotData(dates, values, 'Poziom [cm]', 'orange');
+
+      let upperLimitValues = [this.SVLimitMaxCrit, this.SVLimitMaxCrit]
+      let upperLimitDates = [dates[0], dates[dates.length - 1]]
+      let lowerLimitValues = [this.SVLimitMinCrit, this.SVLimitMinCrit]
+      let lowerLimitDates = [dates[0], dates[dates.length - 1]]
+      this.stateVariableFigure.updatePlotData(dates, values, 'Poziom [cm]', 'orange', lowerLimitDates, lowerLimitValues, upperLimitDates, upperLimitValues);
+
+      // this.stateVariableFigure.updatePlotData(dates, values, 'Poziom [cm]', 'orange');
     })
     this.serviceSubscriptions.push(stateVariable);
 
@@ -134,7 +160,7 @@ export class PlantComponent implements OnInit, OnDestroy {
     this.outputFigure = new LineFigure(this.outputFigureId, "Czas [s]", "Stężenie [%]");
 
     this.stateVariableFigureId = document.getElementById('plantPlot');
-    this.stateVariableFigure = new LineFigure(this.stateVariableFigureId, "Czas [s]", "Poziom [cm]");
+    this.stateVariableFigure = new LineFigureThreeSeries(this.stateVariableFigureId, "Czas [s]", "Poziom [cm]");
 
     this.materialFigureId = document.getElementById('materialPlot');;
     this.materialFigure = new BarFigure(this.materialFigureId, "Data", "Produkcja")
@@ -159,6 +185,27 @@ export class PlantComponent implements OnInit, OnDestroy {
         }
       }
     )    
+  }
+
+  private changeStateVariableLimits(tag: String) {
+    
+    return this.commonDataService.initLimitsData(tag)
+    .then(r => {
+        console.log(r)
+        let values = r.values();
+        try {
+          this.SVLimitMin = values.next().value[0];
+          this.SVLimitMinCrit = values.next().value[0];
+          this.SVLimitMax = values.next().value[0];
+          this.SVLimitMaxCrit = values.next().value[0];
+        } catch (e) {
+          this.SVLimitMin = 0;
+          this.SVLimitMinCrit = 0;
+          this.SVLimitMax = 0;
+          this.SVLimitMaxCrit = 0;
+        }
+      }
+    )  
   }
 
   private updateIndicators() {
@@ -194,7 +241,11 @@ export class PlantComponent implements OnInit, OnDestroy {
     .then(r => {
       let dates = r.getDates();
       let values = r.getValues();
-      this.stateVariableFigure.updatePlotData(dates, values, 'Poziom [cm]', 'orange');
+      let upperLimitValues = [this.SVLimitMaxCrit, this.SVLimitMaxCrit]
+      let upperLimitDates = [dates[0], dates[dates.length - 1]]
+      let lowerLimitValues = [this.SVLimitMinCrit, this.SVLimitMinCrit]
+      let lowerLimitDates = [dates[0], dates[dates.length - 1]]
+      this.stateVariableFigure.updatePlotData(dates, values, 'Poziom [cm]', 'orange', lowerLimitDates, lowerLimitValues, upperLimitDates, upperLimitValues);
     })
   }
   private updatePlotsData() {

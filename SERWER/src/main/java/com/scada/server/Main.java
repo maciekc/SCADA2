@@ -34,6 +34,8 @@ import com.scada.model.dataBase.Work.Work;
 import com.scada.server.StateVariableActor.*;
 import com.scada.server.ReportDataActor.*;
 import com.scada.server.NotificationActor.*;
+import com.scada.server.SystemParameterActor.*;
+
 import com.scada.server.OPCDataLoggerActor.*;
 
 import com.scada.model.dataBase.ChangeParameterValue.ChangeParameterValue;
@@ -53,6 +55,7 @@ import java.util.function.Supplier;
 public class Main extends AllDirectives {
 
     static Timeout t = new Timeout(Duration.create(5, TimeUnit.SECONDS));
+    static Timeout t2 = new Timeout(Duration.create(10, TimeUnit.SECONDS));
 
     static final DBI dbi = new DBI("jdbc:mysql://localhost:3306/scada", "root", "1234");
     static final Handle handle = dbi.open();
@@ -63,6 +66,7 @@ public class Main extends AllDirectives {
     static ActorRef reportData = null;
     static ActorRef notificationDAta = null;
     static ActorRef OPCDataLogger = null;
+    static ActorRef systemParameterData = null;
     static ActorSystem system = ActorSystem.create("routes");
 
     private final Unmarshaller<HttpEntity, LimitUpdate> limitUnmarshaller = Jackson.unmarshaller(LimitUpdate.class);
@@ -77,11 +81,11 @@ public class Main extends AllDirectives {
         reportData = system.actorOf(ReportDataActor.props(getDBData), "reportData");
         notificationDAta = system.actorOf(NotificationActor.props(getDBData), "notificationData");
         OPCDataLogger = system.actorOf(OPCDataLoggerActor.props(insertDataToDB, opcServer), "OPCDataLogger");
-
+        systemParameterData = system.actorOf(SystemParameterActor.props(updateDataInDB, insertDataToDB), "systemParameterData");
         //----------------------------------------------------------------
         //                      LOGOWANIE
         //----------------------------------------------------------------
-        //OPCDataLogger.tell(new StartLogging(), ActorRef.noSender());
+        OPCDataLogger.tell(new StartLogging(), ActorRef.noSender());
 
         final Http http = Http.get(system);
         final ActorMaterializer materializer = ActorMaterializer.create(system);
@@ -131,47 +135,60 @@ public class Main extends AllDirectives {
         return handleErrors.apply(() -> cors(settings, () -> handleErrors.apply(() -> route(
                 path("selectAll", () ->
                     get(() -> {
-                                final StateVariabeData message = new StateVariabeData("VALVE_1", "2017-10-27 15:00:00", "2017-10-29 12:00:00");
-                                final CompletionStage<Object> futureResult = ask(getStateVariableData, message, t);
-                                System.out.println(futureResult);
-                                return onSuccess(() -> futureResult, result ->
-                                        completeOK(result, Jackson.marshaller())
+                        final StateVariabeData message = new StateVariabeData("VALVE_1", "2017-10-27 15:00:00", "2017-10-29 12:00:00");
+                        final CompletionStage<Object> futureResult = ask(getStateVariableData, message, t);
+                        System.out.println(futureResult);
+                        return onSuccess(() -> futureResult, result ->
+                                completeOK(result, Jackson.marshaller())
 
-                                );
+                        );
                     })
                 ),
                 pathPrefix("stateVariableData", () -> route(
                     pathEnd(() ->
                         get(() ->
-                                parameter(StringUnmarshallers.STRING,"name", tag -> {
-                                    System.out.println("tag : " + tag);
-                                    final StateVariabeData message = new StateVariabeData(tag);
-                                    final CompletionStage<Object> futureResult = ask(getStateVariableData, message, t);
-                                    return onSuccess(() -> futureResult, result ->
-                                            completeOK(result, Jackson.marshaller()));
-                                })
-                            )
+                            parameter(StringUnmarshallers.STRING,"name", tag -> {
+                                System.out.println("tag : " + tag);
+                                final StateVariabeData message = new StateVariabeData(tag);
+                                final CompletionStage<Object> futureResult = ask(getStateVariableData, message, t);
+//                                return onSuccess(() -> CompletableFuture.supplyAsync(
+//                                        () -> futureResult, Executors.newSingleThreadExecutor()),
+//                                        result -> {
+//                                            System.out.println("data " + result);
+//                                                return completeOK(result, Jackson.marshaller());});
+                                return onSuccess(() -> futureResult, result ->
+                                        completeOK(result, Jackson.marshaller()));
+                            })
+                        )
                     ),
                     path("BAR_DAY", () ->
-                            get(() ->
-                                    parameter(StringUnmarshallers.STRING,"name", tag -> {
-                                        System.out.println("BAR_DAY : " + tag);
-                                        final StateVariabeData message = new StateVariableData_dailyMode(tag);
-                                        final CompletionStage<Object> futureResult = ask(getStateVariableData, message, t);
-                                        return onSuccess(() -> futureResult, result ->
-                                                completeOK(result, Jackson.marshaller()));
-                                    })
-                            )
+                        get(() ->
+                            parameter(StringUnmarshallers.STRING,"name", tag -> {
+                                System.out.println("BAR_DAY : " + tag);
+                                final StateVariabeData message = new StateVariableData_dailyMode(tag);
+                                final CompletionStage<Object> futureResult = ask(getStateVariableData, message, t);
+//                                return onSuccess(() -> CompletableFuture.supplyAsync(
+//                                        () -> futureResult, Executors.newFixedThreadPool(5)),
+//                                        result ->
+//                                                completeOK(result, Jackson.marshaller()));
+                                return onSuccess(() -> futureResult, result ->
+                                        completeOK(result, Jackson.marshaller()));
+                            })
+                        )
                     ),
                     path("BAR_HOUR", () ->
                             get(() ->
-                                    parameter(StringUnmarshallers.STRING,"name", tag -> {
-                                        System.out.println("BAR_HOUR : " + tag);
-                                        final StateVariabeData message = new StateVariableData_hourlyMode(tag);
-                                        final CompletionStage<Object> futureResult = ask(getStateVariableData, message, t);
-                                        return onSuccess(() -> futureResult, result ->
-                                                completeOK(result, Jackson.marshaller()));
-                                    })
+                                parameter(StringUnmarshallers.STRING,"name", tag -> {
+                                    System.out.println("BAR_HOUR : " + tag);
+                                    final StateVariabeData message = new StateVariableData_hourlyMode(tag);
+                                    final CompletionStage<Object> futureResult = ask(getStateVariableData, message, t);
+//                                    return onSuccess(() -> CompletableFuture.supplyAsync(
+//                                            () -> futureResult, Executors.newFixedThreadPool(5)),
+//                                            result ->
+//                                                    completeOK(result, Jackson.marshaller()));
+                                    return onSuccess(() -> futureResult, result ->
+                                            completeOK(result, Jackson.marshaller()));
+                                })
                             )
                     ))
                 ),
@@ -193,12 +210,12 @@ public class Main extends AllDirectives {
                     ),
                     path("range", () ->
                             get(() ->
-                                    parameterList(param -> {
-                                        final String startDate = param.get(0).getValue().toString();
-                                        final String endDate = param.get(1).getValue().toString();
-                                        final CompletionStage<Object> andonData = ask(reportData, new AndonData(startDate, endDate), t);
-                                        return onSuccess(() -> andonData, result -> completeOK(result, Jackson.marshaller()));
-                                    })
+                                parameterList(param -> {
+                                    final String startDate = param.get(0).getValue().toString();
+                                    final String endDate = param.get(1).getValue().toString();
+                                    final CompletionStage<Object> andonData = ask(reportData, new AndonData(startDate, endDate), t);
+                                    return onSuccess(() -> andonData, result -> completeOK(result, Jackson.marshaller()));
+                                })
                             )
                     ))
                 ),
@@ -212,12 +229,12 @@ public class Main extends AllDirectives {
                         ),
                         path("range", () ->
                                 get(() ->
-                                        parameterList(param -> {
-                                            final String startDate = param.get(0).getValue().toString();
-                                            final String endDate = param.get(1).getValue().toString();
-                                            final CompletionStage<Object> workData = ask(reportData, new WorkData(startDate, endDate), t);
-                                            return onSuccess(() -> workData, result -> completeOK(result, Jackson.marshaller()));
-                                        })
+                                    parameterList(param -> {
+                                        final String startDate = param.get(0).getValue().toString();
+                                        final String endDate = param.get(1).getValue().toString();
+                                        final CompletionStage<Object> workData = ask(reportData, new WorkData(startDate, endDate), t);
+                                        return onSuccess(() -> workData, result -> completeOK(result, Jackson.marshaller()));
+                                    })
                                 )
                         ))
                 ),
@@ -231,12 +248,12 @@ public class Main extends AllDirectives {
                         ),
                         path("range", () ->
                                 get(() ->
-                                        parameterList(param -> {
-                                            final String startDate = param.get(0).getValue().toString();
-                                            final String endDate = param.get(1).getValue().toString();
-                                            final CompletionStage<Object> controllerData = ask(reportData, new ControllerData(startDate, endDate), t);
-                                            return onSuccess(() -> controllerData, result -> completeOK(result, Jackson.marshaller()));
-                                        })
+                                    parameterList(param -> {
+                                        final String startDate = param.get(0).getValue().toString();
+                                        final String endDate = param.get(1).getValue().toString();
+                                        final CompletionStage<Object> controllerData = ask(reportData, new ControllerData(startDate, endDate), t);
+                                        return onSuccess(() -> controllerData, result -> completeOK(result, Jackson.marshaller()));
+                                    })
                                 )
                         ))
                 ),
@@ -250,32 +267,32 @@ public class Main extends AllDirectives {
                         ),
                         path("range", () ->
                                 get(() ->
-                                        parameterList(param -> {
-                                            final String startDate = param.get(0).getValue().toString();
-                                            final String endDate = param.get(1).getValue().toString();
-                                            final CompletionStage<Object> cpvData = ask(reportData, new ChangeParameterValueData(startDate, endDate), t);
-                                            return onSuccess(() -> cpvData, result -> completeOK(result, Jackson.marshaller()));
-                                        })
+                                    parameterList(param -> {
+                                        final String startDate = param.get(0).getValue().toString();
+                                        final String endDate = param.get(1).getValue().toString();
+                                        final CompletionStage<Object> cpvData = ask(reportData, new ChangeParameterValueData(startDate, endDate), t);
+                                        return onSuccess(() -> cpvData, result -> completeOK(result, Jackson.marshaller()));
+                                    })
                                 )
                         ))
                 ),
                 pathPrefix("notification", () -> route(
                         pathEnd(() ->
-                                get(() -> {
-                                    final CompletionStage<Object> notification = ask(notificationDAta, new NotificationData(), t);
-                                    return onSuccess(() -> notification, result ->
-                                            completeOK(result, Jackson.marshaller()));
-                                })
+                            get(() -> {
+                                final CompletionStage<Object> notification = ask(notificationDAta, new NotificationData(), t);
+                                return onSuccess(() -> notification, result ->
+                                        completeOK(result, Jackson.marshaller()));
+                            })
                         ),
                         path("range", () ->
-                                get(() ->
-                                        parameterList(param -> {
-                                            final String startDate = param.get(0).getValue().toString();
-                                            final String endDate = param.get(1).getValue().toString();
-                                            final CompletionStage<Object> notification = ask(notificationDAta, new NotificationData(startDate, endDate), t);
-                                            return onSuccess(() -> notification, result -> completeOK(result, Jackson.marshaller()));
-                                        })
-                                )
+                            get(() ->
+                                parameterList(param -> {
+                                    final String startDate = param.get(0).getValue().toString();
+                                    final String endDate = param.get(1).getValue().toString();
+                                    final CompletionStage<Object> notification = ask(notificationDAta, new NotificationData(startDate, endDate), t);
+                                    return onSuccess(() -> notification, result -> completeOK(result, Jackson.marshaller()));
+                                })
+                            )
                         ))
                 ),
                 path("requestAndon", () ->
@@ -296,11 +313,11 @@ public class Main extends AllDirectives {
                 ),
                 path("limitsData", () ->
                     get(() ->
-                            parameter("stateVariableTag", tag -> {
-                                final CompletionStage<Object> currentSystemData = ask(getStateVariableData, new LimitsData(tag), t);
-                                return onSuccess(() -> currentSystemData, result ->
-                                        completeOK(result, Jackson.marshaller()));
-                            }
+                        parameter("stateVariableTag", tag -> {
+                            final CompletionStage<Object> currentSystemData = ask(getStateVariableData, new LimitsData(tag), t);
+                            return onSuccess(() -> currentSystemData, result ->
+                                    completeOK(result, Jackson.marshaller()));
+                        }
                     ))
                 ),
 
@@ -310,10 +327,11 @@ public class Main extends AllDirectives {
 
                 path("limits", () ->
                     post(() ->
-                        entity(this.limitUnmarshaller, lu -> {
-                                    System.out.println("get " + lu.getValue() + " " + lu.getTag());
-                                    return completeOK("OK", Jackson.marshaller());
-                                }
+                        entity(this.limitUnmarshaller, lu ->
+                             onSuccess(() -> CompletableFuture.supplyAsync(
+                                    () -> ask(systemParameterData, lu, t), Executors.newFixedThreadPool(5)),
+                                    result ->
+                                            completeOK("OK", Jackson.marshaller()))
                         )
                     )
                 )

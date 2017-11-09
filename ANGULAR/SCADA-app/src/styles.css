@@ -90,3 +90,6 @@
 
 
 
+.modebar{
+    display: none !important;
+}
