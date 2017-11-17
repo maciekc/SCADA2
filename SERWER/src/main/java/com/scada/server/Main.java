@@ -33,6 +33,7 @@ import com.scada.dataBase.GetDBData;
 import com.scada.dataBase.InsertDataToDB;
 import com.scada.dataBase.UpdateDataInDB;
 
+import com.scada.model.dataBase.Andon.Andon;
 import com.scada.model.dataBase.Work.Work;
 import com.scada.server.StateVariableActor.*;
 import com.scada.server.ReportDataActor.*;
@@ -78,6 +79,10 @@ public class Main extends AllDirectives {
     private final Unmarshaller<HttpEntity, LimitUpdate> limitUnmarshaller = Jackson.unmarshaller(LimitUpdate.class);
 
     public static void main(String[] args) throws InterruptedException, IOException, ExecutionException {
+
+        System.out.println("Sending message");
+        final Mail mail = new Mail();
+        mail.sendMail(new Andon(1,"TEST", "LIMIT TEST", 12.2, "2017-11-17 22:18:00", -1));
 
         System.out.println("open bd connection");
 
@@ -302,11 +307,14 @@ public class Main extends AllDirectives {
                         ))
                 ),
                 path("requestAndon", () ->
-                        get(() -> {
-                            final CompletionStage<Object> andonRequest = ask(notificationDAta, new NotificationActor.AndonRequest(OPCDataLogger), t);
-                            return onSuccess(() -> andonRequest, result ->
-                                    completeOK(result, Jackson.marshaller()));
-                        })
+                        get(() ->
+                            parameterList(param -> {
+                                final Integer startId = Integer.parseInt(param.get(0).getValue().toString());
+                                final CompletionStage<Object> andonRequest = ask(notificationDAta, new NotificationActor.AndonRequest(startId), t);
+                                return onSuccess(() -> andonRequest, result ->
+                                        completeOK(result, Jackson.marshaller()));
+                            })
+                        )
                 ),
                 path("currentData", () ->
                     pathEnd(() ->

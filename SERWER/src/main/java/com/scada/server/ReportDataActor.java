@@ -27,7 +27,7 @@ public class ReportDataActor extends AbstractActor {
         return receiveBuilder()
                 .match(AndonData.class, m -> {
                     if(m.getStartDate() == "") {
-                        getDBData.getAndonData()
+                        getDBData.getAndonData(-1)
                                 .subscribe(v -> {
                                     log.info("Andon data: {}", v);
                                     getSender().tell(v, getSelf());

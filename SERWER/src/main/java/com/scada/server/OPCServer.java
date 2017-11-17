@@ -12,18 +12,18 @@ public class OPCServer {
     private static Map<String, Andon> andonList = new HashMap();
 
     public OPCServer() {
-        andonList.put("LEVEL_1_MIN", new Andon(1, "LEVEL_1_MIN", 26.3, "2017-10-30 22:00:00"));
-        andonList.put("LEVEL_2_MIN", new Andon(1, "LEVEL_1_MIN", 26.3, "2017-10-30 22:00:00"));
-        andonList.put("LEVEL_3_MIN", new Andon(1, "LEVEL_1_MIN", 26.3, "2017-10-30 22:00:00"));
-        andonList.put("LEVEL_1_MIN_CRITICAL", new Andon(1, "LEVEL_1_MIN_CRITICAL", 26.3, "2017-10-30 22:00:00"));
-        andonList.put("LEVEL_2_MIN_CRITICAL", new Andon(1, "LEVEL_1_MIN_CRITICAL", 26.3, "2017-10-30 22:00:00"));
-        andonList.put("LEVEL_3_MIN_CRITICAL", new Andon(1, "LEVEL_1_MIN_CRITICAL", 26.3, "2017-10-30 22:00:00"));
-        andonList.put("LEVEL_1_MAX", new Andon(1, "LEVEL_1_MAX", 26.3, "2017-10-30 22:00:00"));
-        andonList.put("LEVEL_2_MAX", new Andon(1, "LEVEL_1_MAX", 26.3, "2017-10-30 22:00:00"));
-        andonList.put("LEVEL_3_MAX", new Andon(1, "LEVEL_1_MAX", 26.3, "2017-10-30 22:00:00"));
-        andonList.put("LEVEL_1_MAX_CRITICAL", new Andon(1, "LEVEL_1_MAX_CRITICAL", 26.3, "2017-10-30 22:00:00"));
-        andonList.put("LEVEL_2_MAX_CRITICAL", new Andon(1, "LEVEL_1_MAX_CRITICAL", 26.3, "2017-10-30 22:00:00"));
-        andonList.put("LEVEL_3_MAX_CRITICAL", new Andon(1, "LEVEL_1_MAX_CRITICAL", 26.3, "2017-10-30 22:00:00"));
+        andonList.put("LEVEL_1_MIN", new Andon(1, "LEVEL_1_MIN", 26.3, "2017-10-30 22:00:00",-1));
+        andonList.put("LEVEL_2_MIN", new Andon(1, "LEVEL_1_MIN", 26.3, "2017-10-30 22:00:00",-1));
+        andonList.put("LEVEL_3_MIN", new Andon(1, "LEVEL_1_MIN", 26.3, "2017-10-30 22:00:00",-1));
+        andonList.put("LEVEL_1_MIN_CRITICAL", new Andon(1, "LEVEL_1_MIN_CRITICAL", 26.3, "2017-10-30 22:00:00",-2));
+        andonList.put("LEVEL_2_MIN_CRITICAL", new Andon(1, "LEVEL_1_MIN_CRITICAL", 26.3, "2017-10-30 22:00:00",-2));
+        andonList.put("LEVEL_3_MIN_CRITICAL", new Andon(1, "LEVEL_1_MIN_CRITICAL", 26.3, "2017-10-30 22:00:00",-2));
+        andonList.put("LEVEL_1_MAX", new Andon(1, "LEVEL_1_MAX", 26.3, "2017-10-30 22:00:00",1));
+        andonList.put("LEVEL_2_MAX", new Andon(1, "LEVEL_1_MAX", 26.3, "2017-10-30 22:00:00",1));
+        andonList.put("LEVEL_3_MAX", new Andon(1, "LEVEL_1_MAX", 26.3, "2017-10-30 22:00:00",1));
+        andonList.put("LEVEL_1_MAX_CRITICAL", new Andon(1, "LEVEL_1_MAX_CRITICAL", 26.3, "2017-10-30 22:00:00",2));
+        andonList.put("LEVEL_2_MAX_CRITICAL", new Andon(1, "LEVEL_1_MAX_CRITICAL", 26.3, "2017-10-30 22:00:00",2));
+        andonList.put("LEVEL_3_MAX_CRITICAL", new Andon(1, "LEVEL_1_MAX_CRITICAL", 26.3, "2017-10-30 22:00:00",2));
 
     }
 

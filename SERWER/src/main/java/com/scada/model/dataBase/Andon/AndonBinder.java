@@ -23,6 +23,7 @@ public @interface AndonBinder {
 //                    q.bind("stateSpaceTag", arg.getStateSpaceTag());
                     q.bind("value", arg.getValue());
                     q.bind("date", arg.getDate());
+                    q.bind("type", arg.getType());
                 }
             };
         }

@@ -48,7 +48,9 @@ public class NotificationActor extends AbstractActor {
                 })
                 .match(AndonRequest.class, m -> {
                     this.serverRef = getSender();
-                    m.getOPCDataLoggerActor().tell(new OPCDataLoggerActor.AndonRequest(), getSelf());
+                    getDBData.getAndonData(m.getStartId())
+                            .subscribe((v -> getSender().tell(v, getSelf())));
+//                    m.getOPCDataLoggerActor().tell(new OPCDataLoggerActor.AndonRequest(), getSelf());
                 })
                 .match(UpdateAndonData.class, m -> {
                     if (m.isUpdate() == true) {
@@ -89,17 +91,28 @@ public class NotificationActor extends AbstractActor {
             return endDate;
         }
     }
+//    static public class AndonRequest {
+//        private final ActorRef OPCDataLoggerActor;
+//
+//        public AndonRequest(ActorRef OPCDataLoggerActor) {
+//            this.OPCDataLoggerActor = OPCDataLoggerActor;
+//        }
+//
+//        public ActorRef getOPCDataLoggerActor() {
+//            return OPCDataLoggerActor;
+//        }
+//    }
     static public class AndonRequest {
-        private final ActorRef OPCDataLoggerActor;
+    private final int StartId;
 
-        public AndonRequest(ActorRef OPCDataLoggerActor) {
-            this.OPCDataLoggerActor = OPCDataLoggerActor;
-        }
-
-        public ActorRef getOPCDataLoggerActor() {
-            return OPCDataLoggerActor;
-        }
+    public AndonRequest(int StartId) {
+        this.StartId = StartId;
     }
+
+    public int getStartId() {
+        return StartId;
+    }
+}
     static public class AndonRequestData {
         private final String data;
 

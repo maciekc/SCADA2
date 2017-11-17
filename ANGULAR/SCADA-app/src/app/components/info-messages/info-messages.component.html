@@ -1,9 +1,9 @@
-<div class = "infoDialog">
+<div [class] = "changeMessageStyle(message)">
   <div class = "inner">
-    <div style = "text-align: center;font-size: 110%;height: 60%;"><i class="fa fa-info-circle" aria-hidden="true"></i>    </div>
+    <div style = "text-align: center;font-size: 110%;height: 60%;"><i [class] = "setIconClass(message)" aria-hidden="true"></i>    </div>
     <div style = "font-size:75%;height: 40%;">
       <div class="reasonDiv">
-          {{message.getReason()}}
+          {{message.getStateVariableTag()}}
       </div>
     </div>
   </div>
@@ -16,7 +16,7 @@
         typ:
       </div>
       <div style ="font-size:120%; float: left;font-weight: bold;">
-          {{message.getType()}}
+          {{message.getLimitTag()}}
       </div>
     </div>
   </div>

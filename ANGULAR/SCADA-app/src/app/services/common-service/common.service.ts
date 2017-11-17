@@ -42,4 +42,12 @@ export class CommonService {
   public initCurrentData() {
     return this.commonDataGetter.initCommonDataGetter()
   }
+
+  public getLimitsData() {
+    return this.commonDataGetter.getLimitsData()
+  }
+
+  public getStateVariableData() {
+    return this.commonDataGetter.getStateVariableData()
+  }
 }

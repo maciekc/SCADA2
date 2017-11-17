@@ -18,6 +18,8 @@ public class GetDBData {
     private Handle DBhandle;
     private DBQueries queries;
 
+    private static int maxAndonId = 0;
+
     public GetDBData(Handle DBhandle) {
         this.DBhandle = DBhandle;
         this.queries = this.DBhandle.attach(DBQueries.class);
@@ -77,10 +79,17 @@ public class GetDBData {
     //                       GET ANDON DATA
     //------------------------------------------------------------------
 
-    public Observable<Map<Integer, Andon>> getAndonData() {
+    public Observable<List<Andon>> getAndonData(int startId) {
         synchronized (this) {
-            return Observable.from(queries.getAndonData())
-                    .toMap(res -> res.getId(), res -> res);
+            Observable<Andon> andonList = null;
+            if (startId == -1) {
+                andonList = Observable.from(queries.getAndonData(-1));
+            } else {
+                andonList = Observable.from(queries.getAndonData(this.maxAndonId));
+            }
+            andonList
+                    .forEach(a -> this.maxAndonId = Math.max(this.maxAndonId, a.getId()));
+            return andonList.toList();
         }
     }
 

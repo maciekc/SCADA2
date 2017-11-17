@@ -10,6 +10,6 @@ public class AndonMapper implements ResultSetMapper<Andon> {
 
     @Override
     public Andon map(int i, ResultSet rs, StatementContext statementContext) throws SQLException {
-        return new Andon(rs.getInt("id"), rs.getString("stateSpace"), rs.getString("limitTag"), rs.getDouble("value"), rs.getString("date"));
+        return new Andon(rs.getInt("id"), rs.getString("stateSpace"), rs.getString("limitTag"), rs.getDouble("value"), rs.getString("date"), rs.getInt("type"));
     }
 }

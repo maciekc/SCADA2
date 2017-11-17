@@ -87,16 +87,17 @@ public interface DBQueries {
 //            "SELECT sa.id as id, sss.tag as stateSpace, sl.tag as limitTag, sa.value as value, sa.date as date  FROM scada.andon as sa\n" +
 //            "LEFT JOIN scada.limits as sl on sa.limit_id = sl.id\n" +
 //            "LEFT JOIN scada.state_space as sss on sa.state_space_id = sss.id; ";
-String getAndonDataQuery =
-        "SELECT sa.id as id, sss.tag as stateSpace, sl.tag as limitTag, sa.value as value, sa.date as date  FROM scada.andon as sa\n" +
+    String getAndonDataQuery =
+        "SELECT sa.id as id, sss.tag as stateSpace, sl.tag as limitTag, sa.value as value, sa.date as date, sl.type as type  FROM scada.andon as sa\n" +
                 "LEFT JOIN scada.limits as sl on sa.limit_id = sl.id\n" +
-                "LEFT JOIN scada.state_space as sss on sa.state_space_id = sss.id; ";
+                "LEFT JOIN scada.state_space as sss on sa.state_space_id = sss.id\n" +
+                "WHERE sa.id > :lastId;";
     @RegisterMapper(AndonMapper.class)
     @SqlQuery(getAndonDataQuery)
-    List<Andon> getAndonData();
+    List<Andon> getAndonData(@Bind("lastId") int lastId);
 
     String getAndonDataQuery_dateRange =
-            "SELECT sa.id as id, sss.tag as stateSpace, sl.tag as limitTag, sa.value as value, sa.date as date  FROM scada.andon as sa\n" +
+            "SELECT sa.id as id, sss.tag as stateSpace, sl.tag as limitTag, sa.value as value, sa.date as date, sl.type as type  FROM scada.andon as sa\n" +
                     "LEFT JOIN scada.limits as sl on sa.limit_id = sl.id\n" +
                     "LEFT JOIN scada.state_space as sss on sa.state_space_id = sss.id " +
                     "WHERE sa.date BETWEEN :startDate and :endDate;";

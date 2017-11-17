@@ -8,12 +8,17 @@ export class CommonDataGetter {
 
     private currentData: Map<String, Object> = new Map();
     private limitsValues: Map<String, Object> = new Map();
+    private limitsData: Map<String, String> = new Map();
+    private stateVariableData: Map<String, String> = new Map();
     
     private tags: String[] = ["LEVEL_1", "LEVEL_2", "LEVEL_3", "VALVE_1", "VALVE_2", "VALVE_3", "VALVE_4", "OUTPUT"]
     private urlCurrentData: string = "http://localhost:8010/currentData";
     private urlLimitData: string = "http://localhost:8010/limitsData";
 
-    constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient) {
+        this.initLimitsData()
+        this.initStateVariableData()
+    }
 
     public currentDataGetter(): Subscription {
         let subscription: Subscription = Observable.interval(5000) 
@@ -71,6 +76,33 @@ export class CommonDataGetter {
                 this.currentData.set(tag, [date, value])               
             })
         })
+    }
+
+    private initLimitsData() {
+        for (let i =0; i< 3; i++) {
+            this.limitsData.set("LEVEL_" + (i+1) + "_MIN", "Poziom min")
+            this.limitsData.set("LEVEL_" + (i+1) + "_MAX", "Poziom max")
+            this.limitsData.set("LEVEL_" + (i+1) + "_MIN_CRITICAL", "Poziom min kryt.")
+            this.limitsData.set("LEVEL_" + (i+1) + "_MAX_CRITICAL", "Poziom max kryt.")
+        }
+    }
+
+    public getLimitsData() {
+        return this.limitsData
+    }
+
+    public initStateVariableData() {
+        for (let i =0; i< 2; i++) {
+            this.stateVariableData.set("LEVEL_" + (i+1), "Zbiornik " + (i+1))
+        }
+        for (let i =0; i< 3; i++) {
+            this.stateVariableData.set("VALVE_" + (i+1), "Zawór " + (i+1))
+        }
+        this.stateVariableData.set("OUTPUT", "Wyjście")
+
+    }
+    public getStateVariableData() {
+        return this.stateVariableData
     }
 
     
