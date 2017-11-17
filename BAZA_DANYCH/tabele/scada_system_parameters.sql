@@ -27,18 +27,8 @@ CREATE TABLE `system_parameters` (
   `tag` varchar(45) NOT NULL,
   `name` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `system_parameters`
---
-
-LOCK TABLES `system_parameters` WRITE;
-/*!40000 ALTER TABLE `system_parameters` DISABLE KEYS */;
-INSERT INTO `system_parameters` VALUES (1,'SET_POINT','Wart. zadana');
-/*!40000 ALTER TABLE `system_parameters` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -49,4 +39,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-10-29 20:37:29
+-- Dump completed on 2017-11-17 15:24:32

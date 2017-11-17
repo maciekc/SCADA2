@@ -63,7 +63,7 @@ public class OPCDataLoggerActor extends AbstractActor {
                         .subscribe(res -> log.info("Log andon in DB."));
 
                         this.notificationRef.tell(new UpdateAndonData(true), getSelf());
-                    } else {this.notificationRef.tell(new UpdateAndonData(false), getSelf());}}
+                    }}
                 );
     }
 
@@ -95,7 +95,7 @@ public class OPCDataLoggerActor extends AbstractActor {
                 })
                 .match(AndonRequest.class, m -> {
                     this.notificationRef = getSender();
-                    this.logAndonData();
+                    this.logAndonData0();
                 })
                 .matchAny(o -> log.info("receive unknown message"))
                 .build();

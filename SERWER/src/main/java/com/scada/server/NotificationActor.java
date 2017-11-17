@@ -55,11 +55,12 @@ public class NotificationActor extends AbstractActor {
                         log.info("new andon to log in DB.");
                         getDBData.getNotifications()
                                 .subscribe(v -> {
-                                    this.serverRef.tell(new AndonRequestData(new Gson().toJson(v)), getSelf());
+//                                    this.serverRef.tell(new AndonRequestData(new Gson().toJson(v)), getSelf());
+                                    this.serverRef.tell(v, getSelf());
                                 });
                     } else {
                         log.info("any andon to log");
-                        this.serverRef.tell(new AndonRequestData(new Gson().toJson("")), getSelf());
+                        this.serverRef.tell("kk", getSelf());
                     }
                 })
                 .matchAny(o -> log.info("received unknown message"))

@@ -1,7 +1,5 @@
 package com.scada.server;
 
-
-
 import akka.actor.AbstractActor;
 import akka.actor.Props;
 import akka.event.Logging;

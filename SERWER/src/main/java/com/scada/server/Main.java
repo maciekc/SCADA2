@@ -8,17 +8,20 @@ import akka.http.javadsl.ConnectHttp;
 import akka.http.javadsl.Http;
 import akka.http.javadsl.ServerBinding;
 import akka.http.javadsl.marshallers.jackson.Jackson;
+import akka.http.javadsl.marshalling.sse.EventStreamMarshalling;
 import akka.http.javadsl.model.HttpEntity;
 import akka.http.javadsl.model.HttpRequest;
 import akka.http.javadsl.model.HttpResponse;
 import akka.http.javadsl.model.StatusCodes;
 import akka.http.javadsl.model.headers.HttpOrigin;
 import akka.http.javadsl.model.headers.HttpOriginRange;
+import akka.http.javadsl.model.sse.ServerSentEvent;
 import akka.http.javadsl.server.*;
 import akka.http.javadsl.unmarshalling.StringUnmarshallers;
 import akka.http.javadsl.unmarshalling.Unmarshaller;
 import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
+import akka.stream.javadsl.Source;
 import akka.util.Timeout;
 import ch.megard.akka.http.cors.javadsl.settings.CorsSettings;
 
@@ -44,8 +47,11 @@ import com.scada.model.dataBase.Limit.Limit;
 import org.skife.jdbi.v2.DBI;
 import org.skife.jdbi.v2.Handle;
 import scala.concurrent.duration.Duration;
+import scala.concurrent.duration.FiniteDuration;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.concurrent.*;
 import java.util.function.Function;
@@ -55,8 +61,8 @@ import java.util.function.Supplier;
 public class Main extends AllDirectives {
 
     static Timeout t = new Timeout(Duration.create(5, TimeUnit.SECONDS));
-    static Timeout t2 = new Timeout(Duration.create(10, TimeUnit.SECONDS));
-
+    final FiniteDuration oneSecond =
+            FiniteDuration.create(1, TimeUnit.SECONDS);
     static final DBI dbi = new DBI("jdbc:mysql://localhost:3306/scada", "root", "1234");
     static final Handle handle = dbi.open();
     static final GetDBData getDBData = new GetDBData(handle);
@@ -85,7 +91,7 @@ public class Main extends AllDirectives {
         //----------------------------------------------------------------
         //                      LOGOWANIE
         //----------------------------------------------------------------
-        OPCDataLogger.tell(new StartLogging(), ActorRef.noSender());
+        //OPCDataLogger.tell(new StartLogging(), ActorRef.noSender());
 
         final Http http = Http.get(system);
         final ActorMaterializer materializer = ActorMaterializer.create(system);
@@ -335,6 +341,22 @@ public class Main extends AllDirectives {
                         )
                     )
                 )
+
+                //--------------------------------------------------
+                //                  SERVER SENT EVENTS
+                //--------------------------------------------------
+//                path("sse", () ->
+//                        get(() -> {
+//                            final List<ServerSentEvent> data = new ArrayList<>();
+//                            data.add(ServerSentEvent.create("22"));
+//                            System.out.println("tutuaj");
+//    //                        ServerSentEvent sse = ServerSentEvent.create("22");
+////                            return completeOK(Source.from(data), EventStreamMarshalling.toEventStream());
+////                            return completeOK(Source.tick(oneSecond, oneSecond,"tick")
+////                                    .keepAlive(oneSecond, () -> ServerSentEvent.create("mmm"))
+//                            final CompletionStage<Object> andonRequest = ask(notificationDAta, new NotificationActor.AndonRequest(OPCDataLogger), t);
+////                            return completeOK(Source.fromCompletionStage(andonRequest), EventStreamMarshalling.toEventStream());
+//                }))
             ))
         ));
     }

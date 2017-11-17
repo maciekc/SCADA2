@@ -34,16 +34,6 @@ CREATE TABLE `limits` (
   CONSTRAINT `fk_state_space_limit` FOREIGN KEY (`state_space_id`) REFERENCES `state_space` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `limits`
---
-
-LOCK TABLES `limits` WRITE;
-/*!40000 ALTER TABLE `limits` DISABLE KEYS */;
-INSERT INTO `limits` VALUES (1,'LEVEL_1_MIN','Poziom 1 min',2,2.5,-1),(2,'LEVEL_2_MIN','Poziom 2 min',3,2.9,-1),(3,'LEVEL_3_MIN','Poziom 3 min',4,1,-1),(4,'LEVEL_1_MIN_CRITICAL','Poziom 1 min kryt.',2,1,-2),(5,'LEVEL_2_MIN_CRITICAL','Poziom 2 min kryt.',3,0,-2),(6,'LEVEL_3_MIN_CRITICAL','Poziom 3 min kryt.',4,0,-2),(7,'LEVEL_1_MAX','Poziom 1 max',2,10,1),(8,'LEVEL_2_MAX','Poziom 2 max',3,10,1),(9,'LEVEL_3_MAX','Poziom 3 max',4,10,1),(10,'LEVEL_1_MAX_CRITICAL','Poziom 1 max kryt.',2,12,2),(11,'LEVEL_2_MAX_CRITICAL','Poziom 2 max kryt.',3,12,2),(12,'LEVEL_3_MAX_CRITICAL','Poziom 3 max kyt.',4,12,2);
-/*!40000 ALTER TABLE `limits` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -54,4 +44,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-10-29 20:37:27
+-- Dump completed on 2017-11-17 15:24:31
