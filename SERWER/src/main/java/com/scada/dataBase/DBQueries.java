@@ -198,7 +198,7 @@ public interface DBQueries {
 
 
     @RegisterMapper(NotificationMapper.class)
-    @SqlQuery(getCPVDataQuery_dateRange)
+    @SqlQuery(getNotificationDataQuery_dateRange)
     List<Notification> getNotificationsData(@Bind("startDate") String startDate, @Bind("endDate") String endDate);
 
 

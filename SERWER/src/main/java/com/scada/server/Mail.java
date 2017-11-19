@@ -72,7 +72,6 @@ public class Mail {
 
     public void sendMail(Andon andon) {
         try {
-            System.out.println("tutut");
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(from));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(destination));
@@ -83,7 +82,6 @@ public class Mail {
                     "<div>Data: " + andon.getDate() + "</div>" +
                     "<div>Wartość: " + andon.getValue() + "</div>";
 
-            System.out.println("content " + content);
             message.setContent(content, "text/html; charset=utf-8");
             Transport.send(message);
             System.out.println("Send message successfully.");

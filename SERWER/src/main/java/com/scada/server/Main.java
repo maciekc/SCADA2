@@ -81,8 +81,8 @@ public class Main extends AllDirectives {
     public static void main(String[] args) throws InterruptedException, IOException, ExecutionException {
 
         System.out.println("Sending message");
-        final Mail mail = new Mail();
-        mail.sendMail(new Andon(1,"TEST", "LIMIT TEST", 12.2, "2017-11-17 22:18:00", -1));
+//        final Mail mail = new Mail();
+//        mail.sendMail(new Andon(1,"TEST", "LIMIT TEST", 12.2, "2017-11-17 22:18:00", -1));
 
         System.out.println("open bd connection");
 
@@ -224,7 +224,7 @@ public class Main extends AllDirectives {
                                 parameterList(param -> {
                                     final String startDate = param.get(0).getValue().toString();
                                     final String endDate = param.get(1).getValue().toString();
-                                    final CompletionStage<Object> andonData = ask(reportData, new AndonData(startDate, endDate), t);
+                                    final CompletionStage<Object> andonData = ask(reportData, new AndonDataDateRange(startDate, endDate), t);
                                     return onSuccess(() -> andonData, result -> completeOK(result, Jackson.marshaller()));
                                 })
                             )
@@ -243,7 +243,7 @@ public class Main extends AllDirectives {
                                     parameterList(param -> {
                                         final String startDate = param.get(0).getValue().toString();
                                         final String endDate = param.get(1).getValue().toString();
-                                        final CompletionStage<Object> workData = ask(reportData, new WorkData(startDate, endDate), t);
+                                        final CompletionStage<Object> workData = ask(reportData, new WorkDataDateRange(startDate, endDate), t);
                                         return onSuccess(() -> workData, result -> completeOK(result, Jackson.marshaller()));
                                     })
                                 )
@@ -262,7 +262,7 @@ public class Main extends AllDirectives {
                                     parameterList(param -> {
                                         final String startDate = param.get(0).getValue().toString();
                                         final String endDate = param.get(1).getValue().toString();
-                                        final CompletionStage<Object> controllerData = ask(reportData, new ControllerData(startDate, endDate), t);
+                                        final CompletionStage<Object> controllerData = ask(reportData, new ControllerDataDateRange(startDate, endDate), t);
                                         return onSuccess(() -> controllerData, result -> completeOK(result, Jackson.marshaller()));
                                     })
                                 )
@@ -281,7 +281,7 @@ public class Main extends AllDirectives {
                                     parameterList(param -> {
                                         final String startDate = param.get(0).getValue().toString();
                                         final String endDate = param.get(1).getValue().toString();
-                                        final CompletionStage<Object> cpvData = ask(reportData, new ChangeParameterValueData(startDate, endDate), t);
+                                        final CompletionStage<Object> cpvData = ask(reportData, new ChangeParameterValueDataDateRange(startDate, endDate), t);
                                         return onSuccess(() -> cpvData, result -> completeOK(result, Jackson.marshaller()));
                                     })
                                 )
@@ -290,7 +290,7 @@ public class Main extends AllDirectives {
                 pathPrefix("notification", () -> route(
                         pathEnd(() ->
                             get(() -> {
-                                final CompletionStage<Object> notification = ask(notificationDAta, new NotificationData(), t);
+                                final CompletionStage<Object> notification = ask(notificationDAta, new NotificationRequest(), t);
                                 return onSuccess(() -> notification, result ->
                                         completeOK(result, Jackson.marshaller()));
                             })
@@ -300,7 +300,7 @@ public class Main extends AllDirectives {
                                 parameterList(param -> {
                                     final String startDate = param.get(0).getValue().toString();
                                     final String endDate = param.get(1).getValue().toString();
-                                    final CompletionStage<Object> notification = ask(notificationDAta, new NotificationData(startDate, endDate), t);
+                                    final CompletionStage<Object> notification = ask(notificationDAta, new NotificationRequestDateRange(startDate, endDate), t);
                                     return onSuccess(() -> notification, result -> completeOK(result, Jackson.marshaller()));
                                 })
                             )

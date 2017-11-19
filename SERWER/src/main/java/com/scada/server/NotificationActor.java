@@ -10,7 +10,13 @@ import akka.event.LoggingAdapter;
 import com.google.gson.Gson;
 import com.scada.dataBase.GetDBData;
 
+import com.scada.model.dataBase.Andon.Andon;
 import com.scada.server.OPCDataLoggerActor.*;
+import rx.Completable;
+import rx.schedulers.Schedulers;
+import rx.Observable;
+
+
 import java.util.concurrent.CompletionStage;
 
 public class NotificationActor extends AbstractActor {
@@ -23,41 +29,58 @@ public class NotificationActor extends AbstractActor {
 
     private final GetDBData getDBData;
     private ActorRef serverRef;
+    private final Mail mail;
 
     public NotificationActor(GetDBData getDBData) {
+        this.mail = new Mail();
         this.getDBData = getDBData;
     }
 
     @Override
     public Receive createReceive() {
         return receiveBuilder()
-                .match(NotificationData.class, m -> {
-                    if(m.getStartDate() == "") {
-                        getDBData.getNotifications()
-                                .subscribe(v -> {
-                                    log.info("Notification data: {}", v);
-                                    getSender().tell(v, getSelf());
-                                });
-                    } else {
-                        getDBData.getNotifications(m.getStartDate(), m.getEndDate())
-                                .subscribe(v -> {
-                                    log.info("Notification data: {}", v);
-                                    getSender().tell(v, getSelf());
-                                });
-                    }
-                })
+
+                //----------------------------------------------
+                //              NOTIFICATION REQUESTS
+                //----------------------------------------------
+                .match(NotificationRequest.class, m ->
+                    getDBData.getNotifications()
+                            .subscribeOn(Schedulers.newThread())
+                            .subscribe(v -> {
+                                log.info("Notification data: {}", v);
+                                getSender().tell(v, getSelf());
+                            })
+                )
+                .match(NotificationRequestDateRange.class, m ->
+                    getDBData.getNotifications(m.getStartDate(), m.getEndDate())
+                            .subscribeOn(Schedulers.newThread())
+                            .subscribe(v -> {
+                                log.info("Notification data: {}", v);
+                                getSender().tell(v, getSelf());
+                            })
+                )
+
+                //----------------------------------------------
+                //              ANDON REQUESTS
+                //----------------------------------------------
                 .match(AndonRequest.class, m -> {
                     this.serverRef = getSender();
                     getDBData.getAndonData(m.getStartId())
-                            .subscribe((v -> getSender().tell(v, getSelf())));
-//                    m.getOPCDataLoggerActor().tell(new OPCDataLoggerActor.AndonRequest(), getSelf());
+                            .subscribe(v -> {
+                                getSender().tell(v, getSelf());
+                                Observable.from(v)
+                                        .observeOn(Schedulers.newThread())
+                                        .forEach(andon -> {
+                                            mail.sendMail(andon);
+                                        });
+                                System.out.println("koniec");
+                            });
                 })
                 .match(UpdateAndonData.class, m -> {
                     if (m.isUpdate() == true) {
                         log.info("new andon to log in DB.");
                         getDBData.getNotifications()
                                 .subscribe(v -> {
-//                                    this.serverRef.tell(new AndonRequestData(new Gson().toJson(v)), getSelf());
                                     this.serverRef.tell(v, getSelf());
                                 });
                     } else {
@@ -69,18 +92,13 @@ public class NotificationActor extends AbstractActor {
                 .build();
     }
 
-    static public class NotificationData {
+    static public class NotificationRequestDateRange {
         private final String startDate;
         private final String endDate;
 
-        public NotificationData(String startDate, String endDate) {
+        public NotificationRequestDateRange(String startDate, String endDate) {
             this.startDate = startDate;
             this.endDate = endDate;
-        }
-
-        public NotificationData() {
-            this.startDate = "";
-            this.endDate = "";
         }
 
         public String getStartDate() {
@@ -91,17 +109,13 @@ public class NotificationActor extends AbstractActor {
             return endDate;
         }
     }
-//    static public class AndonRequest {
-//        private final ActorRef OPCDataLoggerActor;
-//
-//        public AndonRequest(ActorRef OPCDataLoggerActor) {
-//            this.OPCDataLoggerActor = OPCDataLoggerActor;
-//        }
-//
-//        public ActorRef getOPCDataLoggerActor() {
-//            return OPCDataLoggerActor;
-//        }
-//    }
+
+    static public class NotificationRequest {
+
+        public NotificationRequest() {}
+
+    }
+
     static public class AndonRequest {
     private final int StartId;
 
