@@ -62,6 +62,7 @@ import java.util.function.Supplier;
 public class Main extends AllDirectives {
 
     static Timeout t = new Timeout(Duration.create(5, TimeUnit.SECONDS));
+    static Timeout reportTimeout = new Timeout(Duration.create(5, TimeUnit.SECONDS));
     final FiniteDuration oneSecond =
             FiniteDuration.create(1, TimeUnit.SECONDS);
     static final DBI dbi = new DBI("jdbc:mysql://localhost:3306/scada", "root", "1234");
@@ -314,6 +315,36 @@ public class Main extends AllDirectives {
                                 return onSuccess(() -> andonRequest, result ->
                                         completeOK(result, Jackson.marshaller()));
                             })
+                        )
+                ),
+                path("andonReport", () ->
+                        get(() ->
+                                parameterList(param -> {
+                                    final Integer startId = Integer.parseInt(param.get(0).getValue().toString());
+                                    final CompletionStage<Object> andonRequest = ask(reportData, new ReportDataActor.AndonData(), reportTimeout);
+                                    return onSuccess(() -> andonRequest, result ->
+                                            completeOK(result, Jackson.marshaller()));
+                                })
+                        )
+                ),
+                path("changeParamterReport", () ->
+                        get(() ->
+                                parameterList(param -> {
+                                    final Integer startId = Integer.parseInt(param.get(0).getValue().toString());
+                                    final CompletionStage<Object> andonRequest = ask(reportData, new ReportDataActor.ChangeParameterValueData(), reportTimeout);
+                                    return onSuccess(() -> andonRequest, result ->
+                                            completeOK(result, Jackson.marshaller()));
+                                })
+                        )
+                ),
+                path("workReport", () ->
+                        get(() ->
+                                parameterList(param -> {
+                                    final Integer startId = Integer.parseInt(param.get(0).getValue().toString());
+                                    final CompletionStage<Object> andonRequest = ask(reportData, new ReportDataActor.WorkData(), reportTimeout);
+                                    return onSuccess(() -> andonRequest, result ->
+                                            completeOK(result, Jackson.marshaller()));
+                                })
                         )
                 ),
                 path("currentData", () ->

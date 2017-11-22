@@ -92,14 +92,14 @@ export class CommonDataGetter {
     }
 
     public initStateVariableData() {
-        for (let i =0; i< 2; i++) {
+        for (let i =0; i< 3; i++) {
             this.stateVariableData.set("LEVEL_" + (i+1), "Zbiornik " + (i+1))
         }
-        for (let i =0; i< 3; i++) {
+        for (let i =0; i< 4; i++) {
             this.stateVariableData.set("VALVE_" + (i+1), "Zawór " + (i+1))
         }
         this.stateVariableData.set("OUTPUT", "Wyjście")
-
+        this.stateVariableData.set("SET_POINT", "Wart. zadana")
     }
     public getStateVariableData() {
         return this.stateVariableData
