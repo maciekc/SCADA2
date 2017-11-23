@@ -6,41 +6,38 @@ import {Point} from './point';
 export class SendDataToServer {
 
     private url: string = "http://localhost:8010/changeLimits";
-    
-    constructor(private http: HttpClient) {}
+    private static limitsToLevelValues: Map<String, number[]> = new Map();
+    constructor(private http: HttpClient) {
+        SendDataToServer.limitsToLevelValues.set("LEVEL_1", [0,0,0,0])
+        SendDataToServer.limitsToLevelValues.set("LEVEL_2", [0,0,0,0])
+        SendDataToServer.limitsToLevelValues.set("LEVEL_3", [0,0,0,0])
+    }
 
     //TODO
-    public sendLimitsToServer(limitTag: String, limitMin: number, limitMax: number, limitMinCrit: number, limitMaxCrit: number) {
+    public sendLimitsToServer(levelTag: String, limitsToLevel: Map<String, String[]>, values: number[]) {
 
         let header = new HttpHeaders({'Content-Type': 'application/json'})
         header.append('Accept', 'text/plain; charset=UTF-8');
         header.append('Accept', 'application/json');
 
-        let minlimit = new LimitUpdate(limitTag, limitMin, -1);
-        let minCritlimit = new LimitUpdate(limitTag, limitMinCrit, -2);
-        let maxlimit = new LimitUpdate(limitTag, limitMax, 1);
-        let maxCritlimit = new LimitUpdate(limitTag, limitMaxCrit, 2);
+        let requestObs: Subscription[] = [];
+        let prevLimitsValues: number[] = SendDataToServer.limitsToLevelValues.get(levelTag)
+        let limitsTags = limitsToLevel.get(levelTag)
+        for(let i = 0; i< 4; i++) {
+            if (prevLimitsValues[i] != values[i]) {
+                let limitJSON = JSON.stringify(new LimitUpdate(limitsTags[i], Number(values[i]),0))
+                console.log(limitJSON)
+                console.log(Number(values[i]))
+                let req = this.http.post('http://localhost:8010/limits', limitJSON, {headers: header, responseType:'json'})
+                .subscribe(r=> console.log("send "))
+                requestObs.push(req)
+            }
+            values[i] = Number(values[i])
+        }
+        console.log(SendDataToServer.limitsToLevelValues)
+        SendDataToServer.limitsToLevelValues.set(levelTag, values)
         
-        let minlimitJSON = JSON.stringify(minlimit);
-        let minCritlimitJSON = JSON.stringify(minCritlimit)
-        let maxlimitJSON = JSON.stringify(maxlimit)
-        let maxCritlimitJSON = JSON.stringify(maxCritlimit)
-
-        let minObs = this.http
-            .post('http://localhost:8010/limits', minlimitJSON, {headers: header, responseType:'json'})
-        let minCritObs = this.http
-            .post('http://localhost:8010/limits', minCritlimitJSON, {headers: header, responseType:'json'})
-        let maxObs = this.http
-            .post('http://localhost:8010/limits', maxlimitJSON, {headers: header, responseType:'json'})
-        let maxCritObs = this.http
-            .post('http://localhost:8010/limits', maxCritlimitJSON, {headers: header, responseType:'json'})
-
-        return Observable.zip(minObs, minCritObs, maxObs, maxCritObs)
-        // Observable.concat(minObs, minCritObs, maxObs, maxCritObs)
-        //     .subscribe(v => console.log("send all of limits to update in DB."))
-
-
-        // return;
+        return Observable.zip(requestObs)
     }
 }
 

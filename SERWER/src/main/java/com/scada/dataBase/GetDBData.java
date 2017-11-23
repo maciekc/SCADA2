@@ -82,7 +82,6 @@ public class GetDBData {
                 this.maxAndonId = Math.max(this.maxAndonId, a.getId());
                 }
             });
-            System.out.println("max id " + this.maxAndonId);
             return andonList;
         }
     }

@@ -105,5 +105,21 @@ export class CommonDataGetter {
         return this.stateVariableData
     }
 
+    public getLimitsToLevel() {
+        let m: Map<String, String[]> = new Map();
+        
+        for (let i =0; i< 3; i++) {
+            let limitTab: String[] = [];
+            limitTab.push("LEVEL_" + (i+1) + "_MIN")
+            limitTab.push("LEVEL_" + (i+1) + "_MAX")
+            limitTab.push("LEVEL_" + (i+1) + "_MIN_CRITICAL")
+            limitTab.push("LEVEL_" + (i+1) + "_MAX_CRITICAL")
+
+            m.set("LEVEL_" + (i+1), limitTab)
+        }
+        return m
+
+    }
+
     
 }

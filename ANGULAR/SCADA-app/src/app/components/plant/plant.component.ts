@@ -49,7 +49,8 @@ export class PlantComponent implements OnInit, OnDestroy {
   
   changeLimitSubmit(event) {
     console.log(this.limitMin)
-    this.plantService.changeLimitsValues(this.limitTag, this.limitMin, this.limitMax, this.limitMinCrit, this.limitMaxCrit)
+    let limitValues = [this.limitMin, this.limitMax, this.limitMinCrit, this.limitMaxCrit]
+    this.plantService.changeLimitsValues(this.limitTag, this.commonDataService.getLimitsToLevel() , limitValues)
     .subscribe( v => {
       this.updateLimits(this.limitTag)
       if(document.getElementById("SVDropButton").id == this.limitTag) {
