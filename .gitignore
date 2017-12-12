@@ -1,3 +1,6 @@
 SERWER/user_libs/*
 SERWER/.idea/*
 MATLAB/slprj
+Sprawozdanie/*.*
+!Sprawozdanie/*.tex
+!Sprawozdanie/*.pdf
