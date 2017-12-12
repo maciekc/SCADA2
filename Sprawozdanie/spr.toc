@@ -7,3 +7,7 @@
 \contentsline {section}{\numberline {3.1}Wst\IeC {\k e}p}{4}
 \contentsline {section}{\numberline {3.2}Struktura bazy}{4}
 \contentsline {section}{\numberline {3.3}Opis dost\IeC {\k e}pu do bazy}{5}
+\contentsline {section}{\numberline {3.4}Serwer OPC}{6}
+\contentsline {subsection}{\numberline {3.4.1}Wprowadzenie}{6}
+\contentsline {subsection}{\numberline {3.4.2}MatrikonOPC}{6}
+\contentsline {subsection}{\numberline {3.4.3}Logowanie OPC - MySQL}{6}
