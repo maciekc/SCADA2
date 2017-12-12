@@ -3,8 +3,36 @@
       Wiadomości
   </h2>
 </div>
-<div class="allMassagePanel">
-  <app-warning-messages [message] = "message"></app-warning-messages>
-  <app-error-messages [message] = "message1"></app-error-messages>
-  <app-info-messages [message] = "message"></app-info-messages>
+<div class="allMassagePanel" *ngFor = "let message of andonData">
+  
+  <!-- <app-info-messages [message] = "a"></app-info-messages> -->
+  <!-- <app-error-messages [message] = "message1"></app-error-messages> 
+  <app-info-messages [message] = "message"></app-info-messages> -->
+
+
+  <div [class] = "changeMessageStyle(message)">
+      <div class = "inner">
+        <div style = "text-align: center;font-size: 110%;height: 60%;"><i [class] = "setIconClass(message)" aria-hidden="true"></i>    </div>
+        <div style = "font-size:75%;height: 40%;">
+          <div class="reasonDiv">
+              {{this.getStateVariableName(message)}}
+          </div>
+        </div>
+      </div>
+      <div class="inner info">
+        <div style ="font-size:110%;font-weight: bold;height: 50%;">
+            {{message.getDate()}}
+        </div>      
+        <div style="height: 50%;">
+          <!-- <div style = "float: left;margin-right: 5px;">
+            typ:
+          </div> -->
+          <div style ="font-size:120%; float: left;font-weight: bold;">
+              {{this.getLimitName(message)}}
+          </div>
+        </div>
+      </div>
+    </div>
+
+
 </div>

@@ -12,18 +12,18 @@ public class OPCServer {
     private static Map<String, Andon> andonList = new HashMap();
 
     public OPCServer() {
-        andonList.put("LEVEL_1_MIN", new Andon(1, "LEVEL_1_MIN", 26.3, "2017-10-30 22:00:00"));
-        andonList.put("LEVEL_2_MIN", new Andon(1, "LEVEL_1_MIN", 26.3, "2017-10-30 22:00:00"));
-        andonList.put("LEVEL_3_MIN", new Andon(1, "LEVEL_1_MIN", 26.3, "2017-10-30 22:00:00"));
-        andonList.put("LEVEL_1_MIN_CRITICAL", new Andon(1, "LEVEL_1_MIN_CRITICAL", 26.3, "2017-10-30 22:00:00"));
-        andonList.put("LEVEL_2_MIN_CRITICAL", new Andon(1, "LEVEL_1_MIN_CRITICAL", 26.3, "2017-10-30 22:00:00"));
-        andonList.put("LEVEL_3_MIN_CRITICAL", new Andon(1, "LEVEL_1_MIN_CRITICAL", 26.3, "2017-10-30 22:00:00"));
-        andonList.put("LEVEL_1_MAX", new Andon(1, "LEVEL_1_MAX", 26.3, "2017-10-30 22:00:00"));
-        andonList.put("LEVEL_2_MAX", new Andon(1, "LEVEL_1_MAX", 26.3, "2017-10-30 22:00:00"));
-        andonList.put("LEVEL_3_MAX", new Andon(1, "LEVEL_1_MAX", 26.3, "2017-10-30 22:00:00"));
-        andonList.put("LEVEL_1_MAX_CRITICAL", new Andon(1, "LEVEL_1_MAX_CRITICAL", 26.3, "2017-10-30 22:00:00"));
-        andonList.put("LEVEL_2_MAX_CRITICAL", new Andon(1, "LEVEL_1_MAX_CRITICAL", 26.3, "2017-10-30 22:00:00"));
-        andonList.put("LEVEL_3_MAX_CRITICAL", new Andon(1, "LEVEL_1_MAX_CRITICAL", 26.3, "2017-10-30 22:00:00"));
+        andonList.put("LEVEL_1_MIN", new Andon(1, "LEVEL_1_MIN", 26.3, "2017-10-30 22:00:00",-1));
+        andonList.put("LEVEL_2_MIN", new Andon(1, "LEVEL_1_MIN", 26.3, "2017-10-30 22:00:00",-1));
+        andonList.put("LEVEL_3_MIN", new Andon(1, "LEVEL_1_MIN", 26.3, "2017-10-30 22:00:00",-1));
+        andonList.put("LEVEL_1_MIN_CRITICAL", new Andon(1, "LEVEL_1_MIN_CRITICAL", 26.3, "2017-10-30 22:00:00",-2));
+        andonList.put("LEVEL_2_MIN_CRITICAL", new Andon(1, "LEVEL_1_MIN_CRITICAL", 26.3, "2017-10-30 22:00:00",-2));
+        andonList.put("LEVEL_3_MIN_CRITICAL", new Andon(1, "LEVEL_1_MIN_CRITICAL", 26.3, "2017-10-30 22:00:00",-2));
+        andonList.put("LEVEL_1_MAX", new Andon(1, "LEVEL_1_MAX", 26.3, "2017-10-30 22:00:00",1));
+        andonList.put("LEVEL_2_MAX", new Andon(1, "LEVEL_1_MAX", 26.3, "2017-10-30 22:00:00",1));
+        andonList.put("LEVEL_3_MAX", new Andon(1, "LEVEL_1_MAX", 26.3, "2017-10-30 22:00:00",1));
+        andonList.put("LEVEL_1_MAX_CRITICAL", new Andon(1, "LEVEL_1_MAX_CRITICAL", 26.3, "2017-10-30 22:00:00",2));
+        andonList.put("LEVEL_2_MAX_CRITICAL", new Andon(1, "LEVEL_1_MAX_CRITICAL", 26.3, "2017-10-30 22:00:00",2));
+        andonList.put("LEVEL_3_MAX_CRITICAL", new Andon(1, "LEVEL_1_MAX_CRITICAL", 26.3, "2017-10-30 22:00:00",2));
 
     }
 
@@ -47,10 +47,15 @@ public class OPCServer {
         values.add(new Record("LEVEL_1"));
         values.add(new Record("LEVEL_2"));
         values.add(new Record("LEVEL_3"));
-        values.add(new Record("VALVE_1"));
-        values.add(new Record("VALVE_2"));
-        values.add(new Record("VALVE_3"));
-        values.add(new Record("VALVE_4"));
+        return values;
+    }
+
+    public List<ControllerRecord> getControllersData() {
+        final List<ControllerRecord> values = new ArrayList<>();
+        values.add(new ControllerRecord("VALVE_1", "AUTOMATIC_MODE"));
+        values.add(new ControllerRecord("VALVE_2", "AUTOMATIC_MODE"));
+        values.add(new ControllerRecord("VALVE_3", "AUTOMATIC_MODE"));
+        values.add(new ControllerRecord("VALVE_4", "AUTOMATIC_MODE"));
         return values;
     }
 
@@ -99,6 +104,28 @@ public class OPCServer {
 
         public void setDate(String date) {
             this.date = date;
+        }
+    }
+
+    public static class ControllerRecord extends Record {
+
+        private  String mode;
+        public ControllerRecord(String tag, String mode, Double value, String date) {
+            super(tag, value, date);
+            this.mode = mode;
+        }
+
+        public ControllerRecord(String tag, String mode) {
+            super(tag);
+            this.mode = mode;
+        }
+
+        public String getMode() {
+            return mode;
+        }
+
+        public void setMode(String mode) {
+            this.mode = mode;
         }
     }
 }

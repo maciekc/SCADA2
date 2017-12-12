@@ -8,6 +8,8 @@ import com.scada.model.dataBase.Controller.Controller;
 import com.scada.model.dataBase.Controller.ControllerMapper;
 import com.scada.model.dataBase.FigurePoint.FigurePoint;
 import com.scada.model.dataBase.FigurePoint.FigurePointMapper;
+import com.scada.model.dataBase.Limit.Limit;
+import com.scada.model.dataBase.Limit.LimitMapper;
 import com.scada.model.dataBase.Notification.Notification;
 import com.scada.model.dataBase.Notification.NotificationMapper;
 import com.scada.model.dataBase.StateVariable.StateVariable;
@@ -26,14 +28,49 @@ public interface DBQueries {
     //                       GET STATE SPACE DATA
     //------------------------------------------------------------------
 
-    String getStateSpaceDate =
+    String getStateSpaceDate_dateRange =
             "SELECT date, value " + "\n" +
             "FROM scada.history " + "\n" +
             "WHERE state_space_id = (SELECT id from scada.state_space where tag LIKE :stateSpace) and date between :startDate and :endDate " + "\n" +
-            "ORDER BY date asc;";
+            "ORDER BY date desc " + "\n" +
+            "LIMIT 100;";
+    @RegisterMapper(FigurePointMapper.class)
+    @SqlQuery(getStateSpaceDate_dateRange)
+    List<FigurePoint> getStateSpaceData(@Bind("stateSpace") String stateSpace, @Bind("startDate") String startDate, @Bind("endDate") String endDate);
+
+    String getStateSpaceDate =
+            "SELECT date, value " + "\n" +
+                    "FROM scada.history " + "\n" +
+                    "WHERE state_space_id = (SELECT id from scada.state_space where tag LIKE :stateSpace) " + "\n" +
+                    "ORDER BY date desc " + "\n" +
+                    "LIMIT 100;";
     @RegisterMapper(FigurePointMapper.class)
     @SqlQuery(getStateSpaceDate)
-    List<FigurePoint> getStateSpaceData(@Bind("stateSpace") String stateSpace, @Bind("startDate") String startDate, @Bind("endDate") String endDate);
+    List<FigurePoint> getStateSpaceData(@Bind("stateSpace") String stateSpace);
+
+    String getStateSpaceDataDaily =
+            "SELECT sum(value) as value, date(date) as date \n" +
+                    "\tFROM scada.history \n" +
+                    "\tWHERE state_space_id = (SELECT id from scada.state_space where tag LIKE :stateSpace) \n" +
+                    "    group by day(date), month(date)\n" +
+                    "\tORDER BY date desc \n" +
+                    "\tLIMIT 7;";
+
+    @RegisterMapper(FigurePointMapper.class)
+    @SqlQuery(getStateSpaceDataDaily)
+    List<FigurePoint> getStateSpaceDataDaily(@Bind("stateSpace") String stateSpace);
+
+    String getStateSpaceDataHourly =
+            "SELECT sum(value) as value, min(date) as date \n" +
+                    "\tFROM scada.history \n" +
+                    "\tWHERE state_space_id = (SELECT id from scada.state_space where tag LIKE :stateSpace) \n" +
+                    "    group by hour(date), day(date), month(date)\n" +
+                    "\tORDER BY date desc \n" +
+                    "\tLIMIT 24;";
+
+    @RegisterMapper(FigurePointMapper.class)
+    @SqlQuery(getStateSpaceDataHourly)
+    List<FigurePoint> getStateSpaceDataHourly(@Bind("stateSpace") String stateSpace);
 
 
     String getSateSpacesQuery =
@@ -50,19 +87,22 @@ public interface DBQueries {
 //            "SELECT sa.id as id, sss.tag as stateSpace, sl.tag as limitTag, sa.value as value, sa.date as date  FROM scada.andon as sa\n" +
 //            "LEFT JOIN scada.limits as sl on sa.limit_id = sl.id\n" +
 //            "LEFT JOIN scada.state_space as sss on sa.state_space_id = sss.id; ";
-String getAndonDataQuery =
-        "SELECT sa.id as id, sss.tag as stateSpace, sl.tag as limitTag, sa.value as value, sa.date as date  FROM scada.andon as sa\n" +
+    String getAndonDataQuery =
+        "SELECT sa.id as id, sss.tag as stateSpace, sl.tag as limitTag, sa.value as value, sa.date as date, sl.type as type  FROM scada.andon as sa\n" +
                 "LEFT JOIN scada.limits as sl on sa.limit_id = sl.id\n" +
-                "LEFT JOIN scada.state_space as sss on sa.state_space_id = sss.id; ";
+                "LEFT JOIN scada.state_space as sss on sa.state_space_id = sss.id\n" +
+                "WHERE sa.id > :lastId \n" +
+                "ORDER BY id desc;";
     @RegisterMapper(AndonMapper.class)
     @SqlQuery(getAndonDataQuery)
-    List<Andon> getAndonData();
+    List<Andon> getAndonData(@Bind("lastId") int lastId);
 
     String getAndonDataQuery_dateRange =
-            "SELECT sa.id as id, sss.tag as stateSpace, sl.tag as limitTag, sa.value as value, sa.date as date  FROM scada.andon as sa\n" +
+            "SELECT sa.id as id, sss.tag as stateSpace, sl.tag as limitTag, sa.value as value, sa.date as date, sl.type as type  FROM scada.andon as sa\n" +
                     "LEFT JOIN scada.limits as sl on sa.limit_id = sl.id\n" +
                     "LEFT JOIN scada.state_space as sss on sa.state_space_id = sss.id " +
-                    "WHERE sa.date BETWEEN :startDate and :endDate;";
+                    "WHERE sa.date BETWEEN :startDate and :endDate \n" +
+                    "ORDER BY sa.id desc;";
     @RegisterMapper(AndonMapper.class)
     @SqlQuery(getAndonDataQuery_dateRange)
     List<Andon> getAndonData(@Bind("startDate") String startDate, @Bind("endDate") String endDate);
@@ -73,14 +113,16 @@ String getAndonDataQuery =
 
     String getWorkDataQuery =
             "SELECT sw.id as id, sss.tag as stateSpace, sw.value as value, sw.date as date  FROM scada.work as sw\n" +
-                    "LEFT JOIN scada.state_space as sss on sw.state_space_id = sss.id;";
+                    "LEFT JOIN scada.state_space as sss on sw.state_space_id = sss.id \n" +
+                    "ORDER BY id desc \n" +
+                    "LIMIT 200;";
     @RegisterMapper(WorkMapper.class)
     @SqlQuery(getWorkDataQuery)
     List<Work> getWorkData();
 
     String getWorkDataQuery_dateRange =
             "SELECT sw.id as id, sss.tag as stateSpace, sw.value as value, sw.date as date  FROM scada.work as sw\n" +
-                    "LEFT JOIN scada.state_space as sss on sw.state_space_id = sss.id " +
+                    "LEFT JOIN scada.state_space as sss on sw.state_space_id = sss.id \n" +
                     "WHERE sw.date BETWEEN :startDate and :endDate;";
     @RegisterMapper(WorkMapper.class)
     @SqlQuery(getWorkDataQuery_dateRange)
@@ -114,7 +156,8 @@ String getAndonDataQuery =
 
     String getCPVDataQuery =
             "SELECT scpv.id as id, ssp.tag as systemParameter, scpv.value as value, scpv.date as date  FROM scada.change_parameter_value as scpv\n" +
-                    "LEFT JOIN scada.system_parameters as ssp on scpv.parameter_id = ssp.id; ";
+                    "LEFT JOIN scada.system_parameters as ssp on scpv.parameter_id = ssp.id \n" +
+                    "ORDER BY id desc;";
     @RegisterMapper(ChangeParameterValueMapper.class)
     @SqlQuery(getCPVDataQuery)
     List<ChangeParameterValue> getChangeParameterValueData();
@@ -142,7 +185,7 @@ String getAndonDataQuery =
                     "LEFT JOIN scada.limits as sl on sh.variable_state_id = (SELECT id FROM scada.variable_state WHERE tag = 'ANDON') and (SELECT limit_id FROM scada.andon WHERE id = sh.event_id) = sl.id\n" +
                     "\n" +
                     "WHERE sh.variable_state_id in (SELECT id FROM scada.variable_state WHERE tag = 'ANDON' or tag = 'CHANGE_PARAMETER_VALUE')\n" +
-                    "ORDER BY date asc; ";
+                    "ORDER BY id desc; ";
     @RegisterMapper(NotificationMapper.class)
     @SqlQuery(getNotoficationDataQuery)
     List<Notification> getNotificationsData();
@@ -156,13 +199,43 @@ String getAndonDataQuery =
                     "LEFT JOIN scada.limits as sl on sh.variable_state_id = (SELECT id FROM scada.variable_state WHERE tag = 'ANDON') and (SELECT limit_id FROM scada.andon WHERE id = sh.event_id) = sl.id\n" +
                     "\n" +
                     "WHERE (date BETWEEN :startDate and :endDate) and (sh.variable_state_id in (SELECT id FROM scada.variable_state WHERE tag = 'ANDON' or tag = 'CHANGE_PARAMETER_VALUE'))\n" +
-                    "ORDER BY date asc; ";
+                    "ORDER BY id desc; ";
 
 
     @RegisterMapper(NotificationMapper.class)
-    @SqlQuery(getCPVDataQuery_dateRange)
+    @SqlQuery(getNotificationDataQuery_dateRange)
     List<Notification> getNotificationsData(@Bind("startDate") String startDate, @Bind("endDate") String endDate);
 
+
+    //------------------------------------------------------------------
+    //                       GET CURRENT SYSTEM DATA
+    //------------------------------------------------------------------
+
+    String getCurrentSystemData =
+            "(SELECT sw.id, sss.tag as stateSpace, sw.value, sw.date FROM scada.work as sw\n" +
+                    "LEFT JOIN scada.state_space as sss ON sss.id = sw.state_space_id\n" +
+                    "order by sw.id desc\n" +
+                    "LIMIT 4)\n" +
+            "union\n" +
+            "(SELECT sc.id, sss.tag, sc.value as stateSpace, sc.date FROM scada.controller as sc\n" +
+                    "LEFT JOIN scada.state_space as sss ON sss.id = sc.state_space_id\n" +
+                    "order by sc.id desc\n" +
+                    "LIMIT 4);";
+    @RegisterMapper(WorkMapper.class)
+    @SqlQuery(getCurrentSystemData)
+    List<Work> getCurrentSystemData ();
+
+
+    //------------------------------------------------------------------
+    //                       GET LIMITS DATA
+    //------------------------------------------------------------------
+
+    String getLimitsData =
+            "SELECT id, tag, name, state_space_id as stateSpaceName, value, type FROM scada.limits" + "\n" +
+                    "WHERE state_space_id = (SELECT id FROM scada.state_space WHERE tag LIKE :stateVariableTag);";
+    @RegisterMapper(LimitMapper.class)
+    @SqlQuery(getLimitsData)
+    List<Limit> getLimitsData (@Bind("stateVariableTag") String tag);
 
 
 

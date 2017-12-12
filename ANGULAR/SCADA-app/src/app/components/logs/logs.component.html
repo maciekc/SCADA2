@@ -1,23 +1,42 @@
 <div class="reportPanel">
   <div class="titleHeader">
-    <h2>Raport</h2>
+    <!-- <h2>Raport</h2> -->
+    <div style="float: left;width: 50%;height: 100%;text-align: right;">Typ raportu</div>
+    <div class="btn-group" style="float: left; color: #555555;height: 100%; width: 25%;padding-left: 10px;">
+        <button id="ReportTypeButton" type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Andon
+        </button>
+        <div class="dropdown-menu">
+          <a id = "WORK" class="dropdown-item" (click) = "changeReportType($event)">Praca</a>
+          <a id = "ANDON" class="dropdown-item" (click) = "changeReportType($event)">Andon</a>
+          <a id = "CHANGE_VALUE" class="dropdown-item" (click) = "changeReportType($event)">Zmiana parametrów</a>
+        </div>
+    </div>
+    <div style="float: left;width: 25%;height: 100%;text-align: right;">
+      <button id="GenerateButton" type="button" class="btn btn-primary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" (click) = "generateReport($event)">Generuj</button>
+    </div>
   </div> 
   <div class="table">
     <div class="headerRow">
       <div class="LPCell cell">LP</div>
-      <div class="dateCell cell">Data</div>
-      <div class="valueCell cell">Wartość</div>
       <div class="variableCell cell">Zmienna</div>
       <div class="typeCell cell">Typ</div>
-      <div class="commentCell cell" style="font-style: normal;">Komentarz</div>
+      <div class="valueCell cell">Wartość</div>
+      <div class="dateCell cell">Data</div>
+      <div class="spacerCell cell"></div>
+      <!-- <div class="commentCell cell" style="font-style: normal;">Komentarz</div> -->
     </div>
-    <div class="reportRow">
-        <div class="LPCell cell">1</div>
-        <div class="dateCell cell">21.10.2017 20:00:00</div>
-        <div class="valueCell cell">12</div>
-        <div class="variableCell cell">Wejście</div>
-        <div class="typeCell cell">Praca</div>
-        <div class="commentCell cell">Test komentarza</div>
-    </div>
+    <div class = "reportRow" *ngFor = "let rowData of this.reportData | async">
+      <!-- <div [class] = "changeMessageStyle()"> -->
+        <div class="reportRow">
+            <div class="LPCell cell">{{rowData.getID()}}</div>
+            <div class="variableCell cell">{{this.getStateVariableName(rowData)}}</div>
+            <div class="typeCell cell">{{this.getLimitName(rowData)}}</div>
+            <div class="valueCell cell">{{rowData.getValue()}}</div>
+            <div class="dateCell cell">{{rowData.getDate()}}</div>
+            <div class="spacerCell cell"></div>
+            <!-- <div class="commentCell cell">Test komentarza</div> -->
+        </div>
+    </div>  
   </div>  
 </div>

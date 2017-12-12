@@ -9,20 +9,23 @@ public class Andon implements Serializable{
     private String limitTag;
     private Double value;
     private String date;
+    private Integer type;
 
-    public Andon(Integer id, String stateSpaceTag, String limit, Double value, String date) {
+    public Andon(Integer id, String stateSpaceTag, String limit, Double value, String date, Integer type) {
         this.id = id;
         this.stateSpaceTag = stateSpaceTag;
         this.limitTag = limit;
         this.value = value;
         this.date = date;
+        this.type = type;
     }
-    public Andon(Integer id, String limit, Double value, String date) {
+    public Andon(Integer id, String limit, Double value, String date, Integer type) {
         this.id = id;
         this.stateSpaceTag = "";
         this.limitTag = limit;
         this.value = value;
         this.date = date;
+        this.type = type;
     }
 
     public Integer getId() {
@@ -63,5 +66,13 @@ public class Andon implements Serializable{
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
     }
 }

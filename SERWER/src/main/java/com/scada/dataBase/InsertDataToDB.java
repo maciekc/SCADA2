@@ -24,13 +24,13 @@ public class InsertDataToDB {
 
     public Observable<Integer> insertAndon(Andon andon) {
         synchronized (this) {
-            return Observable.just(queries.insertAndon(andon));
+            return Observable.fromCallable(() -> queries.insertAndon(andon));
         }
     }
 
     public Observable<Integer> insertAndonToHistory(Andon andon, String type) {
         synchronized (this) {
-            return Observable.just(queries.insertAndonToHistory(andon, type));
+            return Observable.fromCallable(() -> queries.insertAndonToHistory(andon, type));
         }
     }
 
@@ -46,13 +46,13 @@ public class InsertDataToDB {
 
     public Observable<Integer> insertWork(Work work) {
         synchronized (this) {
-            return Observable.just(queries.insertWork(work));
+            return Observable.fromCallable(() -> queries.insertWork(work));
         }
     }
 
     public Observable<Integer> insertWorkToHistory(Work work, String type) {
         synchronized (this) {
-            return Observable.just(queries.insertWorkToHistory(work, type));
+            return Observable.fromCallable(() -> queries.insertWorkToHistory(work, type));
         }
     }
 
@@ -68,14 +68,20 @@ public class InsertDataToDB {
 
     public Observable<Integer> insertController(Controller controller) {
         synchronized (this) {
-            return Observable.just(queries.insertController(controller));
+            return Observable.fromCallable(() -> queries.insertController(controller));
         }
     }
 
 
     public Observable<Integer> insertControllerToHistory(Controller controller) {
         synchronized (this) {
-            return Observable.just(queries.insertControllerToHistory(controller));
+            return Observable.fromCallable(() -> queries.insertControllerToHistory(controller));
+        }
+    }
+
+    public Observable<Integer> logControllerRecord(Controller controller) {
+        synchronized (this) {
+            return Observable.concat(this.insertController(controller), this.insertControllerToHistory(controller));
         }
     }
 
@@ -85,13 +91,20 @@ public class InsertDataToDB {
 
     public Observable<Integer> insertChangeParameterValue(ChangeParameterValue cpv) {
         synchronized (this) {
-            return Observable.just(queries.insertChangeParameterValue(cpv));
+            System.out.println("tu " + cpv.getStateSpaceTag() + "  " + cpv.getValue());
+            return Observable.fromCallable(() -> queries.insertChangeParameterValue(cpv));
         }
     }
 
     public Observable<Integer> insertChangeParameterValueToHistory(ChangeParameterValue cpv, String type) {
         synchronized (this) {
-            return Observable.just(queries.insertChangeParameterValueToHistory(cpv, type));
+            return Observable.fromCallable(() -> queries.insertChangeParameterValueToHistory(cpv, type));
+        }
+    }
+
+    public Observable<Integer> logChangeParameterValueRecord(ChangeParameterValue cpv) {
+        synchronized (this) {
+            return Observable.concat(this.insertChangeParameterValue(cpv), this.insertChangeParameterValueToHistory(cpv, "CHANGE_PARAMETER_VALUE"));
         }
     }
 
@@ -101,7 +114,7 @@ public class InsertDataToDB {
 
     public Observable<Integer> insertLimit(Limit limit) {
         synchronized (this) {
-            return Observable.just(queries.insertLimit(limit));
+            return Observable.fromCallable(() -> queries.insertLimit(limit));
         }
     }
 

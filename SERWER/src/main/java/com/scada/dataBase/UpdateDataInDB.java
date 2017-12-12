@@ -20,9 +20,11 @@ public class UpdateDataInDB {
         }
     }
 
-    public Observable<Integer> updateLimit(String tag, Double value) {
+    public Observable<Integer> updateLimit(String stateSpaceTag, Double value, int type) {
         synchronized (this) {
-            return Observable.just(queries.updateLimit(tag, value));
+            System.out.println("update " + stateSpaceTag + " " + value + " " + type);
+//            return Observable.just(queries.updateLimit(stateSpaceTag, value, type));
+            return Observable.fromCallable(() -> queries.updateLimit(stateSpaceTag, value, type));
         }
     }
 
