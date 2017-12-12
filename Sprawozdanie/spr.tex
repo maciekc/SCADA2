@@ -1,0 +1,60 @@
+\documentclass[12pt]{report}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[pdftex]{graphicx}
+\usepackage{polski}
+
+\usepackage{placeins}
+\usepackage{epstopdf}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{float}
+\usepackage{tabularx}
+\usepackage{titlesec}
+
+\titleformat{\chapter}
+{\Large\bfseries} % format
+{}                % label
+{0pt}             % sep
+{\huge}           % before-code
+
+
+\usepackage[left=2.50cm, right=2.50cm, top=2.50cm, bottom=2.50cm]{geometry}
+
+\newcolumntype{C}[1]{>{\hsize=#1\hsize\centering\arraybackslash}X}
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+
+%opening
+\title{\textbf{SCADA 2}}
+\author{Maciej Cebula \\Piotr Merynda \\Maciej Podsiadło}
+\date{}
+\begin{document}
+	
+%	\fancypagestyle{plain}
+%	{
+%		% Usuń nagłówek i stopkę
+%		\fancyhf{}
+%		% Usuń linie.
+%		\renewcommand{\headrulewidth}{0pt}
+%		\renewcommand{\footrulewidth}{0pt}
+%	}
+
+	
+	\setcounter{tocdepth}{2}
+	
+	\maketitle
+	\tableofcontents
+	\clearpage
+		
+		\renewcommand{\tablename}{Tabela}
+		\renewcommand{\figurename}{Rys.}
+		
+	\include{wstep}
+	\include{serwerHTTP}
+	\include{bazaDanych}
+	
+	\include{bib}
+	
+\end{document}

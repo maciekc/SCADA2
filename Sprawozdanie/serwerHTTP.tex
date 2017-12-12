@@ -1,0 +1,10 @@
+\chapter{Serwer HTTP}
+\section{Opis działania}
+W celu umożliwienia komunikacji aplikacji wizualizacyjnej z bazą danych napisano w języku \textit{JAVA} serwer HTTP. Dane pomiędzy serwerem i aplikacją wymieniane są za pomocą protokołu HTTP, wykorzystując w tym celu zapytania typu \textit{GET} i \textit{POST}. Wszystkie żądania są utożsamione z odpowiednim adresem url i odpowiednio przetwarzane po stronie serwerowej. Aby zapewnić jak największą responsywność aplikacji oraz synchroniczne odświeżanie danych każdy request po stronie serwera przetwarzany jest w osobnym wątku. \\
+Do napisania serwera wykorzystano następujące biblioteki \textit{JAV-wy}:
+\begin{enumerate}
+	\item \textbf{RXJava} - biblioteka zapewniająca mechanizmy asynchronicznego przetwarzania danych,
+	\item \textbf{JDBI} - biblioteka zapewniająca połączenie z bazą danych,
+	\item \textbf{AKKA-HTTP} - framework do implementacji serwera HTTP,
+	 \item \textbf{Javax mail} - biblioteka do wysyłania emaili.
+\end{enumerate}
