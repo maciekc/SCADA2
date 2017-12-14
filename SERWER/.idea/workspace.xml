@@ -24,28 +24,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/server/Main.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="170">
-              <caret line="66" column="90" lean-forward="false" selection-start-line="66" selection-start-column="90" selection-end-line="66" selection-end-column="90" />
+              <caret line="66" column="66" lean-forward="true" selection-start-line="66" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NotificationActor.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/server/NotificationActor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="799">
-              <caret line="64" column="63" lean-forward="false" selection-start-line="64" selection-start-column="63" selection-end-line="64" selection-end-column="63" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="class#NotificationRequestDateRange#0;class#NotificationActor#0" expanded="false" />
-                <element signature="class#NotificationRequest#0;class#NotificationActor#0" expanded="false" />
-                <element signature="class#AndonRequest#0;class#NotificationActor#0" expanded="false" />
-                <element signature="class#AndonRequestData#0;class#NotificationActor#0" expanded="false" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -53,54 +37,100 @@
       <file leaf-file-name="GetDBData.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/dataBase/GetDBData.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="44" column="49" lean-forward="false" selection-start-line="44" selection-start-column="49" selection-end-line="44" selection-end-column="49" />
+            <state relative-caret-position="1207">
+              <caret line="84" column="0" lean-forward="false" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <marker date="1513247059292" expanded="true" signature="3292:3431" ph="{...}" />
+                <marker date="1513247059292" expanded="true" signature="3437:3621" ph="//..." />
+                <marker date="1513247059292" expanded="true" signature="3671:3791" ph="{...}" />
+                <marker date="1513247059292" expanded="true" signature="3873:4011" ph="{...}" />
+                <marker date="1513247059292" expanded="true" signature="4017:4207" ph="//..." />
+                <marker date="1513247059292" expanded="true" signature="4269:4395" ph="{...}" />
+                <marker date="1513247059292" expanded="true" signature="4489:4633" ph="{...}" />
+                <marker date="1513247059292" expanded="true" signature="4639:4841" ph="//..." />
+                <marker date="1513247059292" expanded="true" signature="4923:5059" ph="{...}" />
+                <marker date="1513247059292" expanded="true" signature="5173:5327" ph="{...}" />
+                <marker date="1513247059292" expanded="true" signature="5333:5525" ph="//..." />
+                <marker date="1513247059292" expanded="true" signature="5588:5717" ph="{...}" />
+                <marker date="1513247059292" expanded="true" signature="5812:5959" ph="{...}" />
+                <marker date="1513247059292" expanded="true" signature="5965:6159" ph="//..." />
+                <marker date="1513247059292" expanded="true" signature="6217:6346" ph="{...}" />
+                <marker date="1513247059292" expanded="true" signature="6352:6538" ph="//..." />
+                <marker date="1513247059292" expanded="true" signature="6601:6726" ph="{...}" />
+                <marker date="1513247059292" expanded="true" signature="6731:7085" ph="//..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ReportDataActor.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/server/ReportDataActor.java">
+      <file leaf-file-name="UpdateDataInDB.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/dataBase/UpdateDataInDB.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="765">
-              <caret line="54" column="45" lean-forward="false" selection-start-line="54" selection-start-column="45" selection-end-line="54" selection-end-column="45" />
+            <state relative-caret-position="340">
+              <caret line="22" column="36" lean-forward="false" selection-start-line="22" selection-start-column="36" selection-end-line="22" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SystemParameterActor.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/server/SystemParameterActor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="748">
+              <caret line="53" column="0" lean-forward="false" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
               <folding>
-                <element signature="class#DateRange#0;class#ReportDataActor#0" expanded="false" />
-                <element signature="method#DateRange#0;class#DateRange#0;class#ReportDataActor#0" expanded="false" />
-                <element signature="class#AndonData#0;class#ReportDataActor#0" expanded="false" />
-                <element signature="class#AndonDataDateRange#0;class#ReportDataActor#0" expanded="false" />
-                <element signature="method#AndonDataDateRange#0;class#AndonDataDateRange#0;class#ReportDataActor#0" expanded="false" />
-                <element signature="method#AndonDataDateRange#1;class#AndonDataDateRange#0;class#ReportDataActor#0" expanded="false" />
-                <element signature="class#WorkData#0;class#ReportDataActor#0" expanded="false" />
-                <element signature="class#WorkDataDateRange#0;class#ReportDataActor#0" expanded="false" />
-                <element signature="class#ControllerData#0;class#ReportDataActor#0" expanded="false" />
-                <element signature="class#ControllerDataDateRange#0;class#ReportDataActor#0" expanded="false" />
-                <element signature="class#ChangeParameterValueData#0;class#ReportDataActor#0" expanded="false" />
-                <element signature="class#ChangeParameterValueDataDateRange#0;class#ReportDataActor#0" expanded="false" />
+                <marker date="1513247059364" expanded="true" signature="2064:2234" ph="//..." />
+                <marker date="1513247059364" expanded="true" signature="2273:3192" ph="{...}" />
+                <marker date="1513247059364" expanded="true" signature="2423:2524" ph="{...}" />
+                <marker date="1513247059364" expanded="true" signature="2564:2632" ph="{...}" />
+                <marker date="1513247059364" expanded="true" signature="2663:2730" ph="{...}" />
+                <marker date="1513247059364" expanded="false" signature="2762:2777" ph=" { " />
+                <marker date="1513247059364" expanded="false" signature="2788:2798" ph=" }" />
+                <marker date="1513247059364" expanded="false" signature="2838:2853" ph=" { " />
+                <marker date="1513247059364" expanded="false" signature="2868:2878" ph=" }" />
+                <marker date="1513247059364" expanded="false" signature="2912:2927" ph=" { " />
+                <marker date="1513247059364" expanded="false" signature="2940:2950" ph=" }" />
+                <marker date="1513247059364" expanded="false" signature="2994:3009" ph=" { " />
+                <marker date="1513247059364" expanded="false" signature="3028:3038" ph=" }" />
+                <marker date="1513247059364" expanded="false" signature="3068:3083" ph=" { " />
+                <marker date="1513247059364" expanded="false" signature="3095:3105" ph=" }" />
+                <marker date="1513247059364" expanded="false" signature="3144:3159" ph=" { " />
+                <marker date="1513247059364" expanded="false" signature="3176:3186" ph=" }" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DBQueries.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/dataBase/DBQueries.java">
+      <file leaf-file-name="OPCDataLoggerActor.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/server/OPCDataLoggerActor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="42" column="32" lean-forward="false" selection-start-line="42" selection-start-column="32" selection-end-line="42" selection-end-column="32" />
+            <state relative-caret-position="221">
+              <caret line="32" column="43" lean-forward="false" selection-start-line="32" selection-start-column="43" selection-end-line="32" selection-end-column="43" />
+              <folding>
+                <marker date="1513104879814" expanded="true" signature="4018:4039" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DBUpdates.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/dataBase/DBUpdates.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="369">
+              <caret line="185" column="0" lean-forward="false" selection-start-line="185" selection-start-column="0" selection-end-line="185" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
+      <file leaf-file-name="Mail.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/server/Mail.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="86" column="21" lean-forward="true" selection-start-line="75" selection-start-column="8" selection-end-line="86" selection-end-column="21" />
-              <folding />
+            <state relative-caret-position="1088">
+              <caret line="86" column="14" lean-forward="false" selection-start-line="86" selection-start-column="14" selection-end-line="86" selection-end-column="14" />
+              <folding>
+                <element signature="method#Mail#0;class#Mail#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -208,7 +238,7 @@
       </MavenImportingSettings>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1382" />
@@ -229,10 +259,10 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
-      <pane id="PackagesPane" />
       <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -503,10 +533,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="212640000" />
+    <option name="totallyTimeSpent" value="212833000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -516,27 +546,48 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17569786" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24309392" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24659607" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25113463" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928804" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928804" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3281768" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17569786" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24659607" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -764,8 +815,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/dataBase/DBUpdates.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="181" column="29" lean-forward="true" selection-start-line="181" selection-start-column="29" selection-end-line="181" selection-end-column="29" />
+        <state relative-caret-position="369">
+          <caret line="185" column="0" lean-forward="false" selection-start-line="185" selection-start-column="0" selection-end-line="185" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -786,7 +838,8 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/dataBase/UpdateDataInDB.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
-          <caret line="22" column="61" lean-forward="false" selection-start-line="22" selection-start-column="61" selection-end-line="22" selection-end-column="61" />
+          <caret line="22" column="36" lean-forward="false" selection-start-line="22" selection-start-column="36" selection-end-line="22" selection-end-column="36" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -813,24 +866,45 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/server/SystemParameterActor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="489">
-          <caret line="39" column="64" lean-forward="true" selection-start-line="39" selection-start-column="29" selection-end-line="39" selection-end-column="64" />
+        <state relative-caret-position="748">
+          <caret line="53" column="0" lean-forward="false" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+          <folding>
+            <marker date="1513247059364" expanded="true" signature="2064:2234" ph="//..." />
+            <marker date="1513247059364" expanded="true" signature="2273:3192" ph="{...}" />
+            <marker date="1513247059364" expanded="true" signature="2423:2524" ph="{...}" />
+            <marker date="1513247059364" expanded="true" signature="2564:2632" ph="{...}" />
+            <marker date="1513247059364" expanded="true" signature="2663:2730" ph="{...}" />
+            <marker date="1513247059364" expanded="false" signature="2762:2777" ph=" { " />
+            <marker date="1513247059364" expanded="false" signature="2788:2798" ph=" }" />
+            <marker date="1513247059364" expanded="false" signature="2838:2853" ph=" { " />
+            <marker date="1513247059364" expanded="false" signature="2868:2878" ph=" }" />
+            <marker date="1513247059364" expanded="false" signature="2912:2927" ph=" { " />
+            <marker date="1513247059364" expanded="false" signature="2940:2950" ph=" }" />
+            <marker date="1513247059364" expanded="false" signature="2994:3009" ph=" { " />
+            <marker date="1513247059364" expanded="false" signature="3028:3038" ph=" }" />
+            <marker date="1513247059364" expanded="false" signature="3068:3083" ph=" { " />
+            <marker date="1513247059364" expanded="false" signature="3095:3105" ph=" }" />
+            <marker date="1513247059364" expanded="false" signature="3144:3159" ph=" { " />
+            <marker date="1513247059364" expanded="false" signature="3176:3186" ph=" }" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/server/OPCDataLoggerActor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-187">
-          <caret line="32" column="43" lean-forward="true" selection-start-line="32" selection-start-column="43" selection-end-line="32" selection-end-column="43" />
+        <state relative-caret-position="221">
+          <caret line="32" column="43" lean-forward="false" selection-start-line="32" selection-start-column="43" selection-end-line="32" selection-end-column="43" />
+          <folding>
+            <marker date="1513104879814" expanded="true" signature="4018:4039" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/server/Mail.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1139">
-          <caret line="84" column="0" lean-forward="false" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
+        <state relative-caret-position="1088">
+          <caret line="86" column="14" lean-forward="false" selection-start-line="86" selection-start-column="14" selection-end-line="86" selection-end-column="14" />
           <folding>
-            <element signature="imports" expanded="false" />
             <element signature="method#Mail#0;class#Mail#0" expanded="false" />
           </folding>
         </state>
@@ -859,10 +933,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/dataBase/GetDBData.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="44" column="49" lean-forward="false" selection-start-line="44" selection-start-column="49" selection-end-line="44" selection-end-column="49" />
+        <state relative-caret-position="1207">
+          <caret line="84" column="0" lean-forward="false" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <marker date="1513247059292" expanded="true" signature="3292:3431" ph="{...}" />
+            <marker date="1513247059292" expanded="true" signature="3437:3621" ph="//..." />
+            <marker date="1513247059292" expanded="true" signature="3671:3791" ph="{...}" />
+            <marker date="1513247059292" expanded="true" signature="3873:4011" ph="{...}" />
+            <marker date="1513247059292" expanded="true" signature="4017:4207" ph="//..." />
+            <marker date="1513247059292" expanded="true" signature="4269:4395" ph="{...}" />
+            <marker date="1513247059292" expanded="true" signature="4489:4633" ph="{...}" />
+            <marker date="1513247059292" expanded="true" signature="4639:4841" ph="//..." />
+            <marker date="1513247059292" expanded="true" signature="4923:5059" ph="{...}" />
+            <marker date="1513247059292" expanded="true" signature="5173:5327" ph="{...}" />
+            <marker date="1513247059292" expanded="true" signature="5333:5525" ph="//..." />
+            <marker date="1513247059292" expanded="true" signature="5588:5717" ph="{...}" />
+            <marker date="1513247059292" expanded="true" signature="5812:5959" ph="{...}" />
+            <marker date="1513247059292" expanded="true" signature="5965:6159" ph="//..." />
+            <marker date="1513247059292" expanded="true" signature="6217:6346" ph="{...}" />
+            <marker date="1513247059292" expanded="true" signature="6352:6538" ph="//..." />
+            <marker date="1513247059292" expanded="true" signature="6601:6726" ph="{...}" />
+            <marker date="1513247059292" expanded="true" signature="6731:7085" ph="//..." />
           </folding>
         </state>
       </provider>
@@ -873,10 +964,6 @@
           <caret line="64" column="63" lean-forward="false" selection-start-line="64" selection-start-column="63" selection-end-line="64" selection-end-column="63" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="class#NotificationRequestDateRange#0;class#NotificationActor#0" expanded="false" />
-            <element signature="class#NotificationRequest#0;class#NotificationActor#0" expanded="false" />
-            <element signature="class#AndonRequest#0;class#NotificationActor#0" expanded="false" />
-            <element signature="class#AndonRequestData#0;class#NotificationActor#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -905,7 +992,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/server/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
-          <caret line="66" column="90" lean-forward="false" selection-start-line="66" selection-start-column="90" selection-end-line="66" selection-end-column="90" />
+          <caret line="66" column="66" lean-forward="true" selection-start-line="66" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -922,7 +1009,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
           <caret line="86" column="21" lean-forward="true" selection-start-line="75" selection-start-column="8" selection-end-line="86" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
