@@ -91,6 +91,7 @@ public class InsertDataToDB {
 
     public Observable<Integer> insertChangeParameterValue(ChangeParameterValue cpv) {
         synchronized (this) {
+            System.out.println("tu " + cpv.getStateSpaceTag() + "  " + cpv.getValue());
             return Observable.fromCallable(() -> queries.insertChangeParameterValue(cpv));
         }
     }

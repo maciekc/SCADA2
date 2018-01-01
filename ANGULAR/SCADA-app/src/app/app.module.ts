@@ -11,15 +11,17 @@ import { PlantComponent } from './components/plant/plant.component'
 import { ControlerComponent } from './components/controler/controler.component'
 import { StatisticsComponent } from './components/statistics/statistics.component';
 import { MessagesComponent } from './components/messages/messages.component';
-import { WarningMessagesComponent } from './components/warning-messages/warning-messages.component';
-import { ErrorMessagesComponent } from './components/error-messages/error-messages.component';
-import { InfoMessagesComponent } from './components/info-messages/info-messages.component'
+// import { WarningMessagesComponent } from './components/warning-messages/warning-messages.component';
+// import { ErrorMessagesComponent } from './components/error-messages/error-messages.component';
+// import { InfoMessagesComponent } from './components/info-messages/info-messages.component'
 import { StateVariablesService } from './services/stateVariableService/state-variables.service';
 import { StatisticService } from './services/statistic-service/statistic-service.service';
 import { ControllerService } from './services/controller-service/controller-service.service';
 import { PlantService } from './services/plant-service/plant.service';
 import { CommonService } from './services/common-service/common.service';
 import {AndonService} from './services/andonService/andon.service';
+import {ReportService} from './services/report-service/report.service';
+import { SchemaComponent } from './components/schema/schema.component';
 
 @NgModule({
   declarations: [
@@ -29,9 +31,11 @@ import {AndonService} from './services/andonService/andon.service';
     ControlerComponent,
     StatisticsComponent,
     MessagesComponent,
-    WarningMessagesComponent,
-    ErrorMessagesComponent,
-    InfoMessagesComponent
+    SchemaComponent
+    // ,
+    // WarningMessagesComponent,
+    // ErrorMessagesComponent,
+    // InfoMessagesComponent
   ],
   imports: [BrowserModule,
     FormsModule,
@@ -39,6 +43,10 @@ import {AndonService} from './services/andonService/andon.service';
     
     CommonModule,
     RouterModule.forRoot([
+      {
+        path: 'schema',
+        component: SchemaComponent
+      },
       {
         path: 'statistics',
         component : StatisticsComponent
@@ -58,7 +66,8 @@ import {AndonService} from './services/andonService/andon.service';
 
     ])
   ],
-  providers: [StateVariablesService, StatisticService, ControllerService, PlantService, CommonService, AndonService],
+  providers: [StateVariablesService, StatisticService, ControllerService, 
+    PlantService, CommonService, AndonService, ReportService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

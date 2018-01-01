@@ -26,12 +26,30 @@ export class ControlerComponent implements OnInit, OnDestroy {
   private valve_2: number = 0;
   private valve_3: number = 0;
   private valve_4: number = 0;
+
+  private controller1: number = 0;
+  private controller2: number = 0;
+  private controller3: number = 0;
+  private controller4: number = 0;
+
+  private controllersTags: String[] = ["CONTROLLER_1", "CONTROLLER_2", "CONTROLLER_3", "CONTROLLER4"]
+  
   private output: number = 0;
   
   // private commonDAtaGetter: CommonService;
 
   constructor(private conrtollerService: ControllerService, private commonDataService: CommonService) {}
   
+
+  changeControllersParametersSubmit(event) {
+    let parametersValues = [this.controller1, this.controller2, this.controller3, this.controller4]
+    this.conrtollerService.changeControllersParametersValues(this.controllersTags, parametersValues)
+    .subscribe( v => {
+      this.updateParameters()
+    })
+  }
+
+
   changeStateVariable(event) {
     let target = event.target;
     let id = target.id;
@@ -53,8 +71,10 @@ export class ControlerComponent implements OnInit, OnDestroy {
     this.initFigures()
 
     this.conrtollerService.startService()
+    this.commonDataService.startService()
 
     this.updatePlotsData()
+    this.updateParameters()
     
     let controller = Observable.interval(5000)
     .subscribe(r => {
@@ -72,13 +92,13 @@ export class ControlerComponent implements OnInit, OnDestroy {
     })
     this.serviceSubscriptions.push(stateVariable);
 
-    let commonData = Observable.interval(5000)
+    let commonData = Observable.interval(1000)
     .subscribe(r => {
-      this.valve_1 = this.commonDataService.getCurrentValue("VALVE_1")[1]
-      this.valve_2 = this.commonDataService.getCurrentValue("VALVE_2")[1]
-      this.valve_3 = this.commonDataService.getCurrentValue("VALVE_3")[1]
-      this.valve_4 = this.commonDataService.getCurrentValue("VALVE_4")[1]
-      this.output = this.commonDataService.getCurrentValue("OUTPUT")[1]
+      this.valve_1 = this.commonDataService.getCurrentValue("VALVE_1")
+      this.valve_2 = this.commonDataService.getCurrentValue("VALVE_2")
+      this.valve_3 = this.commonDataService.getCurrentValue("VALVE_3")
+      this.valve_4 = this.commonDataService.getCurrentValue("VALVE_4")
+      this.output = this.commonDataService.getCurrentValue("OUTPUT")
     })
     this.serviceSubscriptions.push(commonData);
  
@@ -128,5 +148,15 @@ export class ControlerComponent implements OnInit, OnDestroy {
     this.updateStateVariablePlotData()
   }
 
+  private updateParameters() {
+    this.conrtollerService.initControllerParameters()
+    .then(r => {
+      let values = this.conrtollerService.getControllersParametersValues()
+      this.controller1 = values[0]
+      this.controller2 = values[1]
+      this.controller3 = values[2]
+      this.controller4 = values[3]
+    })
+  }
 
 }

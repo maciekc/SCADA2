@@ -6,6 +6,8 @@ import com.scada.model.dataBase.ChangeParameterValue.ChangeParameterValue;
 import com.scada.model.dataBase.ChangeParameterValue.ChangeParameterValueMapper;
 import com.scada.model.dataBase.Controller.Controller;
 import com.scada.model.dataBase.Controller.ControllerMapper;
+import com.scada.model.dataBase.Controller.ControllerParameter;
+import com.scada.model.dataBase.Controller.ControllerParameterMapper;
 import com.scada.model.dataBase.FigurePoint.FigurePoint;
 import com.scada.model.dataBase.FigurePoint.FigurePointMapper;
 import com.scada.model.dataBase.Limit.Limit;
@@ -91,7 +93,8 @@ public interface DBQueries {
         "SELECT sa.id as id, sss.tag as stateSpace, sl.tag as limitTag, sa.value as value, sa.date as date, sl.type as type  FROM scada.andon as sa\n" +
                 "LEFT JOIN scada.limits as sl on sa.limit_id = sl.id\n" +
                 "LEFT JOIN scada.state_space as sss on sa.state_space_id = sss.id\n" +
-                "WHERE sa.id > :lastId;";
+                "WHERE sa.id > :lastId \n" +
+                "ORDER BY id desc;";
     @RegisterMapper(AndonMapper.class)
     @SqlQuery(getAndonDataQuery)
     List<Andon> getAndonData(@Bind("lastId") int lastId);
@@ -100,7 +103,8 @@ public interface DBQueries {
             "SELECT sa.id as id, sss.tag as stateSpace, sl.tag as limitTag, sa.value as value, sa.date as date, sl.type as type  FROM scada.andon as sa\n" +
                     "LEFT JOIN scada.limits as sl on sa.limit_id = sl.id\n" +
                     "LEFT JOIN scada.state_space as sss on sa.state_space_id = sss.id " +
-                    "WHERE sa.date BETWEEN :startDate and :endDate;";
+                    "WHERE sa.date BETWEEN :startDate and :endDate \n" +
+                    "ORDER BY sa.id desc;";
     @RegisterMapper(AndonMapper.class)
     @SqlQuery(getAndonDataQuery_dateRange)
     List<Andon> getAndonData(@Bind("startDate") String startDate, @Bind("endDate") String endDate);
@@ -111,14 +115,16 @@ public interface DBQueries {
 
     String getWorkDataQuery =
             "SELECT sw.id as id, sss.tag as stateSpace, sw.value as value, sw.date as date  FROM scada.work as sw\n" +
-                    "LEFT JOIN scada.state_space as sss on sw.state_space_id = sss.id;";
+                    "LEFT JOIN scada.state_space as sss on sw.state_space_id = sss.id \n" +
+                    "ORDER BY id desc \n" +
+                    "LIMIT 200;";
     @RegisterMapper(WorkMapper.class)
     @SqlQuery(getWorkDataQuery)
     List<Work> getWorkData();
 
     String getWorkDataQuery_dateRange =
             "SELECT sw.id as id, sss.tag as stateSpace, sw.value as value, sw.date as date  FROM scada.work as sw\n" +
-                    "LEFT JOIN scada.state_space as sss on sw.state_space_id = sss.id " +
+                    "LEFT JOIN scada.state_space as sss on sw.state_space_id = sss.id \n" +
                     "WHERE sw.date BETWEEN :startDate and :endDate;";
     @RegisterMapper(WorkMapper.class)
     @SqlQuery(getWorkDataQuery_dateRange)
@@ -145,14 +151,22 @@ public interface DBQueries {
     @SqlQuery(getControllerDataQuery_dateRange)
     List<Controller> getControllerData(@Bind("startDate") String startDate, @Bind("endDate") String endDate);
 
-
+    //------------------------------------------------------------------
+    //                       GET CONTROLLERS PARAMETERS DATA
+    //------------------------------------------------------------------
+    String query =
+            "SELECT tag, value FROM scada.controller_parameter";
+    @RegisterMapper(ControllerParameterMapper.class)
+    @SqlQuery(query)
+    List<ControllerParameter> getControllersParametersData();
     //------------------------------------------------------------------
     //                       GET CHANGE_PARAMETER_VALUE DATA
     //------------------------------------------------------------------
 
     String getCPVDataQuery =
             "SELECT scpv.id as id, ssp.tag as systemParameter, scpv.value as value, scpv.date as date  FROM scada.change_parameter_value as scpv\n" +
-                    "LEFT JOIN scada.system_parameters as ssp on scpv.parameter_id = ssp.id; ";
+                    "LEFT JOIN scada.system_parameters as ssp on scpv.parameter_id = ssp.id \n" +
+                    "ORDER BY id desc;";
     @RegisterMapper(ChangeParameterValueMapper.class)
     @SqlQuery(getCPVDataQuery)
     List<ChangeParameterValue> getChangeParameterValueData();
@@ -180,7 +194,7 @@ public interface DBQueries {
                     "LEFT JOIN scada.limits as sl on sh.variable_state_id = (SELECT id FROM scada.variable_state WHERE tag = 'ANDON') and (SELECT limit_id FROM scada.andon WHERE id = sh.event_id) = sl.id\n" +
                     "\n" +
                     "WHERE sh.variable_state_id in (SELECT id FROM scada.variable_state WHERE tag = 'ANDON' or tag = 'CHANGE_PARAMETER_VALUE')\n" +
-                    "ORDER BY date asc; ";
+                    "ORDER BY id desc; ";
     @RegisterMapper(NotificationMapper.class)
     @SqlQuery(getNotoficationDataQuery)
     List<Notification> getNotificationsData();
@@ -194,7 +208,7 @@ public interface DBQueries {
                     "LEFT JOIN scada.limits as sl on sh.variable_state_id = (SELECT id FROM scada.variable_state WHERE tag = 'ANDON') and (SELECT limit_id FROM scada.andon WHERE id = sh.event_id) = sl.id\n" +
                     "\n" +
                     "WHERE (date BETWEEN :startDate and :endDate) and (sh.variable_state_id in (SELECT id FROM scada.variable_state WHERE tag = 'ANDON' or tag = 'CHANGE_PARAMETER_VALUE'))\n" +
-                    "ORDER BY date asc; ";
+                    "ORDER BY id desc; ";
 
 
     @RegisterMapper(NotificationMapper.class)

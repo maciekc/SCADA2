@@ -3,6 +3,7 @@ package com.scada.dataBase;
 import com.scada.model.dataBase.Andon.Andon;
 import com.scada.model.dataBase.ChangeParameterValue.ChangeParameterValue;
 import com.scada.model.dataBase.Controller.Controller;
+import com.scada.model.dataBase.Controller.ControllerParameter;
 import com.scada.model.dataBase.FigurePoint.FigurePoint;
 import com.scada.model.dataBase.Limit.Limit;
 import com.scada.model.dataBase.Notification.Notification;
@@ -82,7 +83,6 @@ public class GetDBData {
                 this.maxAndonId = Math.max(this.maxAndonId, a.getId());
                 }
             });
-            System.out.println("max id " + this.maxAndonId);
             return andonList;
         }
     }
@@ -122,6 +122,16 @@ public class GetDBData {
     public Observable<List<Controller>> getControllerData(String startDate, String endDate) {
         synchronized (this) {
             return Observable.fromCallable(() -> queries.getControllerData(startDate, endDate));
+        }
+    }
+
+    //------------------------------------------------------------------
+    //                       GET CONTROLLERS PARAMETERS DATA
+    //------------------------------------------------------------------
+
+    public Observable<List<ControllerParameter>> getControllersParameters() {
+        synchronized (this) {
+            return Observable.fromCallable(() -> queries.getControllersParametersData());
         }
     }
 

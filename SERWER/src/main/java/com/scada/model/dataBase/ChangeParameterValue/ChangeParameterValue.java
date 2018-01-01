@@ -5,13 +5,13 @@ import java.io.Serializable;
 public class ChangeParameterValue implements Serializable {
 
     private Integer id;
-    private String systemParameterName;
+    private String stateSpaceTag;
     private Double value;
     private String date;
 
     public ChangeParameterValue(Integer id, String systemParameterName, Double value, String date) {
         this.id = id;
-        this.systemParameterName = systemParameterName;
+        this.stateSpaceTag = systemParameterName;
         this.value = value;
         this.date = date;
     }
@@ -24,12 +24,12 @@ public class ChangeParameterValue implements Serializable {
         this.id = id;
     }
 
-    public String getSystemParameterName() {
-        return systemParameterName;
+    public String getStateSpaceTag() {
+        return stateSpaceTag;
     }
 
-    public void setSystemParameterName(String stateSpaceName) {
-        this.systemParameterName = stateSpaceName;
+    public void setStateSpaceTag(String stateSpaceTag) {
+        this.stateSpaceTag = stateSpaceTag;
     }
 
     public Double getValue() {

@@ -171,7 +171,6 @@ public interface DBUpdates {
                     "name = :name,\n" +
                     "state_space_id = (SELECT id FROM scada.state_space WHERE tag LIKE :stateSpaceTag),\n" +
                     "value = :value,\n" +
-                    "type = :type\n" +
                     "WHERE tag LIKE :tag;";
 
     @SqlUpdate(updateLimitSQL)
@@ -181,11 +180,10 @@ public interface DBUpdates {
             "UPDATE scada.limits\n" +
                     "SET\n" +
                     "value = :value\n" +
-                    "WHERE state_space_id = (SELECT id FROM scada.state_space WHERE tag LIKE :stateSpaceTag) " +
-                    "and type = :type;";
+                    "WHERE tag = :limitTag;";
 
     @SqlUpdate(updateLimitValueSQL)
-    int updateLimit(@Bind("stateSpaceTag") String stateSpaceTag, @Bind("value") Double value, @Bind("type") int type);
+    int updateLimit(@Bind("limitTag") String limitTag, @Bind("value") Double value, @Bind("type") int type);
 
     String insertLimitSQL =
         "INSERT INTO `scada`.`limits`\n"+
@@ -206,4 +204,16 @@ public interface DBUpdates {
     @SqlUpdate(insertLimitSQL)
     int insertLimit(@LimitBinder Limit limit);
 
+    //------------------------------------------------------------------
+    //                   UPDATE Controller PARAMETER
+    //------------------------------------------------------------------
+
+    String updateContParam =
+            "UPDATE scada.controller_parameter \n" +
+                    "SET\n" +
+                    "value = :value\n" +
+                    "WHERE tag = :tag;";
+
+    @SqlUpdate(updateContParam)
+    int updateControllerPArameter(@Bind("tag") String tag,@Bind("value") double value);
 }

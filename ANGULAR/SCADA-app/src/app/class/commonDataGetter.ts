@@ -21,7 +21,7 @@ export class CommonDataGetter {
     }
 
     public currentDataGetter(): Subscription {
-        let subscription: Subscription = Observable.interval(5000) 
+        let subscription: Subscription = Observable.interval(1000) 
         .subscribe(v => {
            this.getCurrentServerData()      
         });
@@ -66,14 +66,13 @@ export class CommonDataGetter {
         let date: String = "";
         let value: number = 0;
         let tag: String = "";
-                   
         return this.http.get<StateVariableData []>(this.urlCurrentData)
         .forEach(r => {
             r.forEach(e => {
                 date = e["date"];
                 value = e["value"];
                 tag = e["stateSpaceTag"];
-                this.currentData.set(tag, [date, value])               
+                this.currentData.set(tag, [date, value])
             })
         })
     }
@@ -92,17 +91,33 @@ export class CommonDataGetter {
     }
 
     public initStateVariableData() {
-        for (let i =0; i< 2; i++) {
+        for (let i =0; i< 3; i++) {
             this.stateVariableData.set("LEVEL_" + (i+1), "Zbiornik " + (i+1))
         }
-        for (let i =0; i< 3; i++) {
+        for (let i =0; i< 4; i++) {
             this.stateVariableData.set("VALVE_" + (i+1), "Zawór " + (i+1))
         }
         this.stateVariableData.set("OUTPUT", "Wyjście")
-
+        this.stateVariableData.set("SET_POINT", "Wart. zadana")
     }
     public getStateVariableData() {
         return this.stateVariableData
+    }
+
+    public getLimitsToLevel() {
+        let m: Map<String, String[]> = new Map();
+        
+        for (let i =0; i< 3; i++) {
+            let limitTab: String[] = [];
+            limitTab.push("LEVEL_" + (i+1) + "_MIN")
+            limitTab.push("LEVEL_" + (i+1) + "_MAX")
+            limitTab.push("LEVEL_" + (i+1) + "_MIN_CRITICAL")
+            limitTab.push("LEVEL_" + (i+1) + "_MAX_CRITICAL")
+
+            m.set("LEVEL_" + (i+1), limitTab)
+        }
+        return m
+
     }
 
     

@@ -27,9 +27,26 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/server/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="66" column="66" lean-forward="true" selection-start-line="66" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="357">
+              <caret line="278" column="133" lean-forward="false" selection-start-line="278" selection-start-column="133" selection-end-line="278" selection-end-column="133" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StateVariableActor.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/server/StateVariableActor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="202">
+              <caret line="85" column="56" lean-forward="true" selection-start-line="85" selection-start-column="56" selection-end-line="85" selection-end-column="56" />
+              <folding>
+                <element signature="class#StateVariabeData#0;class#StateVariableActor#0" expanded="false" />
+                <element signature="class#StateVariableData_dailyMode#0;class#StateVariableActor#0" expanded="false" />
+                <element signature="class#StateVariableData_hourlyMode#0;class#StateVariableActor#0" expanded="false" />
+                <element signature="class#LimitsData#0;class#StateVariableActor#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -37,77 +54,10 @@
       <file leaf-file-name="GetDBData.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/dataBase/GetDBData.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1207">
-              <caret line="84" column="0" lean-forward="false" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
+            <state relative-caret-position="17">
+              <caret line="65" column="49" lean-forward="false" selection-start-line="65" selection-start-column="49" selection-end-line="65" selection-end-column="49" />
               <folding>
-                <marker date="1513247059292" expanded="true" signature="3292:3431" ph="{...}" />
-                <marker date="1513247059292" expanded="true" signature="3437:3621" ph="//..." />
-                <marker date="1513247059292" expanded="true" signature="3671:3791" ph="{...}" />
-                <marker date="1513247059292" expanded="true" signature="3873:4011" ph="{...}" />
-                <marker date="1513247059292" expanded="true" signature="4017:4207" ph="//..." />
-                <marker date="1513247059292" expanded="true" signature="4269:4395" ph="{...}" />
-                <marker date="1513247059292" expanded="true" signature="4489:4633" ph="{...}" />
-                <marker date="1513247059292" expanded="true" signature="4639:4841" ph="//..." />
-                <marker date="1513247059292" expanded="true" signature="4923:5059" ph="{...}" />
-                <marker date="1513247059292" expanded="true" signature="5173:5327" ph="{...}" />
-                <marker date="1513247059292" expanded="true" signature="5333:5525" ph="//..." />
-                <marker date="1513247059292" expanded="true" signature="5588:5717" ph="{...}" />
-                <marker date="1513247059292" expanded="true" signature="5812:5959" ph="{...}" />
-                <marker date="1513247059292" expanded="true" signature="5965:6159" ph="//..." />
-                <marker date="1513247059292" expanded="true" signature="6217:6346" ph="{...}" />
-                <marker date="1513247059292" expanded="true" signature="6352:6538" ph="//..." />
-                <marker date="1513247059292" expanded="true" signature="6601:6726" ph="{...}" />
-                <marker date="1513247059292" expanded="true" signature="6731:7085" ph="//..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UpdateDataInDB.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/dataBase/UpdateDataInDB.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="22" column="36" lean-forward="false" selection-start-line="22" selection-start-column="36" selection-end-line="22" selection-end-column="36" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SystemParameterActor.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/server/SystemParameterActor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="748">
-              <caret line="53" column="0" lean-forward="false" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
-              <folding>
-                <marker date="1513247059364" expanded="true" signature="2064:2234" ph="//..." />
-                <marker date="1513247059364" expanded="true" signature="2273:3192" ph="{...}" />
-                <marker date="1513247059364" expanded="true" signature="2423:2524" ph="{...}" />
-                <marker date="1513247059364" expanded="true" signature="2564:2632" ph="{...}" />
-                <marker date="1513247059364" expanded="true" signature="2663:2730" ph="{...}" />
-                <marker date="1513247059364" expanded="false" signature="2762:2777" ph=" { " />
-                <marker date="1513247059364" expanded="false" signature="2788:2798" ph=" }" />
-                <marker date="1513247059364" expanded="false" signature="2838:2853" ph=" { " />
-                <marker date="1513247059364" expanded="false" signature="2868:2878" ph=" }" />
-                <marker date="1513247059364" expanded="false" signature="2912:2927" ph=" { " />
-                <marker date="1513247059364" expanded="false" signature="2940:2950" ph=" }" />
-                <marker date="1513247059364" expanded="false" signature="2994:3009" ph=" { " />
-                <marker date="1513247059364" expanded="false" signature="3028:3038" ph=" }" />
-                <marker date="1513247059364" expanded="false" signature="3068:3083" ph=" { " />
-                <marker date="1513247059364" expanded="false" signature="3095:3105" ph=" }" />
-                <marker date="1513247059364" expanded="false" signature="3144:3159" ph=" { " />
-                <marker date="1513247059364" expanded="false" signature="3176:3186" ph=" }" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="OPCDataLoggerActor.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/server/OPCDataLoggerActor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="32" column="43" lean-forward="false" selection-start-line="32" selection-start-column="43" selection-end-line="32" selection-end-column="43" />
-              <folding>
-                <marker date="1513104879814" expanded="true" signature="4018:4039" ph="{...}" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -116,8 +66,51 @@
       <file leaf-file-name="DBUpdates.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/dataBase/DBUpdates.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="369">
-              <caret line="185" column="0" lean-forward="false" selection-start-line="185" selection-start-column="0" selection-end-line="185" selection-end-column="0" />
+            <state relative-caret-position="656">
+              <caret line="217" column="87" lean-forward="false" selection-start-line="217" selection-start-column="87" selection-end-line="217" selection-end-column="87" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GetDBData.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/dataBase/GetDBData.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="374">
+              <caret line="132" column="29" lean-forward="true" selection-start-line="132" selection-start-column="29" selection-end-line="132" selection-end-column="29" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SystemParameterActor.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/server/SystemParameterActor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-203">
+              <caret line="66" column="17" lean-forward="true" selection-start-line="66" selection-start-column="17" selection-end-line="66" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ControllerParameter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/model/dataBase/Controller/ControllerParameter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="14" column="25" lean-forward="false" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
+              <folding>
+                <element signature="e#369#370#0" expanded="true" />
+                <element signature="e#395#396#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DBUpdates.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/dataBase/DBUpdates.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="157" column="30" lean-forward="false" selection-start-line="157" selection-start-column="30" selection-end-line="157" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -154,6 +147,7 @@
       <find>_tag</find>
       <find>from(</find>
       <find>just(</find>
+      <find>LimitUpdate</find>
     </findStrings>
     <replaceStrings>
       <replace>itTag</replace>
@@ -171,11 +165,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/scada/server/DBUpdates.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/scada/server/DBQueries.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/scada/server/GetDBData.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/scada/server/ChangeParameterValueMapper.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/scada/server/ChangeParameterValueBinder.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/scada/server/ChangeParameterValue.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/scada/model/dataBase/StateSpaceMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/scada/model/dataBase/Limit.java" />
@@ -204,11 +193,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/scada/server/OPCDataLogger.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/scada/model/dataBase/FigurePoint/FigurePoint.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/scada/server/LimitUpdate.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/scada/server/SystemParameterActor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/scada/dataBase/DBUpdates.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/scada/dataBase/UpdateDataInDB.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/scada/dataBase/InsertDataToDB.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/scada/server/StateVariableActor.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/scada/server/OPCDataLoggerActor.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/scada/model/dataBase/Andon/Andon.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/scada/model/dataBase/Andon/AndonBinder.java" />
@@ -217,11 +201,21 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/scada/server/SendMail.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/scada/server/Mail.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/scada/dataBase/GetDBData.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/scada/server/NotificationActor.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/scada/server/ReportDataActor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/scada/server/Main.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/scada/model/dataBase/ChangeParameterValue/ChangeParameterValue.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/scada/model/dataBase/ChangeParameterValue/ChangeParameterValueBinder.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/scada/server/NotificationActor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/scada/dataBase/InsertDataToDB.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/scada/server/StateVariableActor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/scada/model/dataBase/Controller/ControllerParameterBinder.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/scada/model/dataBase/Controller/ControllerParameterMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/scada/dataBase/DBQueries.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/scada/dataBase/GetDBData.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/scada/dataBase/UpdateDataInDB.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/scada/dataBase/DBUpdates.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/scada/server/SystemParameterActor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/scada/model/dataBase/Controller/ControllerParameter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/scada/server/Main.java" />
       </list>
     </option>
   </component>
@@ -238,11 +232,11 @@
       </MavenImportingSettings>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1382" />
-    <option name="height" value="744" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="1340" />
+    <option name="y" value="33" />
+    <option name="width" value="1296" />
+    <option name="height" value="1040" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -259,7 +253,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="Scope" />
       <pane id="AndroidView" />
       <pane id="PackagesPane" />
@@ -312,12 +305,63 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="scada" type="462c0819:PsiDirectoryNode" />
+              <item name="dataBase" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Server_HTTP_OPC" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SERWER" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="scada" type="462c0819:PsiDirectoryNode" />
+              <item name="dataBase" type="462c0819:PsiDirectoryNode" />
+              <item name="ChangeParameterValue" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Server_HTTP_OPC" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SERWER" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="scada" type="462c0819:PsiDirectoryNode" />
+              <item name="dataBase" type="462c0819:PsiDirectoryNode" />
+              <item name="Controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Server_HTTP_OPC" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SERWER" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="scada" type="462c0819:PsiDirectoryNode" />
+              <item name="dataBase" type="462c0819:PsiDirectoryNode" />
+              <item name="Limit" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Server_HTTP_OPC" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SERWER" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="scada" type="462c0819:PsiDirectoryNode" />
+              <item name="dataBase" type="462c0819:PsiDirectoryNode" />
+              <item name="Work" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Server_HTTP_OPC" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SERWER" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="scada" type="462c0819:PsiDirectoryNode" />
               <item name="server" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -526,14 +570,20 @@
       <workItem from="1511010327617" duration="7302000" />
       <workItem from="1511086281313" duration="138000" />
       <workItem from="1511086680243" duration="7347000" />
-      <workItem from="1511881623623" duration="1770000" />
-      <workItem from="1511883576252" duration="1742000" />
-      <workItem from="1512932627165" duration="445000" />
+      <workItem from="1511120750315" duration="494000" />
+      <workItem from="1511296736541" duration="3407000" />
+      <workItem from="1511377705342" duration="4204000" />
+      <workItem from="1511462150889" duration="7656000" />
+      <workItem from="1513246838239" duration="81000" />
+      <workItem from="1513458510687" duration="749000" />
+      <workItem from="1513516478825" duration="168000" />
+      <workItem from="1513880067089" duration="31000" />
+      <workItem from="1514800200468" duration="6011000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="212833000" />
+    <option name="totallyTimeSpent" value="234208000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
@@ -546,20 +596,20 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17900552" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24309392" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25113463" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.262945" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928804" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -610,33 +660,18 @@
           <properties />
           <option name="timeStamp" value="9" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/scada/server/StateVariableActor.java</url>
+          <line>131</line>
+          <properties />
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="12" />
+      <option name="time" value="14" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/dataBase/GetDBData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="29" column="72" lean-forward="false" selection-start-line="29" selection-start-column="72" selection-end-line="29" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/model/dataBase/FigurePoint/FigurePoint.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/model/dataBase/FigurePoint/FigurePointMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="13" column="26" lean-forward="false" selection-start-line="13" selection-start-column="26" selection-end-line="13" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/dataBase/DBQueries.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -649,7 +684,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="6" column="21" lean-forward="true" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -664,7 +701,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -680,65 +719,18 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="14" column="48" lean-forward="false" selection-start-line="14" selection-start-column="48" selection-end-line="14" selection-end-column="48" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/javafish/clients/opc/JCustomOpc.java" />
     <entry file="file://$PROJECT_DIR$/resources/javafish/clients/opc/JCustomOpc.properties" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/model/dataBase/ChangeParameterValue/ChangeParameterValueBinder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="13" column="18" lean-forward="false" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/model/dataBase/ChangeParameterValue/ChangeParameterValueMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/model/dataBase/Limit/LimitBinder.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="23" column="64" lean-forward="false" selection-start-line="23" selection-start-column="64" selection-end-line="23" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/model/dataBase/Work/Work.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="31" column="43" lean-forward="false" selection-start-line="31" selection-start-column="43" selection-end-line="31" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/model/dataBase/Controller/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="41" column="29" lean-forward="false" selection-start-line="41" selection-start-column="29" selection-end-line="41" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/model/dataBase/Controller/ControllerBinder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="70" lean-forward="false" selection-start-line="21" selection-start-column="67" selection-end-line="21" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/model/dataBase/Controller/ControllerMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="113" lean-forward="false" selection-start-line="12" selection-start-column="113" selection-end-line="12" selection-end-column="113" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/model/dataBase/Work/WorkBinder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="21" column="66" lean-forward="false" selection-start-line="21" selection-start-column="66" selection-end-line="21" selection-end-column="66" />
         </state>
       </provider>
     </entry>
@@ -753,13 +745,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="12" column="98" lean-forward="false" selection-start-line="12" selection-start-column="98" selection-end-line="12" selection-end-column="98" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/model/dataBase/StateVariable/StateVariable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="23" lean-forward="false" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="23" />
         </state>
       </provider>
     </entry>
@@ -784,13 +769,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/model/dataBase/Work/WorkMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/model/dataBase/Limit/LimitMapper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -798,33 +776,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/model/dataBase/Limit/Limit.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="523">
-          <caret line="41" column="0" lean-forward="true" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/server/LimitUpdate.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/model/dataBase/ChangeParameterValue/ChangeParameterValue.java">
+    <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        <state relative-caret-position="674">
+          <caret line="94" column="0" lean-forward="false" selection-start-line="94" selection-start-column="0" selection-end-line="94" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/dataBase/DBUpdates.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/com/typesafe/akka/akka-actor_2.11/2.5.4/akka-actor_2.11-2.5.4.jar!/akka/actor/LightArrayRevolverScheduler.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="369">
-          <caret line="185" column="0" lean-forward="false" selection-start-line="185" selection-start-column="0" selection-end-line="185" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="408">
+          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/model/dataBase/Andon/AndonBinder.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/model/dataBase/Notification/Notification.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="25" column="50" lean-forward="false" selection-start-line="25" selection-start-column="50" selection-end-line="25" selection-end-column="50" />
+        <state relative-caret-position="493">
+          <caret line="35" column="30" lean-forward="false" selection-start-line="35" selection-start-column="30" selection-end-line="35" selection-end-column="30" />
         </state>
       </provider>
     </entry>
@@ -835,57 +805,54 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/dataBase/UpdateDataInDB.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/model/dataBase/Andon/AndonBinder.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
-          <caret line="22" column="36" lean-forward="false" selection-start-line="22" selection-start-column="36" selection-end-line="22" selection-end-column="36" />
-          <folding />
+          <caret line="25" column="50" lean-forward="false" selection-start-line="25" selection-start-column="50" selection-end-line="25" selection-end-column="50" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/dataBase/InsertDataToDB.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/model/dataBase/Andon/Andon.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="846">
-          <caret line="102" column="0" lean-forward="true" selection-start-line="102" selection-start-column="0" selection-end-line="102" selection-end-column="0" />
+        <state relative-caret-position="119">
+          <caret line="7" column="32" lean-forward="false" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/model/dataBase/ChangeParameterValue/ChangeParameterValueBinder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="22" column="71" lean-forward="false" selection-start-line="22" selection-start-column="71" selection-end-line="22" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/model/dataBase/ChangeParameterValue/ChangeParameterValueMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/server/OPCServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-772">
-          <caret line="25" column="112" lean-forward="false" selection-start-line="25" selection-start-column="112" selection-end-line="25" selection-end-column="112" />
+        <state relative-caret-position="323">
+          <caret line="79" column="61" lean-forward="true" selection-start-line="79" selection-start-column="12" selection-end-line="79" selection-end-column="61" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/server/StateVariableActor.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/server/ReportDataActor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="833">
-          <caret line="70" column="35" lean-forward="true" selection-start-line="70" selection-start-column="35" selection-end-line="70" selection-end-column="35" />
+        <state relative-caret-position="1462">
+          <caret line="95" column="31" lean-forward="false" selection-start-line="95" selection-start-column="31" selection-end-line="95" selection-end-column="31" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/server/SystemParameterActor.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/server/Mail.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="748">
-          <caret line="53" column="0" lean-forward="false" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+        <state relative-caret-position="425">
+          <caret line="86" column="14" lean-forward="false" selection-start-line="86" selection-start-column="14" selection-end-line="86" selection-end-column="14" />
           <folding>
-            <marker date="1513247059364" expanded="true" signature="2064:2234" ph="//..." />
-            <marker date="1513247059364" expanded="true" signature="2273:3192" ph="{...}" />
-            <marker date="1513247059364" expanded="true" signature="2423:2524" ph="{...}" />
-            <marker date="1513247059364" expanded="true" signature="2564:2632" ph="{...}" />
-            <marker date="1513247059364" expanded="true" signature="2663:2730" ph="{...}" />
-            <marker date="1513247059364" expanded="false" signature="2762:2777" ph=" { " />
-            <marker date="1513247059364" expanded="false" signature="2788:2798" ph=" }" />
-            <marker date="1513247059364" expanded="false" signature="2838:2853" ph=" { " />
-            <marker date="1513247059364" expanded="false" signature="2868:2878" ph=" }" />
-            <marker date="1513247059364" expanded="false" signature="2912:2927" ph=" { " />
-            <marker date="1513247059364" expanded="false" signature="2940:2950" ph=" }" />
-            <marker date="1513247059364" expanded="false" signature="2994:3009" ph=" { " />
-            <marker date="1513247059364" expanded="false" signature="3028:3038" ph=" }" />
-            <marker date="1513247059364" expanded="false" signature="3068:3083" ph=" { " />
-            <marker date="1513247059364" expanded="false" signature="3095:3105" ph=" }" />
-            <marker date="1513247059364" expanded="false" signature="3144:3159" ph=" { " />
-            <marker date="1513247059364" expanded="false" signature="3176:3186" ph=" }" />
+            <element signature="method#Mail#0;class#Mail#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -900,91 +867,193 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/server/Mail.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/model/dataBase/Controller/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1088">
-          <caret line="86" column="14" lean-forward="false" selection-start-line="86" selection-start-column="14" selection-end-line="86" selection-end-column="14" />
+        <state relative-caret-position="465">
+          <caret line="41" column="29" lean-forward="false" selection-start-line="41" selection-start-column="29" selection-end-line="41" selection-end-column="29" />
           <folding>
-            <element signature="method#Mail#0;class#Mail#0" expanded="false" />
+            <element signature="e#1008#1009#0" expanded="false" />
+            <element signature="e#1064#1065#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/typesafe/akka/akka-actor_2.11/2.5.4/akka-actor_2.11-2.5.4.jar!/akka/actor/LightArrayRevolverScheduler.class">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/model/dataBase/Work/WorkMapper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+        <state relative-caret-position="68">
+          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/model/dataBase/Andon/Andon.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/model/dataBase/Work/WorkBinder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="850">
-          <caret line="70" column="28" lean-forward="false" selection-start-line="70" selection-start-column="28" selection-end-line="70" selection-end-column="28" />
+        <state relative-caret-position="255">
+          <caret line="21" column="66" lean-forward="false" selection-start-line="21" selection-start-column="66" selection-end-line="21" selection-end-column="66" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/model/dataBase/Notification/Notification.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/model/dataBase/Work/Work.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="35" column="30" lean-forward="false" selection-start-line="35" selection-start-column="30" selection-end-line="35" selection-end-column="30" />
+        <state relative-caret-position="102">
+          <caret line="7" column="32" lean-forward="false" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="32" />
+          <folding>
+            <element signature="e#681#682#0" expanded="true" />
+            <element signature="e#731#732#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/model/dataBase/StateVariable/StateVariable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="23" lean-forward="false" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/model/dataBase/Controller/ControllerMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="14" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/model/dataBase/Controller/ControllerBinder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="30" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/model/dataBase/Controller/ControllerParameterMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="12" column="38" lean-forward="false" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="38" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/dataBase/GetDBData.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1207">
-          <caret line="84" column="0" lean-forward="false" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
-          <folding>
-            <marker date="1513247059292" expanded="true" signature="3292:3431" ph="{...}" />
-            <marker date="1513247059292" expanded="true" signature="3437:3621" ph="//..." />
-            <marker date="1513247059292" expanded="true" signature="3671:3791" ph="{...}" />
-            <marker date="1513247059292" expanded="true" signature="3873:4011" ph="{...}" />
-            <marker date="1513247059292" expanded="true" signature="4017:4207" ph="//..." />
-            <marker date="1513247059292" expanded="true" signature="4269:4395" ph="{...}" />
-            <marker date="1513247059292" expanded="true" signature="4489:4633" ph="{...}" />
-            <marker date="1513247059292" expanded="true" signature="4639:4841" ph="//..." />
-            <marker date="1513247059292" expanded="true" signature="4923:5059" ph="{...}" />
-            <marker date="1513247059292" expanded="true" signature="5173:5327" ph="{...}" />
-            <marker date="1513247059292" expanded="true" signature="5333:5525" ph="//..." />
-            <marker date="1513247059292" expanded="true" signature="5588:5717" ph="{...}" />
-            <marker date="1513247059292" expanded="true" signature="5812:5959" ph="{...}" />
-            <marker date="1513247059292" expanded="true" signature="5965:6159" ph="//..." />
-            <marker date="1513247059292" expanded="true" signature="6217:6346" ph="{...}" />
-            <marker date="1513247059292" expanded="true" signature="6352:6538" ph="//..." />
-            <marker date="1513247059292" expanded="true" signature="6601:6726" ph="{...}" />
-            <marker date="1513247059292" expanded="true" signature="6731:7085" ph="//..." />
-          </folding>
+        <state relative-caret-position="374">
+          <caret line="132" column="29" lean-forward="true" selection-start-line="132" selection-start-column="29" selection-end-line="132" selection-end-column="29" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/server/NotificationActor.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/model/dataBase/Controller/ControllerParameterBinder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="799">
-          <caret line="64" column="63" lean-forward="false" selection-start-line="64" selection-start-column="63" selection-end-line="64" selection-end-column="63" />
+        <state relative-caret-position="153">
+          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/server/ReportDataActor.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/dataBase/DBQueries.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
-          <caret line="54" column="45" lean-forward="false" selection-start-line="54" selection-start-column="45" selection-end-line="54" selection-end-column="45" />
+        <state relative-caret-position="289">
+          <caret line="157" column="30" lean-forward="false" selection-start-line="157" selection-start-column="30" selection-end-line="157" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/model/dataBase/Limit/Limit.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="41" column="0" lean-forward="true" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/model/dataBase/ChangeParameterValue/ChangeParameterValue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="26" column="36" lean-forward="false" selection-start-line="26" selection-start-column="36" selection-end-line="26" selection-end-column="36" />
           <folding>
-            <element signature="class#DateRange#0;class#ReportDataActor#0" expanded="false" />
-            <element signature="method#DateRange#0;class#DateRange#0;class#ReportDataActor#0" expanded="false" />
-            <element signature="class#AndonData#0;class#ReportDataActor#0" expanded="false" />
-            <element signature="class#AndonDataDateRange#0;class#ReportDataActor#0" expanded="false" />
-            <element signature="method#AndonDataDateRange#0;class#AndonDataDateRange#0;class#ReportDataActor#0" expanded="false" />
-            <element signature="method#AndonDataDateRange#1;class#AndonDataDateRange#0;class#ReportDataActor#0" expanded="false" />
-            <element signature="class#WorkData#0;class#ReportDataActor#0" expanded="false" />
-            <element signature="class#WorkDataDateRange#0;class#ReportDataActor#0" expanded="false" />
-            <element signature="class#ControllerData#0;class#ReportDataActor#0" expanded="false" />
-            <element signature="class#ControllerDataDateRange#0;class#ReportDataActor#0" expanded="false" />
-            <element signature="class#ChangeParameterValueData#0;class#ReportDataActor#0" expanded="false" />
-            <element signature="class#ChangeParameterValueDataDateRange#0;class#ReportDataActor#0" expanded="false" />
+            <element signature="e#648#649#0" expanded="true" />
+            <element signature="e#684#685#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/dataBase/InsertDataToDB.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="233">
+          <caret line="93" column="71" lean-forward="false" selection-start-line="93" selection-start-column="71" selection-end-line="93" selection-end-column="71" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/dataBase/DBUpdates.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="656">
+          <caret line="217" column="87" lean-forward="false" selection-start-line="217" selection-start-column="87" selection-end-line="217" selection-end-column="87" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/dataBase/UpdateDataInDB.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="32" column="82" lean-forward="false" selection-start-line="32" selection-start-column="57" selection-end-line="32" selection-end-column="82" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/server/NotificationActor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="65" column="49" lean-forward="false" selection-start-line="65" selection-start-column="49" selection-end-line="65" selection-end-column="49" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/server/SystemParameterActor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-203">
+          <caret line="66" column="17" lean-forward="true" selection-start-line="66" selection-start-column="17" selection-end-line="66" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/model/dataBase/Controller/ControllerParameter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="25" lean-forward="false" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
+          <folding>
+            <element signature="e#369#370#0" expanded="true" />
+            <element signature="e#395#396#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/server/StateVariableActor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="85" column="56" lean-forward="true" selection-start-line="85" selection-start-column="56" selection-end-line="85" selection-end-column="56" />
+          <folding>
+            <element signature="class#StateVariabeData#0;class#StateVariableActor#0" expanded="false" />
+            <element signature="class#StateVariableData_dailyMode#0;class#StateVariableActor#0" expanded="false" />
+            <element signature="class#StateVariableData_hourlyMode#0;class#StateVariableActor#0" expanded="false" />
+            <element signature="class#LimitsData#0;class#StateVariableActor#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/scada/server/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="278" column="133" lean-forward="false" selection-start-line="278" selection-start-column="133" selection-end-line="278" selection-end-column="133" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
