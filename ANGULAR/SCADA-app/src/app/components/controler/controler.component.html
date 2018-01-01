@@ -47,7 +47,47 @@
       <div class="titleHeader">
           <h2>Nastawy regulatora</h2>
       </div>
-  </div>
+
+      <div class="dataBox" style="background-color: rgb(243, 229, 253)">
+          <div class="wrapper" style="height: 40%;margin-right: 5px; width: 100%;">
+            <div style="width: calc(50% - 5px); height: 100%; float: left;margin-right: 10px;">
+              <div class="caption">
+                <div style="height: 50%; width: 100%"></div>
+                <div style="height: 50%; width: 100%">Reg. 1</div> 
+              </div>
+              <div class="indicator"> <input class="input" type="text" [(ngModel)]="controller1"></div>
+            </div>
+            <div style="width: calc(50% - 5px); height: 100%; float: left;">
+              <div class="caption">
+                <div style="height: 50%; width: 100%"></div>
+                <div style="height: 50%; width: 100%">Reg. 2 </div> 
+              </div>
+              <div class="indicator"> <input class="input" type="text" [(ngModel)]="controller2"> </div>
+            </div>
+          </div>
+          <div class="wrapper" style="height: 40%;width: 100%;">
+            <div style="width: calc(50% - 2.5px); height: 100%; float: left;margin-right: 5px;">
+                <div class="caption">
+                  <div style="height: 50%; width: 100%"></div>
+                  <div style="height: 50%; width: 100%">Reg. 3</div> 
+                </div>
+                <div class="indicator"> <input class="input" type="text" [(ngModel)]="controller3"> </div>
+              </div>
+              <div style="width: calc(50% - 2.5px); height: 100%; float: left;">
+                <div class="caption">
+                  <div style="height: 50%; width: 100%"></div>
+                  <div style="height: 50%; width: 100%">Reg. 4</div> 
+                </div>
+                <div class="indicator"> <input class="input" [(ngModel)]="controller4"> </div>
+              </div>
+          </div>
+          <div style="height: 20%; width: 100%">
+            <!-- <div style="height: 30%; width: 100%"></div> -->
+            <button type="button" class="btn btn-warning" style="height:80%;" (click) =" changeControllersParametersSubmit($event)">Zmień</button>
+          </div>
+          
+        </div>
+    </div>
   <!-- <div style="width: 2px;height: 100%;float: left;">    
   <div style="width: 1px;height: 100%;float: left;border-right: 1px solid #cacaca;"></div>
   <div style="width: 2px;height: 100%;float: left;"> -->
@@ -56,5 +96,45 @@
           <h2>Parametry</h2>
       </div>
 
+      <div class="dataBox" style="background-color: rgb(255, 223, 219)">
+          <div class="wrapper" style="height: 40%;margin-right: 5px; width: 100%;">
+            <div style="width: calc(50% - 5px); height: 100%; float: left;margin-right: 10px;">
+              <div class="caption ">
+                <div style="height: 50%; width: 100%"></div>
+                <div style="height: 50%; width: 100%">Zawór. 1</div> 
+              </div>
+              <div class="indicator label"> {{valve_1}} </div>
+              
+            </div>
+            <div style="width: calc(50% - 5px); height: 100%; float: left;">
+              <div class="caption ">
+                <div style="height: 50%; width: 100%"></div>
+                <div style="height: 50%; width: 100%">Zawór. 2 </div> 
+              </div>
+              <div class="indicator label"> {{valve_2}} </div>
+            </div>
+          </div>
+          <div class="wrapper" style="height: 40%;width: 100%;">
+            <div style="width: calc(50% - 5px); height: 100%; float: left;margin-right: 10px;">
+                <div class="caption ">
+                  <div style="height: 50%; width: 100%"></div>
+                  <div style="height: 50%; width: 100%">Zawór. 3</div> 
+                </div>
+                <div class="indicator label"> {{valve_3}} </div>
+              </div>
+              <div style="width: calc(50% - 5px); height: 100%; float: left;">
+                <div class="caption ">
+                  <div style="height: 50%; width: 100%"></div>
+                  <div style="height: 50%; width: 100%">Zawór. 4</div> 
+                </div>
+                <div class="indicator label"> {{valve_4}} </div>
+              </div>
+          </div>
+          <!-- <div style="height: 20%; width: 100%">
+            <div style="height: 30%; width: 100%"></div>
+            <button type="button" class="btn btn-warning" (click) =" changeControllersParametersSubmit($event)">Zmień</button>
+          </div> -->
+          
+      </div>
   </div>
 </div>

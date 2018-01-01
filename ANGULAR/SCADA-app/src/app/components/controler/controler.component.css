@@ -15,3 +15,51 @@
     border-radius: 2px;
 }
 
+.indicator {
+    /* color: #555555; */
+    font-size: 4.5vh;
+    float: left;
+    height: 100%;
+    width: 40%;
+    text-align: left;
+        
+}
+
+.label {
+    color: #555555;
+    border: 1px solid #c0c0c0;
+    background-color: #fafafa;
+}
+
+.input {
+    color: #555555;
+    /* font-size: 4vh; */
+    width: 100%; 
+    height: calc(100% - 5px);
+    /* padding-bottom: 10px; */
+}
+
+.caption {
+    /* color: #555555; */
+    font-size: 2.5vh;
+    float: left;
+    padding-right: 10px;
+    height: 100%;
+    width: 60%;
+    text-align: left;
+}
+
+.dataBox {
+    width: calc(100% - 10px);
+    height: 100%;
+    float: left;
+    margin: 5px;
+    
+}
+
+.dataBox {
+    background-color: #fcf8e3;
+    height: calc(100% - 40px);
+    border-radius: 2px 2px 0px 0px;
+    margin-top: 10px;
+}

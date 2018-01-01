@@ -21,7 +21,7 @@ export class CommonDataGetter {
     }
 
     public currentDataGetter(): Subscription {
-        let subscription: Subscription = Observable.interval(5000) 
+        let subscription: Subscription = Observable.interval(1000) 
         .subscribe(v => {
            this.getCurrentServerData()      
         });
@@ -66,14 +66,13 @@ export class CommonDataGetter {
         let date: String = "";
         let value: number = 0;
         let tag: String = "";
-                   
         return this.http.get<StateVariableData []>(this.urlCurrentData)
         .forEach(r => {
             r.forEach(e => {
                 date = e["date"];
                 value = e["value"];
                 tag = e["stateSpaceTag"];
-                this.currentData.set(tag, [date, value])               
+                this.currentData.set(tag, [date, value])
             })
         })
     }

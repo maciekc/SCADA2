@@ -4,6 +4,9 @@ import {Observable, Subscription} from "rxjs";
 
 
 import { PlotDataGetter } from '../../class/plotDataGetter';
+import { SendDataToServer } from '../../class/sendDataToServer';
+import { ControllerDataGetter } from '../../class/controllerDataGetter';
+
 
 
 @Injectable()
@@ -12,11 +15,15 @@ export class ControllerService {
   private subscriptions: Subscription [] = [];
   private controllPlotDataGetter: PlotDataGetter;
   private stateVariablePlotDataGetter: PlotDataGetter;
+  private controllerDataGetter: ControllerDataGetter;
+  private sendDataToServer : SendDataToServer;
   
 
   constructor(private http: HttpClient) {
     this.controllPlotDataGetter = new PlotDataGetter(this.http, "VALVE_1");
     this.stateVariablePlotDataGetter = new PlotDataGetter(this.http, "LEVEL_1");
+    this.controllerDataGetter = new ControllerDataGetter(http);
+    this.sendDataToServer = new SendDataToServer(http);
   }
 
   public chanegControllPlotTab(tag: String) {
@@ -28,8 +35,20 @@ export class ControllerService {
   }
 
 
-  public initControllerDataGetter(tag: String ) {
-    this.controllPlotDataGetter = new PlotDataGetter(this.http, tag);
+  public initControllerDataGetter() {
+    this.controllerDataGetter.initControllerDataGetter();
+  }
+
+  public initControllerParameters() {
+    return this.controllerDataGetter.initControllerParametersData();
+  }
+
+  public getControllersDataVaules() {
+    return this.controllerDataGetter.getControllersValues()
+  }
+
+  public getControllersParametersValues() {
+    return this.controllerDataGetter.getControllersParametersValues()
   }
 
   public getControllerValues() {
@@ -54,6 +73,9 @@ export class ControllerService {
 
     let sub3 = this.stateVariablePlotDataGetter.plotGetter()
     this.subscriptions.push(sub3)
+    
+    // let subC = this.controllerDataGetter.controllerDataGetter()
+    // this.subscriptions.push(subC)
   }
 
   public stopService() {
@@ -68,6 +90,10 @@ export class ControllerService {
   
   public initStateVariablePlotDataGetter() {
     return this.stateVariablePlotDataGetter.initPlotDataGetter()
+  }
+
+  public changeControllersParametersValues(tags: String[], values: number[]) {
+    return this.sendDataToServer.sendControllerParametersToServer(tags, values)
   }
 
 }

@@ -21,6 +21,7 @@ import { PlantService } from './services/plant-service/plant.service';
 import { CommonService } from './services/common-service/common.service';
 import {AndonService} from './services/andonService/andon.service';
 import {ReportService} from './services/report-service/report.service';
+import { SchemaComponent } from './components/schema/schema.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import {ReportService} from './services/report-service/report.service';
     PlantComponent,
     ControlerComponent,
     StatisticsComponent,
-    MessagesComponent
+    MessagesComponent,
+    SchemaComponent
     // ,
     // WarningMessagesComponent,
     // ErrorMessagesComponent,
@@ -41,6 +43,10 @@ import {ReportService} from './services/report-service/report.service';
     
     CommonModule,
     RouterModule.forRoot([
+      {
+        path: 'schema',
+        component: SchemaComponent
+      },
       {
         path: 'statistics',
         component : StatisticsComponent

@@ -204,4 +204,16 @@ public interface DBUpdates {
     @SqlUpdate(insertLimitSQL)
     int insertLimit(@LimitBinder Limit limit);
 
+    //------------------------------------------------------------------
+    //                   UPDATE Controller PARAMETER
+    //------------------------------------------------------------------
+
+    String updateContParam =
+            "UPDATE scada.controller_parameter \n" +
+                    "SET\n" +
+                    "value = :value\n" +
+                    "WHERE tag = :tag;";
+
+    @SqlUpdate(updateContParam)
+    int updateControllerPArameter(@Bind("tag") String tag,@Bind("value") double value);
 }

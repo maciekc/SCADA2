@@ -6,6 +6,8 @@ import com.scada.model.dataBase.ChangeParameterValue.ChangeParameterValue;
 import com.scada.model.dataBase.ChangeParameterValue.ChangeParameterValueMapper;
 import com.scada.model.dataBase.Controller.Controller;
 import com.scada.model.dataBase.Controller.ControllerMapper;
+import com.scada.model.dataBase.Controller.ControllerParameter;
+import com.scada.model.dataBase.Controller.ControllerParameterMapper;
 import com.scada.model.dataBase.FigurePoint.FigurePoint;
 import com.scada.model.dataBase.FigurePoint.FigurePointMapper;
 import com.scada.model.dataBase.Limit.Limit;
@@ -149,7 +151,14 @@ public interface DBQueries {
     @SqlQuery(getControllerDataQuery_dateRange)
     List<Controller> getControllerData(@Bind("startDate") String startDate, @Bind("endDate") String endDate);
 
-
+    //------------------------------------------------------------------
+    //                       GET CONTROLLERS PARAMETERS DATA
+    //------------------------------------------------------------------
+    String query =
+            "SELECT tag, value FROM scada.controller_parameter";
+    @RegisterMapper(ControllerParameterMapper.class)
+    @SqlQuery(query)
+    List<ControllerParameter> getControllersParametersData();
     //------------------------------------------------------------------
     //                       GET CHANGE_PARAMETER_VALUE DATA
     //------------------------------------------------------------------

@@ -82,6 +82,13 @@ public class StateVariableActor extends AbstractActor {
                                 getSender().tell(v, getSelf());
                                 });
                 })
+                .match(ControllersParametersData.class, m-> {
+                    getDBData.getControllersParameters()
+                            .subscribe(v -> {
+                                log.info("CV data {}", v);
+                                getSender().tell(v, getSelf());
+                            });
+                })
                 .matchAny(o -> log.info("received unknown message"))
                 .build();
     }
@@ -152,5 +159,5 @@ public class StateVariableActor extends AbstractActor {
         }
     }
 
-
+    static public class ControllersParametersData {}
 }

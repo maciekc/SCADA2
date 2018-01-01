@@ -4,7 +4,7 @@ import {Observable, Subscription} from "rxjs";
 
 
 import { PlotDataGetter } from '../../class/plotDataGetter';
-import { SendDataToServer } from '../../class/sendValuesToServer';
+import { SendDataToServer } from '../../class/sendDataToServer';
 
 
 @Injectable()

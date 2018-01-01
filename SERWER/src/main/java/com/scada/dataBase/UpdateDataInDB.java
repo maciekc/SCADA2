@@ -28,4 +28,10 @@ public class UpdateDataInDB {
         }
     }
 
+    public  Observable<Integer> updateControllerParameter(String tag, double value) {
+        synchronized (this) {
+            return Observable.fromCallable(() -> queries.updateControllerPArameter(tag, value));
+        }
+    }
+
 }

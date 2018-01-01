@@ -7,6 +7,7 @@ import akka.event.LoggingAdapter;
 import com.scada.dataBase.InsertDataToDB;
 import com.scada.dataBase.UpdateDataInDB;
 import com.scada.model.dataBase.ChangeParameterValue.ChangeParameterValue;
+import com.scada.model.dataBase.Controller.ControllerParameter;
 import rx.Observable;
 import rx.Scheduler;
 import rx.schedulers.Schedulers;
@@ -56,6 +57,14 @@ public class SystemParameterActor extends AbstractActor {
                                 getSender().tell("OK", getSelf());
                             })
                 )
+                .match(ControllerParameter.class, (ControllerParameter m) ->
+                        updateControllerParameter(m)
+                            .subscribeOn(Schedulers.newThread())
+                            .subscribe(v -> {
+                                log.info("LIMIT UPDATE" );
+                                getSender().tell("OK", getSelf());
+                            })
+                )
                 .matchAny(o -> log.info("received unknown message"))
                 .build();
     }
@@ -67,6 +76,14 @@ public class SystemParameterActor extends AbstractActor {
         return Observable.concat(updateDataInDB.updateLimit(m.getTag(), m.getValue(), m.getType()),
                 insertDataToDB.insertChangeParameterValue(new ChangeParameterValue(1, m.getTag(), m.getValue(), date_str)));
     }
+
+    private Observable<Integer> updateControllerParameter(ControllerParameter m) {
+        final Date date = calendar.getTime();
+        String date_str = dateFormat.format(date);
+        return Observable.concat(updateDataInDB.updateControllerParameter(m.getTag(), m.getValue()),
+                insertDataToDB.insertChangeParameterValue(new ChangeParameterValue(1,m.getTag(), m.getValue(), date_str)));
+    }
+
     //-----------------------------------------------------------
     //                      MESSAGES CLASS
     //-----------------------------------------------------------

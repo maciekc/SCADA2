@@ -27,7 +27,7 @@ CREATE TABLE `system_parameters` (
   `tag` varchar(45) NOT NULL,
   `name` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,7 +36,7 @@ CREATE TABLE `system_parameters` (
 
 LOCK TABLES `system_parameters` WRITE;
 /*!40000 ALTER TABLE `system_parameters` DISABLE KEYS */;
-INSERT INTO `system_parameters` VALUES (1,'SET_POINT','Wart. zadana'),(2,'LEVEL_1_MIN','Poziom 1 min'),(3,'LEVEL_2_MIN','Poziom 2 min'),(4,'LEVEL_3_MIN','Poziom 3 min'),(5,'LEVEL_1_MIN_CRITICAL','Poziom 1 min kryt.'),(6,'LEVEL_2_MIN_CRITICAL','Poziom 2 min kryt.'),(7,'LEVEL_3_MIN_CRITICAL','Poziom 3 min kryt.'),(8,'LEVEL_1_MAX','Poziom 1 max'),(9,'LEVEL_2_MAX','Poziom 2 max'),(10,'LEVEL_3_MAX','Poziom 3 max'),(11,'LEVEL_1_MAX_CRITICAL','Poziom 1 max kryt.'),(12,'LEVEL_2_MAX_CRITICAL','Poziom 2 max kryt.'),(13,'LEVEL_3_MAX_CRITICAL','Poziom 3 max kryt.');
+INSERT INTO `system_parameters` VALUES (1,'SET_POINT','Wart. zadana'),(2,'LEVEL_1_MIN','Poziom 1 min'),(3,'LEVEL_2_MIN','Poziom 2 min'),(4,'LEVEL_3_MIN','Poziom 3 min'),(5,'LEVEL_1_MIN_CRITICAL','Poziom 1 min kryt.'),(6,'LEVEL_2_MIN_CRITICAL','Poziom 2 min kryt.'),(7,'LEVEL_3_MIN_CRITICAL','Poziom 3 min kryt.'),(8,'LEVEL_1_MAX','Poziom 1 max'),(9,'LEVEL_2_MAX','Poziom 2 max'),(10,'LEVEL_3_MAX','Poziom 3 max'),(11,'LEVEL_1_MAX_CRITICAL','Poziom 1 max kryt.'),(12,'LEVEL_2_MAX_CRITICAL','Poziom 2 max kryt.'),(13,'LEVEL_3_MAX_CRITICAL','Poziom 3 max kryt.'),(14,'CONTROLLER_1','Reg. 1'),(15,'CONTROLLER_2','Reg. 2'),(17,'CONTROLLER_3','Reg. 3'),(18,'CONTROLLER_4','Reg. 4');
 /*!40000 ALTER TABLE `system_parameters` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -49,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-11-19 17:19:10
+-- Dump completed on 2018-01-01 17:07:54
