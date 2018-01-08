@@ -50,4 +50,8 @@ export class CommonService {
   public getStateVariableData() {
     return this.commonDataGetter.getStateVariableData()
   }
+
+  public getLimitsToLevel() {
+    return this.commonDataGetter.getLimitsToLevel()
+  }
 }

@@ -39,11 +39,11 @@ export class PlotDataGetter {
     }
 
     public plotGetter(): Subscription {
-    let subscription: Subscription = Observable.interval(5000) 
-    .subscribe(v => {
-            this.getCurrentServerPlotData()
-    });
-    return subscription;
+        let subscription: Subscription = Observable.interval(5000) 
+        .subscribe(v => {
+                this.getCurrentServerPlotData()
+        });
+        return subscription;
     }
 
     public initPlotDataGetter() {

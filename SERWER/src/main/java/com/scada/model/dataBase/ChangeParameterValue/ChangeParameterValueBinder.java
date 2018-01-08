@@ -20,7 +20,7 @@ public @interface ChangeParameterValueBinder {
                 public void bind(SQLStatement q, ChangeParameterValueBinder bind, ChangeParameterValue arg) {
 
                     q.bind("id", arg.getId());
-                    q.bind("systemParameterTag", arg.getSystemParameterName());
+                    q.bind("systemParameterTag", arg.getStateSpaceTag());
                     q.bind("value", arg.getValue());
                     q.bind("date", arg.getDate());
                 }

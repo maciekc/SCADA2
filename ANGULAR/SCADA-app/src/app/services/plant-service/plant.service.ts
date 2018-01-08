@@ -4,7 +4,7 @@ import {Observable, Subscription} from "rxjs";
 
 
 import { PlotDataGetter } from '../../class/plotDataGetter';
-import { SendDataToServer } from '../../class/sendValuesToServer';
+import { SendDataToServer } from '../../class/sendDataToServer';
 
 
 @Injectable()
@@ -73,8 +73,8 @@ export class PlantService {
     this.subscriptions = [];
   }
 
-  public changeLimitsValues(limitTag: String, limitMin: number, limitMax: number, limitMinCrit: number, limitMaxCrit: number) {
-    return this.sendDataToServer.sendLimitsToServer(limitTag, limitMin, limitMax, limitMinCrit, limitMaxCrit)
+  public changeLimitsValues(limitTag: String, limitsToLevel: Map<String, String[]>, values: number[]) {
+    return this.sendDataToServer.sendLimitsToServer(limitTag, limitsToLevel, values)
   }
 
   public initOutputPlotDataGetter(){

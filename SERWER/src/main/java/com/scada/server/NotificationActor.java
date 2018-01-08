@@ -73,7 +73,6 @@ public class NotificationActor extends AbstractActor {
                                         .forEach(andon -> {
                                             mail.sendMail(andon);
                                         });
-                                System.out.println("koniec");
                             });
                 })
                 .match(UpdateAndonData.class, m -> {

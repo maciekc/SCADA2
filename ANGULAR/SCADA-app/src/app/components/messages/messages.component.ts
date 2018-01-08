@@ -5,7 +5,6 @@ import {Observable, Subscription} from "rxjs";
 import {AndonService} from '../../services/andonService/andon.service';
 import {CommonService} from '../../services/common-service/common.service'
 import {Andon} from '../../class/andon';
-import {Message} from '../../class/message';
 import { from } from 'rxjs/observable/from';
 
 @Component({
@@ -39,7 +38,6 @@ export class MessagesComponent implements OnInit {
       if(r.length > 0) {
         this.andonData = r
       }
-      console.log(this.andonData)
     });
 
 
@@ -49,7 +47,6 @@ export class MessagesComponent implements OnInit {
       if(data.length > 0 && data.length != this.andonData.length) {
         this.andonData = this.andonData.concat(data)
       }
-      console.log(this.andonData)
     })
     this.serviceSubscriptions.push(andon);
   }
@@ -87,8 +84,6 @@ export class MessagesComponent implements OnInit {
   }
 
   public getStateVariableName(andon: Andon) {
-    console.log(andon.getStateVariableTag())
-    console.log(this.stateVariableData) 
     return this.stateVariableData.get(andon.getStateVariableTag())
   }
 

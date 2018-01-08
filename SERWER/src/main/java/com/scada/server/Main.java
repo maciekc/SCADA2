@@ -34,6 +34,7 @@ import com.scada.dataBase.InsertDataToDB;
 import com.scada.dataBase.UpdateDataInDB;
 
 import com.scada.model.dataBase.Andon.Andon;
+import com.scada.model.dataBase.Controller.ControllerParameter;
 import com.scada.model.dataBase.Work.Work;
 import com.scada.server.StateVariableActor.*;
 import com.scada.server.ReportDataActor.*;
@@ -62,9 +63,12 @@ import java.util.function.Supplier;
 public class Main extends AllDirectives {
 
     static Timeout t = new Timeout(Duration.create(5, TimeUnit.SECONDS));
+    static Timeout reportTimeout = new Timeout(Duration.create(5, TimeUnit.SECONDS));
     final FiniteDuration oneSecond =
             FiniteDuration.create(1, TimeUnit.SECONDS);
-    static final DBI dbi = new DBI("jdbc:mysql://192.168.1.99:3306/scada", "root", "qwerty");
+    static final DBI dbi = new DBI("jdbc:mysql://localhost:3306/scada", "root", "1234");
+//    static final DBI dbi = new DBI("jdbc:mysql://192.168.56.1:3306/scada", "root", "qwerty");
+
     static final Handle handle = dbi.open();
     static final GetDBData getDBData = new GetDBData(handle);
     static final InsertDataToDB insertDataToDB = new InsertDataToDB(handle);
@@ -77,6 +81,7 @@ public class Main extends AllDirectives {
     static ActorSystem system = ActorSystem.create("routes");
 
     private final Unmarshaller<HttpEntity, LimitUpdate> limitUnmarshaller = Jackson.unmarshaller(LimitUpdate.class);
+    private final Unmarshaller<HttpEntity, ControllerParameter> controllerParameterUnmarshaller = Jackson.unmarshaller(ControllerParameter.class);
 
     public static void main(String[] args) throws InterruptedException, IOException, ExecutionException {
 
@@ -268,6 +273,15 @@ public class Main extends AllDirectives {
                                 )
                         ))
                 ),
+                pathPrefix("controllersParameters", () -> route(
+                        pathEnd(() ->
+                                get(() -> {
+                                    final CompletionStage<Object> cpvData = ask(getStateVariableData, new ControllersParametersData(), t);
+                                    return onSuccess(() -> cpvData, result ->
+                                            completeOK(result, Jackson.marshaller()));
+                                })
+                        ))
+                ),
                 pathPrefix("changeParameter", () -> route(
                         pathEnd(() ->
                                 get(() -> {
@@ -316,6 +330,36 @@ public class Main extends AllDirectives {
                             })
                         )
                 ),
+                path("andonReport", () ->
+                        get(() ->
+                                parameterList(param -> {
+                                    final Integer startId = Integer.parseInt(param.get(0).getValue().toString());
+                                    final CompletionStage<Object> andonRequest = ask(reportData, new ReportDataActor.AndonData(), reportTimeout);
+                                    return onSuccess(() -> andonRequest, result ->
+                                            completeOK(result, Jackson.marshaller()));
+                                })
+                        )
+                ),
+                path("changeParamterReport", () ->
+                        get(() ->
+                                parameterList(param -> {
+                                    final Integer startId = Integer.parseInt(param.get(0).getValue().toString());
+                                    final CompletionStage<Object> andonRequest = ask(reportData, new ReportDataActor.ChangeParameterValueData(), reportTimeout);
+                                    return onSuccess(() -> andonRequest, result ->
+                                            completeOK(result, Jackson.marshaller()));
+                                })
+                        )
+                ),
+                path("workReport", () ->
+                        get(() ->
+                                parameterList(param -> {
+                                    final Integer startId = Integer.parseInt(param.get(0).getValue().toString());
+                                    final CompletionStage<Object> andonRequest = ask(reportData, new ReportDataActor.WorkData(), reportTimeout);
+                                    return onSuccess(() -> andonRequest, result ->
+                                            completeOK(result, Jackson.marshaller()));
+                                })
+                        )
+                ),
                 path("currentData", () ->
                     pathEnd(() ->
                             get(() -> {
@@ -348,6 +392,16 @@ public class Main extends AllDirectives {
                                             completeOK("OK", Jackson.marshaller()))
                         )
                     )
+                ),
+                path("controllerParameter", () ->
+                        post(() ->
+                                entity(this.controllerParameterUnmarshaller, lu ->
+                                        onSuccess(() -> CompletableFuture.supplyAsync(
+                                                () -> ask(systemParameterData, lu, t), Executors.newFixedThreadPool(5)),
+                                                result ->
+                                                        completeOK("OK", Jackson.marshaller()))
+                                )
+                        )
                 )
 
                 //--------------------------------------------------
