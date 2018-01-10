@@ -20,7 +20,7 @@ export class StatisticService {
     this.outputPlotDataGetter = new PlotDataGetter(http, "OUTPUT");
     this.controllPlotDataGetter = new PlotDataGetter(this.http, "VALVE_1");
     this.stateVariablePlotDataGetter = new PlotDataGetter(this.http, "LEVEL_1");
-    this.productionPlotDataGetter = new PlotDataGetter(this.http, "LEVEL_3");
+    this.productionPlotDataGetter = new PlotDataGetter(this.http, "VALVE_1");
   }
 
   public chanegControllPlotTab(tag: String) {
@@ -64,7 +64,8 @@ export class StatisticService {
   }
 
   public getProductionValues() {
-    return this.productionPlotDataGetter.getValues()
+    let values = this.productionPlotDataGetter.getValues()
+    return values
   }
   
   public getProductionDates() {

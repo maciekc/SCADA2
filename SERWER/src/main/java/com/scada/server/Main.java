@@ -67,7 +67,7 @@ public class Main extends AllDirectives {
     final FiniteDuration oneSecond =
             FiniteDuration.create(1, TimeUnit.SECONDS);
     static final DBI dbi = new DBI("jdbc:mysql://localhost:3306/scada", "root", "1234");
-//    static final DBI dbi = new DBI("jdbc:mysql://192.168.56.1:3306/scada", "root", "qwerty");
+//    static final DBI dbi = new DBI("jdbc:mysql://192.168.1.99:3306/scada", "root", "qwerty");
 
     static final Handle handle = dbi.open();
     static final GetDBData getDBData = new GetDBData(handle);

@@ -41,11 +41,11 @@ export class MessagesComponent implements OnInit {
     });
 
 
-    let andon = Observable.interval(1000)
+    let andon = Observable.interval(2000)
     .subscribe(r => {
       let data = this.andonService.getAndonData();
       if(data.length > 0 && data.length != this.andonData.length) {
-        this.andonData = this.andonData.concat(data)
+        this.andonData = this.andonData.concat(data).reverse()
       }
     })
     this.serviceSubscriptions.push(andon);

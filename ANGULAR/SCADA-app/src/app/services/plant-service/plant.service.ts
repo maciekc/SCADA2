@@ -23,7 +23,7 @@ export class PlantService {
     // this.controllPlotDataGetter = new PlotDataGetter(this.http, "VALVE_1");
     this.stateVariablePlotDataGetter = new PlotDataGetter(this.http, "LEVEL_1");
     this.sendDataToServer = new SendDataToServer(http);
-    this.materialPlotDataGetter = new PlotDataGetter(this.http, "VALVE_1", "BAR_DAY");
+    this.materialPlotDataGetter = new PlotDataGetter(this.http, "VALVE_4", "BAR_DAY");
   }
 
 
@@ -52,7 +52,11 @@ export class PlantService {
   }
 
   public getMaterialValues() {
-    return this.materialPlotDataGetter.getValues()
+    let values = this.materialPlotDataGetter.getValues()
+    // for (let i=0; i< values.length; i++) {
+    //   values[i] = values[i] / 10
+    // }
+    return values
   }
   
   public getMaterialDates() {

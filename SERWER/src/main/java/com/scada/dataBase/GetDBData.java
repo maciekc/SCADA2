@@ -28,6 +28,7 @@ public class GetDBData {
         this.queries = this.DBhandle.attach(DBQueries.class);
     }
 
+    public static void setMaxId(int value) {maxAndonId = value;}
     //------------------------------------------------------------------
     //                       GET SS DATA
     //------------------------------------------------------------------
@@ -49,13 +50,13 @@ public class GetDBData {
 
     public Observable<List<FigurePoint>> getStateVariableDaily(String stateSpace) {
         synchronized (this) {
-            return Observable.fromCallable(() -> queries.getStateSpaceDataDaily(stateSpace));
+            return Observable.fromCallable(() -> queries.getStateSpaceDataDaily(stateSpace, 10.));
         }
     }
 
     public Observable<List<FigurePoint>> getStateVariableHourly(String stateSpace) {
         synchronized (this) {
-            return Observable.fromCallable(() -> queries.getStateSpaceDataHourly(stateSpace));
+            return Observable.fromCallable(() -> queries.getStateSpaceDataHourly(stateSpace, 10.));
         }
     }
 
@@ -79,10 +80,12 @@ public class GetDBData {
             } else {
                 andonList = Observable.fromCallable(() -> queries.getAndonData(maxAndonId));
             }
-            andonList.forEach(v -> {for (Andon a : v) {
-                this.maxAndonId = Math.max(this.maxAndonId, a.getId());
-                }
-            });
+//            andonList.forEach(v -> {for (Andon a : v) {
+//                this.maxAndonId = Math.max(this.maxAndonId, a.getId());
+//                System.out.println(a.getId() + a.getValue());
+//                }
+//            });
+            System.out.println("max id : " + maxAndonId);
             return andonList;
         }
     }

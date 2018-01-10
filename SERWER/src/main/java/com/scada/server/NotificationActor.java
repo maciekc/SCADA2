@@ -30,6 +30,8 @@ public class NotificationActor extends AbstractActor {
     private final GetDBData getDBData;
     private ActorRef serverRef;
     private final Mail mail;
+    private int id = -1;
+
 
     public NotificationActor(GetDBData getDBData) {
         this.mail = new Mail();
@@ -67,10 +69,15 @@ public class NotificationActor extends AbstractActor {
                     this.serverRef = getSender();
                     getDBData.getAndonData(m.getStartId())
                             .subscribe(v -> {
+                                System.out.println("values " + v);
                                 getSender().tell(v, getSelf());
                                 Observable.from(v)
                                         .observeOn(Schedulers.newThread())
                                         .forEach(andon -> {
+                                            if(andon.getId() > id) {
+                                                id = andon.getId();
+                                                getDBData.setMaxId(id);
+                                            }
                                             mail.sendMail(andon);
                                         });
                             });

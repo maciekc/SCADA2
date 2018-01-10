@@ -42,7 +42,10 @@ export class PlantComponent implements OnInit, OnDestroy {
 
   private limitTag: String = "LEVEL_1";
   private stateVariable: String = "LEVEL_1";
+
+  private refreshTime: number = 2000;
   
+
   // private commonDAtaGetter: CommonService;
 
   constructor(private plantService: PlantService, private commonDataService: CommonService) {}
@@ -101,7 +104,7 @@ export class PlantComponent implements OnInit, OnDestroy {
     this.changeStateVariableLimits(this.stateVariable)
     .then(r => this.updatePlotsData())
 
-    let output = Observable.interval(5000)
+    let output = Observable.interval(this.refreshTime)
     .subscribe(r => {
       let dates = this.plantService.getOutputDates();
       let values = this.plantService.getOutputValues()
@@ -109,7 +112,7 @@ export class PlantComponent implements OnInit, OnDestroy {
     })
     this.serviceSubscriptions.push(output);
 
-    let stateVariable = Observable.interval(5000)
+    let stateVariable = Observable.interval(this.refreshTime)
     .subscribe(r => {
       let dates = this.plantService.getStateVariableDates();
       let values = this.plantService.getStateVariableValues()
@@ -124,7 +127,7 @@ export class PlantComponent implements OnInit, OnDestroy {
     })
     this.serviceSubscriptions.push(stateVariable);
 
-    let materialVariable = Observable.interval(5000)
+    let materialVariable = Observable.interval(this.refreshTime)
     .subscribe(r => {
       let dates = this.plantService.getMaterialDates();
       let values = this.plantService.getMaterialValues()
@@ -132,7 +135,7 @@ export class PlantComponent implements OnInit, OnDestroy {
     })
     this.serviceSubscriptions.push(materialVariable);
 
-    let commonData = Observable.interval(5000)
+    let commonData = Observable.interval(this.refreshTime)
     .subscribe(r => {
       this.level_1 = this.commonDataService.getCurrentValue("LEVEL_1")
       this.level_2 = this.commonDataService.getCurrentValue("LEVEL_2")

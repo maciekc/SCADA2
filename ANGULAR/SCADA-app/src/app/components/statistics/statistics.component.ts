@@ -44,6 +44,9 @@ export class StatisticsComponent implements OnInit, OnDestroy {
   private LEVEL_2: String = "";
   private LEVEL_3: String = "";
 
+  private refreshTime: number = 2000;
+  private productionFigureMode = "LINE";
+
   // private currentConcentration: number = 0;
   // private currentLevel: number = 0;
 
@@ -60,6 +63,7 @@ export class StatisticsComponent implements OnInit, OnDestroy {
   changeProductionFigureMode(event) {
     let target = event.target;
     let id = target.id;
+    this.productionFigureMode = id;
     document.getElementById("ProductionDropButton").innerText = target.innerText;
     //BAR_HOUR
     //BAR_DAY
@@ -84,7 +88,7 @@ export class StatisticsComponent implements OnInit, OnDestroy {
 
     this.updateIndicators()
 
-    let output = Observable.interval(5000)
+    let output = Observable.interval(this.refreshTime)
     .subscribe(r => {
       let dates = this.statisticService.getOutputDates();
       let values = this.statisticService.getOutputValues();
@@ -93,7 +97,7 @@ export class StatisticsComponent implements OnInit, OnDestroy {
     })
     this.serviceSubscriptions.push(output);
 
-    let stateVariable = Observable.interval(5000)
+    let stateVariable = Observable.interval(this.refreshTime)
     .subscribe(r => {
       let dates = this.statisticService.getStateVariableDates();
       let values = this.statisticService.getStateVariableValues()
@@ -101,29 +105,37 @@ export class StatisticsComponent implements OnInit, OnDestroy {
     })
     this.serviceSubscriptions.push(stateVariable);
 
-    let productionVariable = Observable.interval(5000)
+    let productionVariable = Observable.interval(this.refreshTime)
     .subscribe(r => {
       let dates = this.statisticService.getProductionDates();
       let values = this.statisticService.getProductionValues();
       let currentLevel = values[values.length - 1];
 
+      // if (this.productionFigureMode == "LINE") {
+      //   console.log("len : " + values.length)
+      //   for (let i=0; i < values.length; i++) {
+      //     values[i] = values[i] / 10
+      //   }
+      // }
+      console.log(values)
       //tozeroy - niebieski
       //tonexty - czerwony
-      console.log(values)
+      // console.log(values)
       this.productionFigure.updatePlotData(dates, values, 'Produkcja', 'tonexty');
       // this.currentProductionLabel.setLabelValue(this.statisticService.getCurrentProduction());
     })
     this.serviceSubscriptions.push(productionVariable);
 
-    let currenValues = Observable.interval(5000)
+    let currenValues = Observable.interval(this.refreshTime)
     .subscribe(r => {
       this.LEVEL_1 = this.commonDataService.getCurrentValue("LEVEL_1");
       this.LEVEL_2 = this.commonDataService.getCurrentValue("LEVEL_2");
       this.LEVEL_3 = this.commonDataService.getCurrentValue("LEVEL_3");
-      let prod = this.commonDataService.getCurrentValue("VALVE_4");
+      let prod = this.commonDataService.getCurrentValue("VALVE_1")/10;
       let output = this.commonDataService.getCurrentValue("OUTPUT");
+      
       this.concentrationLabel.setLabelValue(output.toString());
-      this.currentProductionLabel.setLabelValue(prod.toString());
+      this.currentProductionLabel.setLabelValue(prod.toPrecision(2));
     })
     this.serviceSubscriptions.push(currenValues);
 
@@ -173,10 +185,10 @@ export class StatisticsComponent implements OnInit, OnDestroy {
       this.LEVEL_1 = this.commonDataService.getCurrentValue("LEVEL_1");
       this.LEVEL_2 = this.commonDataService.getCurrentValue("LEVEL_2");
       this.LEVEL_3 = this.commonDataService.getCurrentValue("LEVEL_3");
-      let prod = this.commonDataService.getCurrentValue("VALVE_4");
+      let prod = this.commonDataService.getCurrentValue("VALVE_1")/10;
       let output = r.get("OUTPUT")[1].toPrecision(3);
       this.concentrationLabel.setLabelValue(output.toString());
-      this.currentProductionLabel.setLabelValue(prod.toString());
+      this.currentProductionLabel.setLabelValue(prod.toPrecision(2));
 
       this.time = new Date();
     })

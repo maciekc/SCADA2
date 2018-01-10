@@ -10,6 +10,6 @@ public class WorkMapper implements ResultSetMapper<Work>{
 
     @Override
     public Work map(int i, ResultSet rs, StatementContext statementContext) throws SQLException {
-        return new Work(rs.getInt("id"), rs.getString("stateSpace"), rs.getDouble("value"), rs.getString("date"));
+        return new Work(rs.getInt("id"), rs.getString("stateSpaceTag"), rs.getDouble("value"), rs.getString("date"));
     }
 }
