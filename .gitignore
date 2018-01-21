@@ -4,3 +4,4 @@ MATLAB/slprj
 Sprawozdanie/*.*
 !Sprawozdanie/*.tex
 !Sprawozdanie/*.pdf
+.gitignore

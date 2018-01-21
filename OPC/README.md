@@ -1,1 +1,0 @@
-# Konfiguracja serwera OPC
