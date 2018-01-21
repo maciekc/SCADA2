@@ -1,1 +1,0 @@
-# Serwer HTTP oraz komunikacja z serwerem OPC i zapis danych do bazy.

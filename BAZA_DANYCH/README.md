@@ -1,1 +1,0 @@
-# Konfiguracja i struktura bazy danych
