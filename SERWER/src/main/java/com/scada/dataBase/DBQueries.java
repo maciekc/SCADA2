@@ -35,7 +35,7 @@ public interface DBQueries {
             "FROM scada.history " + "\n" +
             "WHERE state_space_id = (SELECT id from scada.state_space where tag LIKE :stateSpace) and date between :startDate and :endDate " + "\n" +
             "ORDER BY date desc " + "\n" +
-            "LIMIT 10;";
+            "LIMIT 200;";
     @RegisterMapper(FigurePointMapper.class)
     @SqlQuery(getStateSpaceDate_dateRange)
     List<FigurePoint> getStateSpaceData(@Bind("stateSpace") String stateSpace, @Bind("startDate") String startDate, @Bind("endDate") String endDate);
@@ -45,7 +45,7 @@ public interface DBQueries {
                     "FROM scada.history " + "\n" +
                     "WHERE state_space_id = (SELECT id from scada.state_space where tag LIKE :stateSpace) " + "\n" +
                     "ORDER BY date desc " + "\n" +
-                    "LIMIT 10;";
+                    "LIMIT 200;";
     @RegisterMapper(FigurePointMapper.class)
     @SqlQuery(getStateSpaceDate)
     List<FigurePoint> getStateSpaceData(@Bind("stateSpace") String stateSpace);

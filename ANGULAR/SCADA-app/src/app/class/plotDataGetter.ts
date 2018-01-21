@@ -10,21 +10,23 @@ export class PlotDataGetter {
     private values: number[] = [];
     private url: string = "";
     // private mode: String = "LINE"
+    // private ipAddress = "http://localhost:8010/stateVariableData"
+    private ipAddress = "http://192.168.1.100:8010/stateVariableData"
 
     constructor(private http: HttpClient, private tag: String, private mode: String = "LINE") {
         if(this.mode == "LINE") {
-            this.url =  "http://localhost:8010/stateVariableData";
+            this.url =  this.ipAddress;
         } else {
-            this.url =  "http://localhost:8010/stateVariableData/" + mode
+            this.url =  this.ipAddress + mode
         }
     }
 
     public setMode(mode: String) {
         this.mode = mode;
         if (mode != "LINE") {
-            this.url = "http://localhost:8010/stateVariableData/" + mode
+            this.url = this.ipAddress + mode
         } else {
-            this.url = this.url = "http://localhost:8010/stateVariableData"
+            this.url = this.ipAddress
         }
     }
     public setTag(newTag : String) {

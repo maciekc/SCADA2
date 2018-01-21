@@ -78,7 +78,7 @@ public class NotificationActor extends AbstractActor {
                                                 id = andon.getId();
                                                 getDBData.setMaxId(id);
                                             }
-                                            mail.sendMail(andon);
+//                                            mail.sendMail(andon);
                                         });
                             });
                 })

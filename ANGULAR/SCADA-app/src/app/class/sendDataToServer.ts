@@ -5,7 +5,9 @@ import {Point} from './point';
 
 export class SendDataToServer {
 
-    private url: string = "http://localhost:8010/changeLimits";
+    // private url: string = "http://localhost:8010/changeLimits";
+    private url: string = "http://192.168.1.100:8010/changeLimits";
+
     private static limitsToLevelValues: Map<String, number[]> = new Map();
     constructor(private http: HttpClient) {
         SendDataToServer.limitsToLevelValues.set("LEVEL_1", [0,0,0,0])
@@ -28,7 +30,9 @@ export class SendDataToServer {
                 let limitJSON = JSON.stringify(new LimitUpdate(limitsTags[i], Number(values[i]),0))
                 console.log(limitJSON)
                 console.log(Number(values[i]))
-                let req = this.http.post('http://localhost:8010/limits', limitJSON, {headers: header, responseType:'json'})
+                
+                // let req = this.http.post('http://localhost:8010/limits', limitJSON, {headers: header, responseType:'json'})
+                let req = this.http.post('http://192.168.1.100:8010/limits', limitJSON, {headers: header, responseType:'json'})
                 .subscribe(r=> console.log("send "))
                 requestObs.push(req)
             }
@@ -52,7 +56,9 @@ export class SendDataToServer {
                         let limitJSON = JSON.stringify(new ControllerParameterUpdate(tags[i], Number(values[i])))
                         console.log(limitJSON)
                         console.log(Number(values[i]))
-                        let req = this.http.post('http://localhost:8010/controllerParameter', limitJSON, {headers: header, responseType:'json'})
+                        // http://192.168.1.100:8010
+                        // let req = this.http.post('http://localhost:8010/controllerParameter', limitJSON, {headers: header, responseType:'json'})
+                        let req = this.http.post('http://192.168.1.100:8010/controllerParameter', limitJSON, {headers: header, responseType:'json'})
                         .subscribe(r=> console.log("send "))
                         requestObs.push(req)
                 }                
@@ -66,4 +72,4 @@ class LimitUpdate {
 
 class ControllerParameterUpdate {
     constructor(private tag: String, private value: number){}
-}
+} 

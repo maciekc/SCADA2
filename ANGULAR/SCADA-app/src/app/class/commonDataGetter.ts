@@ -12,8 +12,11 @@ export class CommonDataGetter {
     private stateVariableData: Map<String, String> = new Map();
     
     private tags: String[] = ["LEVEL_1", "LEVEL_2", "LEVEL_3", "VALVE_1", "VALVE_2", "VALVE_3", "VALVE_4", "OUTPUT"]
-    private urlCurrentData: string = "http://localhost:8010/currentData";
-    private urlLimitData: string = "http://localhost:8010/limitsData";
+    // private urlCurrentData: string = "http://localhost:8010/currentData";
+    // private urlLimitData: string = "http://localhost:8010/limitsData";
+
+    private urlCurrentData: string = "http://192.168.1.100:8010/currentData";
+    private urlLimitData: string = "http://192.168.1.100:8010/limitsData";
 
     constructor(private http: HttpClient) {
         this.initLimitsData()

@@ -33,11 +33,8 @@ public class Mail {
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.host", host);
         props.put("mail.smpt.user", "scada2agh");
-//        props.put("mail.password", "qwert2017");
-//        props.put("mail.smtp.socketFactory.port", "465");
         props.put("mail.smtp.port", "587");
 
-//        props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
         props.put("mail.smtp.starttls.enable", "true");
         props.put("mail.transport.protocol", "smtp");
         props.put("mail.smtp.ssl.trust", "smtp.gmail.com");

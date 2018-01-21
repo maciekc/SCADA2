@@ -42,15 +42,6 @@ public class SystemParameterActor extends AbstractActor {
 
                 .match(LimitUpdate.class, (LimitUpdate m) ->
                         updateLimit(m)
-//                        updateDataInDB.updateLimit(m.getTag(), m.getValue(), m.getType())
-//                            .map(r -> {
-//                            getSender().tell("OK", getSelf());
-//                            System.out.println("tu " + m.getType());
-//                            final Date date = calendar.getTime();
-//                            String date_str = dateFormat.format(date);
-//                            return insertDataToDB.insertChangeParameterValue(new ChangeParameterValue(1, m.getTag(), m.getValue(), date_str));
-//                        })
-//                                .subscribeOn(Schedulers.fromCallableom(Executors.newFixedThreadPool(4)))
                             .subscribeOn(Schedulers.newThread())
                             .subscribe(v -> {
                                 log.info("LIMIT UPDATE" );

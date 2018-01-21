@@ -212,7 +212,7 @@ public interface DBUpdates {
             "UPDATE scada.controller_parameter \n" +
                     "SET\n" +
                     "value = :value\n" +
-                    "WHERE tag = :tag;";
+                    "WHERE tag LIKE :tag;";
 
     @SqlUpdate(updateContParam)
     int updateControllerPArameter(@Bind("tag") String tag,@Bind("value") double value);

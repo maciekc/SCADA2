@@ -10,8 +10,11 @@ export class ControllerDataGetter {
     private parametersData: Map<String, Object> = new Map();
     
     private tags: String[] = ["LEVEL_1", "LEVEL_2", "LEVEL_3", "VALVE_1", "VALVE_2", "VALVE_3", "VALVE_4", "OUTPUT"]
-    private urlCurrentData: string = "http://localhost:8010/controllerData";
-    private urlParametersData: string = "http://localhost:8010/controllersParameters";
+    // private urlCurrentData: string = "http://localhost:8010/controllerData";
+    // private urlParametersData: string = "http://localhost:8010/controllersParameters";
+
+    private urlCurrentData: string = "http://192.168.1.100:8010/controllerData";
+    private urlParametersData: string = "http://192.168.1.100:8010/controllersParameters";
 
     constructor(private http: HttpClient) {
         // this.initControllerDataGetter()

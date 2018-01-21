@@ -8,52 +8,37 @@ import akka.http.javadsl.ConnectHttp;
 import akka.http.javadsl.Http;
 import akka.http.javadsl.ServerBinding;
 import akka.http.javadsl.marshallers.jackson.Jackson;
-import akka.http.javadsl.marshalling.sse.EventStreamMarshalling;
 import akka.http.javadsl.model.HttpEntity;
 import akka.http.javadsl.model.HttpRequest;
 import akka.http.javadsl.model.HttpResponse;
 import akka.http.javadsl.model.StatusCodes;
-import akka.http.javadsl.model.headers.HttpOrigin;
 import akka.http.javadsl.model.headers.HttpOriginRange;
-import akka.http.javadsl.model.sse.ServerSentEvent;
 import akka.http.javadsl.server.*;
 import akka.http.javadsl.unmarshalling.StringUnmarshallers;
 import akka.http.javadsl.unmarshalling.Unmarshaller;
 import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
-import akka.stream.javadsl.Source;
 import akka.util.Timeout;
 import ch.megard.akka.http.cors.javadsl.settings.CorsSettings;
 
 import static ch.megard.akka.http.cors.javadsl.CorsDirectives.cors;
 import static ch.megard.akka.http.cors.javadsl.CorsDirectives.corsRejectionHandler;
-import com.google.gson.Gson;
-import com.scada.dataBase.DBUpdates;
 import com.scada.dataBase.GetDBData;
 import com.scada.dataBase.InsertDataToDB;
 import com.scada.dataBase.UpdateDataInDB;
 
-import com.scada.model.dataBase.Andon.Andon;
 import com.scada.model.dataBase.Controller.ControllerParameter;
-import com.scada.model.dataBase.Work.Work;
 import com.scada.server.StateVariableActor.*;
 import com.scada.server.ReportDataActor.*;
 import com.scada.server.NotificationActor.*;
 import com.scada.server.SystemParameterActor.*;
 
-import com.scada.server.OPCDataLoggerActor.*;
-
-import com.scada.model.dataBase.ChangeParameterValue.ChangeParameterValue;
-import com.scada.model.dataBase.Controller.Controller;
-import com.scada.model.dataBase.Limit.Limit;
 import org.skife.jdbi.v2.DBI;
 import org.skife.jdbi.v2.Handle;
 import scala.concurrent.duration.Duration;
 import scala.concurrent.duration.FiniteDuration;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.concurrent.*;
 import java.util.function.Function;
@@ -66,8 +51,8 @@ public class Main extends AllDirectives {
     static Timeout reportTimeout = new Timeout(Duration.create(5, TimeUnit.SECONDS));
     final FiniteDuration oneSecond =
             FiniteDuration.create(1, TimeUnit.SECONDS);
-    static final DBI dbi = new DBI("jdbc:mysql://localhost:3306/scada", "root", "1234");
-//    static final DBI dbi = new DBI("jdbc:mysql://192.168.1.99:3306/scada", "root", "qwerty");
+//    static final DBI dbi = new DBI("jdbc:mysql://localhost:3306/scada", "root", "1234");
+    static final DBI dbi = new DBI("jdbc:mysql://192.168.1.99:3306/scada", "root", "qwerty");
 
     static final Handle handle = dbi.open();
     static final GetDBData getDBData = new GetDBData(handle);
@@ -86,8 +71,6 @@ public class Main extends AllDirectives {
     public static void main(String[] args) throws InterruptedException, IOException, ExecutionException {
 
         System.out.println("Sending message");
-//        final Mail mail = new Mail();
-//        mail.sendMail(new Andon(1,"TEST", "LIMIT TEST", 12.2, "2017-11-17 22:18:00", -1));
 
         System.out.println("open bd connection");
 
@@ -109,13 +92,15 @@ public class Main extends AllDirectives {
         //In order to access all directives we need an instance where the routes are define.
         Main app = new Main();
 
+//        final String ipAddres = "localhost";
+        final String ipAddres = "192.168.1.100";
         final Flow<HttpRequest, HttpResponse, NotUsed> routeFlow = app.createRoute().flow(system, materializer);
         final CompletionStage<ServerBinding> binding = http.bindAndHandle(routeFlow,
-                ConnectHttp.toHost("localhost", 8010), materializer);
+                ConnectHttp.toHost(ipAddres, 8010), materializer);
 
 
 
-        System.out.println("Server online at http://localhost:8010/\nPress RETURN to stop...");
+        System.out.println("Server online at " + ipAddres + "/\nPress RETURN to stop...");
         System.in.read(); // let it run until user presses return
 
         binding
@@ -129,19 +114,17 @@ public class Main extends AllDirectives {
 
         private Route createRoute() {
 
+//            final String ipAddres = "http://localhost:4200";
+            final String ipAddres = "http://192.168.1.100:4200";
             // Your CORS settings
-            final CorsSettings settings = CorsSettings.defaultSettings()
-                    .withAllowedOrigins(HttpOriginRange.create(HttpOrigin.parse("http://localhost:4200")));
+            final CorsSettings settings = CorsSettings.defaultSettings().withAllowedOrigins(HttpOriginRange.ALL);
 
-            // Your rejection handler
             final RejectionHandler rejectionHandler = corsRejectionHandler().withFallback(RejectionHandler.defaultHandler());
 
-            // Your exception handler
             final ExceptionHandler exceptionHandler = ExceptionHandler.newBuilder()
                     .match(NoSuchElementException.class, ex -> complete(StatusCodes.NOT_FOUND, ex.getMessage()))
                     .build();
 
-            // Combining the two handlers only for convenience
             final Function<Supplier<Route>, Route> handleErrors = inner -> Directives.allOf(
                     s -> handleExceptions(exceptionHandler, s),
                     s -> handleRejections(rejectionHandler, s),
@@ -404,21 +387,6 @@ public class Main extends AllDirectives {
                         )
                 )
 
-                //--------------------------------------------------
-                //                  SERVER SENT EVENTS
-                //--------------------------------------------------
-//                path("sse", () ->
-//                        get(() -> {
-//                            final List<ServerSentEvent> data = new ArrayList<>();
-//                            data.add(ServerSentEvent.create("22"));
-//                            System.out.println("tutuaj");
-//    //                        ServerSentEvent sse = ServerSentEvent.create("22");
-////                            return completeOK(Source.from(data), EventStreamMarshalling.toEventStream());
-////                            return completeOK(Source.tick(oneSecond, oneSecond,"tick")
-////                                    .keepAlive(oneSecond, () -> ServerSentEvent.create("mmm"))
-//                            final CompletionStage<Object> andonRequest = ask(notificationDAta, new NotificationActor.AndonRequest(OPCDataLogger), t);
-////                            return completeOK(Source.fromCompletionStage(andonRequest), EventStreamMarshalling.toEventStream());
-//                }))
             ))
         ));
     }

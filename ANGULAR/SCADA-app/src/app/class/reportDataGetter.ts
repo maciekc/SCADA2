@@ -5,13 +5,15 @@ import {ReportData} from './reportData';
 
 export class ReportDataGetter {
 
+    // private hostAddress = "http://localhost:8010"
+    private hostAddress = "http://192.168.1.100:8010"
     private reportData: ReportData[] = [];
     
     private tags: String[] = ["LEVEL_1", "LEVEL_2", "LEVEL_3", "VALVE_1", "VALVE_2", "VALVE_3", "VALVE_4", "OUTPUT"]
-    private urlAndonDataReport: string = "http://localhost:8010/andonReport";
-    private urlChangeParameterDataReport: string = "http://localhost:8010/changeParamterReport";
-    private urlHistoryDataReport: string = "http://localhost:8010/historyReport";
-    private urlWorkDataReport: string = "http://localhost:8010/workReport";
+    private urlAndonDataReport: string = this.hostAddress + "/andonReport";
+    private urlChangeParameterDataReport: string = this.hostAddress + "/changeParamterReport";
+    private urlHistoryDataReport: string = this.hostAddress + "/historyReport";
+    private urlWorkDataReport: string = this.hostAddress + "/workReport";
     private andonReportGetterClass: NotificationData = new AndonData(this.http, this.urlAndonDataReport);
     private workReportGetterClass: NotificationData = new NotificationData(this.http, this.urlWorkDataReport);
     private historyReportGetterClass: NotificationData = new NotificationData(this.http, this.urlHistoryDataReport);

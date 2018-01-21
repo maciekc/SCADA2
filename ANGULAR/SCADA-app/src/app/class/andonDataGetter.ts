@@ -11,7 +11,8 @@ export class AndonDataGetter {
     private Andons: Andon[] = [];
     
     private tags: String[] = ["LEVEL_1", "LEVEL_2", "LEVEL_3", "VALVE_1", "VALVE_2", "VALVE_3", "VALVE_4", "OUTPUT"]
-    private urlAndonData: string = "http://localhost:8010/requestAndon";
+    // private urlAndonData: string = "http://localhost:8010/requestAndon";
+    private urlAndonData: string = "http://192.168.1.100:8010/requestAndon";
 
     private andonGetterClass: NotificationData = new NotificationData(this.http, this.urlAndonData);
    
